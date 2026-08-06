@@ -4,105 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhTao Mu-Space 🔮✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Mitr:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Mitr:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* CI Brand Colors */
-            --c-purple: #921dde;
-            --c-blue: #414dc6;
-            --c-lightblue: #57c6ef;
-            --c-green: #7ac12f;
-            --c-lpurple: #af4bfo;
-            --c-pinkpurple: #d159f4;
-            --c-pink: #f146eb;
-            --c-yellow: #ffeb0a;
-            
-            --bg-light: #fdfaFF; /* พื้นหลังสีสว่างละมุนอมม่วงนิดๆ */
+            /* ดรอปความเข้มลง ใช้โทนพาสเทลตามโค้ดต้นแบบ */
+            --color-pink: #FFB6C1;
+            --color-pink-light: #FFE4E1;
+            --color-green: #B4E869;
+            --color-green-dark: #1E6555;
+            --color-yellow: #FFFACD;
+            --color-blue: #AEEEEE;
+            --color-purple: #921dde;
         }
 
-        * { box-sizing: border-box; }
-        
         body {
+            font-family: 'Mitr', sans-serif;
+            background-color: var(--color-yellow);
+            background-image: 
+                linear-gradient(rgba(255, 182, 193, 0.25) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255, 182, 193, 0.25) 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: var(--color-green-dark);
             margin: 0;
             padding: 0;
-            font-family: 'Mitr', sans-serif;
-            background-color: var(--bg-light);
-            /* พื้นหลังลายตารางจุดน่ารักๆ */
-            background-image: 
-                radial-gradient(var(--c-lpurple) 1px, transparent 1px),
-                radial-gradient(var(--c-lightblue) 1px, transparent 1px);
-            background-position: 0 0, 15px 15px;
-            background-size: 30px 30px;
-            color: #333;
-            min-height: 100vh;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .font-eng { font-family: 'Fredoka One', cursive; font-weight: 400; }
-
-        #w { position: relative; z-index: 1; max-width: 500px; margin: 0 auto; padding: 26px 16px 80px; }
-
-        /* Animation Background SVGs */
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(10deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+        .font-eng {
+            font-family: 'Fredoka One', cursive;
+            font-weight: 400;
         }
-        .animate-float { animation: float 4s ease-in-out infinite; }
-        @keyframes star-twinkle {
-            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 0.6; }
-            50% { transform: translateY(-10px) scale(1.15) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 6px currentColor); }
-        }
-        .animate-star { animation: star-twinkle 3.5s ease-in-out infinite; position: fixed; z-index: -1; pointer-events: none; }
 
-        /* Card Styles (Pinkjulieland Vibe) */
-        .card-dashed {
+        .card {
             background-color: rgba(255, 255, 255, 0.95);
-            border: 3px dashed var(--c-pink);
+            border: 3px dashed var(--color-pink);
             border-radius: 2rem;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(241, 70, 235, 0.15);
+            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
             backdrop-filter: blur(5px);
-            margin-bottom: 24px;
-            position: relative;
         }
 
         .card-solid {
-            background-color: rgba(255, 255, 255, 0.98);
-            border: 3px solid var(--c-lpurple);
-            border-radius: 1.5rem;
-            padding: 20px;
-            box-shadow: 4px 4px 0px var(--c-lpurple);
-            margin-bottom: 24px;
-            position: relative;
-            transition: transform 0.2s;
-        }
-        
-        .sec-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--c-purple);
-            text-align: center;
-            margin: 30px 0 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 3px solid var(--color-green);
+            border-radius: 2rem;
+            box-shadow: 4px 4px 0px var(--color-green);
         }
 
-        /* Form Controls */
+        .btn-cute {
+            background-color: var(--color-green);
+            color: var(--color-green-dark);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn-cute:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(180, 232, 105, 0.5);
+            border-color: var(--color-green-dark);
+        }
+
+        .btn-contact {
+            background-color: var(--color-pink-light);
+            color: var(--color-green-dark);
+            border: 2px solid var(--color-pink);
+            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-contact:hover {
+            background-color: var(--color-pink);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* ระบบร้านค้า & ฟอร์ม */
+        .sec-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-green-dark);
+            margin: 30px 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px dashed var(--color-pink);
+            padding-bottom: 8px;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--color-pink-light);
+        }
+        .item-row:last-child { border-bottom: none; }
+
+        .btn-add {
+            background-color: var(--color-green);
+            color: var(--color-green-dark);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            box-shadow: 2px 2px 0px rgba(30, 101, 85, 0.2);
+        }
+        .btn-add:hover {
+            transform: scale(1.08);
+            background-color: #a3db52;
+        }
+
+        .price-tag {
+            background-color: var(--color-pink-light);
+            color: var(--color-green-dark);
+            border: 1px solid var(--color-pink);
+            border-radius: 10px;
+            padding: 2px 10px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
         .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 13px; color: var(--c-blue); margin-bottom: 6px; font-weight: 600; }
+        .form-group label { display: block; font-size: 13px; color: var(--color-green-dark); margin-bottom: 6px; font-weight: 600; }
         .form-control {
             width: 100%;
-            padding: 12px 16px;
+            padding: 12px 14px;
             background: #fff;
-            border: 2px solid var(--c-lightblue);
+            border: 2px solid var(--color-pink);
             border-radius: 1rem;
-            color: #333;
+            color: var(--color-green-dark);
             font-family: 'Mitr', sans-serif;
             font-size: 14px;
             outline: none;
@@ -110,180 +158,134 @@
             resize: vertical;
         }
         .form-control:focus {
-            border-color: var(--c-pink);
-            box-shadow: 0 0 0 4px rgba(241, 70, 235, 0.15);
+            border-color: var(--color-green);
+            box-shadow: 0 0 0 4px rgba(180, 232, 105, 0.3);
         }
+        
         .form-block {
-            background: rgba(87, 198, 239, 0.08);
+            background: var(--color-yellow);
             padding: 16px;
             border-radius: 1rem;
-            border: 2px dashed var(--c-lightblue);
+            border: 2px dashed var(--color-green);
             margin-bottom: 16px;
         }
-        .form-block h5 { color: var(--c-blue); margin: 0 0 12px 0; font-size: 15px; font-weight: 600; }
+        .form-block h5 { color: var(--color-green-dark); margin: 0 0 12px 0; font-size: 15px; }
 
-        /* Buttons */
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 14px 20px; border: none; border-radius: 1rem; cursor: pointer;
-            font-family: 'Mitr', sans-serif; font-size: 15px; font-weight: 600; color: #fff;
-            background: linear-gradient(135deg, var(--c-purple), var(--c-pink));
-            box-shadow: 0 6px 20px rgba(146, 29, 222, 0.3);
-            transition: all 0.2s; margin-top: 14px;
+            font-family: 'Mitr', sans-serif; font-size: 15px; font-weight: 600; color: var(--color-green-dark);
+            background-color: var(--color-green);
+            box-shadow: 0 4px 15px rgba(180, 232, 105, 0.4);
+            transition: all 0.25s; margin-top: 14px;
+            border: 2px solid transparent;
         }
-        .btn-action:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(241, 70, 235, 0.4); }
-        
-        .btn-add {
-            background: var(--c-green);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            width: 32px;
-            height: 32px;
-            font-size: 16px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 2px 2px 0 var(--c-purple);
-            transition: transform 0.15s;
-        }
-        .btn-add:hover { transform: scale(1.1) translateY(-2px); box-shadow: 3px 3px 0 var(--c-purple); }
+        .btn-action:hover { transform: translateY(-2px); border-color: var(--color-green-dark); }
 
-        .btn-contact {
-            background-color: #fff;
-            color: var(--c-purple);
-            border: 2px solid var(--c-lpurple);
-            border-radius: 1rem;
-            padding: 8px 16px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            transition: all 0.2s;
-            box-shadow: 2px 2px 0 var(--c-lpurple);
-        }
-        .btn-contact:hover { background-color: var(--c-lpurple); color: #fff; transform: translateY(-2px); box-shadow: 4px 4px 0 var(--c-purple); }
-
-        /* Admin Button */
+        /* Admin Button Fixed */
         .btn-admin {
             position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%;
-            background: #fff; border: 2px solid var(--c-purple); font-size: 20px; cursor: pointer; color: var(--c-purple);
-            z-index: 9999; transition: all 0.3s; display: flex; align-items: center; justify-content: center;
-            box-shadow: 3px 3px 0 var(--c-lpurple);
+            background: #fff; border: 2px solid var(--color-green); font-size: 20px; cursor: pointer; color: var(--color-green-dark);
+            z-index: 9999; transition: all .3s; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 0px var(--color-green);
         }
-        .btn-admin:hover { background: var(--c-yellow); transform: rotate(90deg) scale(1.1); }
+        .btn-admin:hover { background: var(--color-green); transform: rotate(90deg) scale(1.1); }
 
         /* Toast */
         .toast {
             position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(200px);
-            background: var(--c-green); color: #fff; padding: 12px 26px; border-radius: 40px;
-            font-weight: 600; font-size: 14px; z-index: 10001; pointer-events: none;
-            box-shadow: 0 8px 30px rgba(122, 193, 47, 0.4);
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); visibility: hidden; border: 2px solid #fff;
+            background: var(--color-green); color: var(--color-green-dark);
+            padding: 12px 26px; border-radius: 40px; font-weight: 600; font-size: 14px;
+            z-index: 10001; pointer-events: none; box-shadow: 0 8px 25px rgba(180, 232, 105, 0.5);
+            transition: transform .35s cubic-bezier(.34,1.56,.64,1); visibility: hidden; border: 2px solid #fff;
         }
         .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
 
         /* Modals */
         .modal-overlay {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(4px); z-index: 10000; overflow-y: auto; padding: 20px;
+            display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4);
+            backdrop-filter:blur(4px); z-index:10000; overflow-y:auto; padding:20px;
         }
         .admin-box {
-            max-width: 600px; margin: 20px auto; background: #fff; border: 3px solid var(--c-purple);
-            border-radius: 2rem; padding: 24px; box-shadow: 6px 6px 0 var(--c-purple);
+            max-width: 600px; margin: 30px auto; background: #fff;
+            border: 3px solid var(--color-green); border-radius: 2rem; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
+
+        @keyframes star-twinkle {
+            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 0.6; }
+            50% { transform: translateY(-10px) scale(1.15) rotate(10deg); opacity: 1; }
+        }
+        .animate-star { animation: star-twinkle 3.5s ease-in-out infinite; position: fixed; z-index: -1; pointer-events: none; }
     </style>
 </head>
-<body>
+<body class="antialiased min-h-screen pb-12">
 
-    <!-- Background Stars (CI Colors) -->
-    <div class="animate-star" style="top: 5%; left: 5%; color: var(--c-pink); animation-delay: 0s;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
-    </div>
-    <div class="animate-star" style="top: 15%; right: 10%; color: var(--c-green); animation-delay: 0.5s;">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
-    </div>
-    <div class="animate-star" style="top: 35%; left: 8%; color: var(--c-lightblue); animation-delay: 1.2s;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-    </div>
-    <div class="animate-star" style="top: 50%; right: 5%; color: var(--c-yellow); animation-delay: 0.8s;">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
-    </div>
-    <div class="animate-star" style="bottom: 10%; right: 15%; color: var(--c-pinkpurple); animation-delay: 0.2s;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
-    </div>
+    <!-- Background Stars -->
+    <div class="animate-star" style="top: 5%; left: 5%; color: var(--color-pink);"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
+    <div class="animate-star" style="top: 15%; right: 10%; color: var(--color-green); animation-delay: 0.5s;"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
+    <div class="animate-star" style="bottom: 10%; right: 15%; color: var(--color-pink); animation-delay: 0.2s;"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
 
     <!-- Admin Button -->
     <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">⚙️</button>
 
-    <div id="w">
-
-        <!-- PROFILE HEADER (Pinkjulieland Style) -->
-        <div style="text-align: center; margin-bottom: 40px; position: relative;">
-            <div style="width: 120px; height: 120px; margin: 0 auto 16px; background: #fff; border-radius: 50%; border: 4px solid var(--c-lightblue); box-shadow: 0 0 20px rgba(87,198,239,0.4); overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;">
-                <!-- รอรูปโปรไฟล์จริง สามารถใส่ <img> ตรงนี้ได้เลยครับ -->
-                <span style="font-size: 50px;">🔮</span>
+    <main class="max-w-[480px] mx-auto px-4 pt-12 relative">
+        
+        <!-- Profile Header -->
+        <div class="text-center mb-8 relative">
+            <div class="w-28 h-28 mx-auto bg-white rounded-full border-4 border-[var(--color-green)] shadow-[0_0_15px_rgba(180,232,105,0.6)] flex items-center justify-center mb-4">
+                <span class="text-4xl">🔮</span>
             </div>
-            <h1 class="font-eng" style="font-size: 38px; color: var(--c-purple); margin: 0 0 8px; text-shadow: 2px 2px 0px rgba(146, 29, 222, 0.1);">AhTao Mu-Space</h1>
-            <p style="font-size: 15px; color: var(--c-pink); font-weight: 600; margin: 0; background: #fff; display: inline-block; padding: 4px 16px; border-radius: 20px; border: 2px dashed var(--c-pink);">
-                ✨ ร้านดูดวง & วอลเปเปอร์มูเตลู ✨
-            </p>
+            <h1 class="text-4xl font-eng text-[var(--color-green-dark)] tracking-wide mb-1">AhTao Mu-Space</h1>
+            <p class="font-eng text-lg text-[var(--color-pink)] font-bold">🔮 ร้านดูดวง & วอลเปเปอร์มูเตลู</p>
         </div>
 
-        <!-- MARQUEE -->
-        <div class="card-dashed" style="padding: 12px; margin-bottom: 30px;">
-            <marquee id="marquee-text-display" scrollamount="3" style="color: var(--c-purple); font-size: 15px; font-weight: 500;"></marquee>
+        <!-- Marquee Card -->
+        <div class="card p-4 mb-6 text-center">
+            <marquee id="marquee-text-display" scrollamount="3" style="color: var(--color-green-dark); font-size: 14px; font-weight: 500;"></marquee>
         </div>
 
         <!-- DYNAMIC PRODUCTS CONTAINER -->
         <div id="products-wrapper">
-            <div style="text-align:center; color:var(--c-pinkpurple); padding:40px; font-weight: 600;">⏳ กำลังโหลดเวทมนตร์...</div>
+            <div style="text-align:center; color:var(--color-green-dark); padding:30px;">⏳ กำลังโหลดข้อมูล...</div>
         </div>
 
         <!-- CART & CHECKOUT CONTAINER -->
-        <div class="sec-title">🛒 ตะกร้าสินค้าของคุณ</div>
-        <div class="card-solid" style="border-color: var(--c-pink); box-shadow: 4px 4px 0 var(--c-pink);">
-            <div style="position:absolute; top:-15px; right:-10px; font-size:30px;">🛍️</div>
-            <div style="font-size: 16px; font-weight: 600; color: var(--c-blue); margin-bottom: 16px; border-bottom: 2px dashed var(--c-pink); padding-bottom: 8px;">รายการที่เลือก</div>
+        <div class="sec-title">🛒 ตะกร้าสินค้าและการชำระเงิน</div>
+        <div class="card p-6 mb-8 relative">
+            <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 12px; border-bottom: 2px dashed var(--color-pink); padding-bottom: 6px;">📦 รายการสินค้าที่คุณเลือก</div>
+            <div id="cart-items-list" style="font-size: 13.5px; color: #555; margin-bottom: 14px;">ยังไม่มีสินค้าในตะกร้า (กรุณากดเลือกบริการด้านบน)</div>
             
-            <div id="cart-items-list" style="font-size: 14px; color: #555; margin-bottom: 16px;">ยังไม่มีสินค้าในตะกร้า (จิ้มเลือกด้านบนได้เลยย)</div>
-            
-            <div style="margin-bottom: 16px; background: rgba(255,235,10,0.15); padding: 10px; border-radius: 10px; border: 1px solid var(--c-yellow);">
-                <label style="font-size:14px; color: var(--c-purple); cursor:pointer; font-weight: 600; display: flex; align-items: center; gap: 8px;">
-                    <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:var(--c-purple); width: 18px; height: 18px;"> 
+            <div style="margin-bottom: 14px; background: var(--color-pink-light); padding: 10px; border-radius: 12px; border: 1px solid var(--color-pink);">
+                <label style="font-size:13px; color: var(--color-green-dark); cursor:pointer; font-weight: 600; display:flex; align-items:center; gap:8px;">
+                    <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:var(--color-green-dark); width:16px; height:16px;"> 
                     ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)
                 </label>
             </div>
 
-            <div style="font-size: 18px; font-weight: 700; color: #333; margin-bottom: 16px; text-align: center; background: #f9f9f9; padding: 12px; border-radius: 12px;">
-                ยอดรวมทั้งสิ้น: <span id="cart-total-price" style="color: var(--c-pink); font-size: 24px;">0</span> บาท
+            <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 16px; text-align: center; background: #fff; padding: 10px; border-radius: 12px; border: 1px solid var(--color-pink-light);">
+                ยอดรวมทั้งสิ้น: <span id="cart-total-price" style="color: #c2185b; font-size: 22px;">0</span> บาท
             </div>
 
-            <div id="checkout-form-area" style="display:none; border-top: 2px dashed var(--c-lpurple); padding-top: 20px; margin-top: 14px;">
-                <h4 style="color: var(--c-purple); margin-top: 0; margin-bottom: 16px; font-size: 16px; text-align: center;">💳 โอนเงิน & กรอกข้อมูล</h4>
+            <div id="checkout-form-area" style="display:none; border-top: 2px dashed var(--color-pink); padding-top: 16px; margin-top: 14px;">
+                <h4 style="color: var(--color-green-dark); margin-top: 0; margin-bottom: 12px; text-align: center;">💳 ช่องทางชำระเงิน & กรอกข้อมูล</h4>
                 
                 <!-- BANK INFO -->
-                <div style="background: #fff; border: 2px solid var(--c-green); border-radius: 1rem; padding: 16px; text-align: center; margin-bottom: 16px; box-shadow: 2px 2px 0 var(--c-green);">
-                    <div style="font-size: 12px; color: #666; font-weight: 600;">กสิกรไทย (KBank)</div>
-                    <div style="font-size: 15px; font-weight: 600; color: var(--c-green); margin: 2px 0;">ธนพร เจิมเฟื่องฟู</div>
-                    <span style="display: block; font-size: 24px; font-weight: 700; letter-spacing: 2px; color: var(--c-green); margin: 8px 0;" id="kbank-num">1961933834</span>
-                    <button class="btn-contact" style="border-color: var(--c-green); color: var(--c-green); box-shadow: 2px 2px 0 var(--c-green);" onclick="copyText('1961933834')">📋 คัดลอกเลขบัญชี</button>
+                <div style="background: #fff; border: 2px solid var(--color-green); border-radius: 1rem; padding: 14px; text-align: center; margin-bottom: 14px; box-shadow: 2px 2px 0px var(--color-green);">
+                    <div style="font-size: 12px; color: #666;">ธนาคารกสิกรไทย (KBank)</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--color-green-dark); margin: 2px 0;">ธนพร เจิมเฟื่องฟู</div>
+                    <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 2px; color: var(--color-green-dark); margin: 6px 0;" id="kbank-num">1961933834</span>
+                    <button class="btn-contact" onclick="copyText('1961933834')">📋 คัดลอกเลขบัญชี</button>
                 </div>
 
-                <div style="background: #fff; border: 2px solid var(--c-yellow); border-radius: 1rem; padding: 16px; text-align: center; margin-bottom: 16px; box-shadow: 2px 2px 0 var(--c-yellow);">
-                    <div style="font-size: 12px; color: #666; font-weight: 600;">TrueMoney Wallet</div>
-                    <span style="display: block; font-size: 24px; font-weight: 700; letter-spacing: 2px; color: #d97706; margin: 8px 0;" id="wallet-num">0800172584</span>
-                    <button class="btn-contact" style="border-color: var(--c-yellow); color: #d97706; box-shadow: 2px 2px 0 var(--c-yellow);" onclick="copyText('0800172584')">📋 คัดลอก Wallet</button>
+                <div style="background: #fff; border: 2px solid var(--color-pink); border-radius: 1rem; padding: 14px; text-align: center; margin-bottom: 14px; box-shadow: 2px 2px 0px var(--color-pink);">
+                    <div style="font-size: 12px; color: #d97706; font-weight: 600;">TrueMoney Wallet</div>
+                    <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 2px; color: #d97706; margin: 6px 0;" id="wallet-num">0800172584</span>
+                    <button class="btn-contact" style="background: #fff0f5; border-color: var(--color-pink); color: #c2185b;" onclick="copyText('0800172584')">📋 คัดลอก Wallet</button>
                 </div>
 
-                <div style="margin-bottom:20px;">
-                    <label style="font-size:14px; color: var(--c-blue); cursor:pointer; display:flex; align-items:center; gap:8px; font-weight: 600;">
-                        <input type="checkbox" id="confirm-pay" style="accent-color:var(--c-blue); width:18px; height:18px;">
-                        <span>ฉันโอนเงินเรียบร้อยแล้วค้าบ 💸</span>
+                <div style="margin-bottom:16px;">
+                    <label style="font-size:13px; color: var(--color-green-dark); cursor:pointer; display:flex; align-items:center; gap:8px; font-weight:600;">
+                        <input type="checkbox" id="confirm-pay" style="accent-color:var(--color-green-dark); width:16px; height:16px;">
+                        <span>ฉันได้ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว</span>
                     </label>
                 </div>
 
@@ -293,21 +295,21 @@
                     <input type="text" id="f-name" class="form-control" placeholder="เช่น น้องฟ้า / IG: fah_sky">
                 </div>
 
-                <!-- DYNAMIC FORMS (Same logic, cute styling) -->
+                <!-- DYNAMIC FORMS -->
                 <div id="form-appt" class="form-block" style="display:none;">
                     <h5>📅 ระบุวันและเวลาจองคิว</h5>
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div class="form-group" style="margin-bottom:0;"><label>วันที่ *</label><input type="date" id="f-date" class="form-control"></div>
-                        <div class="form-group" style="margin-bottom:0;"><label>เวลาเริ่ม *</label><input type="time" id="f-time" class="form-control"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label>วันที่จองคิว *</label><input type="date" id="f-date" class="form-control"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label>เวลาที่จอง *</label><input type="time" id="f-time" class="form-control"></div>
                     </div>
                 </div>
 
                 <div id="form-wall" class="form-block" style="display:none;">
-                    <h5>📱 ข้อมูลทำวอลเปเปอร์</h5>
-                    <p style="font-size:12px; color:var(--c-pink); margin-top:-8px;">* ใช้เวลาทำ 5-7 วัน (ยกเว้น + ค่าเร่ง)</p>
+                    <h5>📱 ข้อมูลสำหรับทำวอลเปเปอร์</h5>
+                    <p style="font-size:12px; color:#c2185b; margin-top:-6px;">* ใช้เวลาทำ 5-7 วันทำการ</p>
                     <div class="form-group"><label>เรื่องที่จะเสริม (+เรื่องละ 39) *</label><input type="text" id="fw-topic" class="form-control"></div>
-                    <div class="form-group"><label>ชื่อ (จริง/เล่น) *</label><input type="text" id="fw-name1" class="form-control"></div>
-                    <div class="form-group"><label>ชื่อที่ใส่ในวอล (ใส่/ไม่ใส่ก็ได้)</label><input type="text" id="fw-name2" class="form-control"></div>
+                    <div class="form-group"><label>ชื่อ (ชื่อจริงหรือเล่นก็ได้) *</label><input type="text" id="fw-name1" class="form-control"></div>
+                    <div class="form-group"><label>ชื่อที่ใส่ในวอล (ถ้ามี)</label><input type="text" id="fw-name2" class="form-control"></div>
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
                         <div class="form-group"><label>วัน (จ-อา) *</label><input type="text" id="fw-day" class="form-control"></div>
                         <div class="form-group"><label>วันที่ (1-31) *</label><input type="number" id="fw-date" class="form-control"></div>
@@ -323,7 +325,7 @@
                     <h5>📜 ข้อมูลพื้นดวง / ผูกดวง</h5>
                     <div class="form-group"><label>ชื่อ *</label><input type="text" id="fc-name" class="form-control"></div>
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div class="form-group"><label>ว/ด/ป เกิด *</label><input type="text" id="fc-dob" class="form-control"></div>
+                        <div class="form-group"><label>วันเดือนปีเกิด *</label><input type="text" id="fc-dob" class="form-control"></div>
                         <div class="form-group"><label>อายุ *</label><input type="number" id="fc-age" class="form-control"></div>
                     </div>
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
@@ -339,9 +341,9 @@
 
                 <div id="form-web" class="form-block" style="display:none;">
                     <h5>💻 ข้อมูลรับทำเว็บไซต์</h5>
-                    <div class="form-group"><label>ชื่อร้าน / ข้อมูลติดต่อ *</label><textarea id="f-web-shop" class="form-control" rows="2"></textarea></div>
+                    <div class="form-group"><label>ชื่อร้าน / คอนแทค *</label><textarea id="f-web-shop" class="form-control" rows="2"></textarea></div>
                     <div class="form-group"><label>รายละเอียดฟังก์ชัน *</label><textarea id="f-web-detail" class="form-control" rows="3"></textarea></div>
-                    <div class="form-group" style="margin-bottom:0;"><label>สไตล์ที่ชอบ / โทนสี *</label><input type="text" id="f-web-design" class="form-control"></div>
+                    <div class="form-group" style="margin-bottom:0;"><label>สไตล์ / โทนสีที่ชอบ *</label><input type="text" id="f-web-design" class="form-control"></div>
                 </div>
 
                 <div id="form-general" class="form-block" style="display:none;">
@@ -362,8 +364,8 @@
                             <label>เกิดวัน *</label>
                             <select id="f-day" class="form-control">
                                 <option value="">-- เลือกวัน --</option>
-                                <option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option>
-                                <option value="พฤหัส">พฤหัส</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option>
+                                <option value="วันจันทร์">วันจันทร์</option><option value="วันอังคาร">วันอังคาร</option><option value="วันพุธ">วันพุธ</option>
+                                <option value="วันพฤหัสบดี">วันพฤหัสบดี</option><option value="วันศุกร์">วันศุกร์</option><option value="วันเสาร์">วันเสาร์</option><option value="วันอาทิตย์">วันอาทิตย์</option>
                             </select>
                         </div>
                     </div>
@@ -371,71 +373,70 @@
                     <div class="form-group" style="margin-bottom:0;">
                         <label>รูปแบบบริการ *</label>
                         <select id="f-type" class="form-control">
-                            <option value="พิมพ์">พิมพ์ (Text)</option>
+                            <option value="พิมพ์">พิมพ์ (Text-only)</option>
                             <option value="โทร">โทร / เสียง</option>
                         </select>
                     </div>
                 </div>
 
-                <button class="btn-action" onclick="generateSummaryAndSend()" style="margin-top:20px;">✨ สร้างสรุป & ส่งข้อมูล</button>
+                <button class="btn-action" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป & ส่งข้อมูล</button>
             </div>
         </div>
 
         <!-- SUMMARY AREA -->
-        <div id="summary-area" class="card-solid" style="display:none; border-color: var(--c-lightblue); box-shadow: 4px 4px 0 var(--c-lightblue);">
-            <div style="position:absolute; top:-15px; right:-10px; font-size:30px;">💌</div>
-            <div style="font-size: 16px; font-weight: 600; color: var(--c-blue); margin-bottom: 8px;">🎉 สรุปข้อความสำหรับส่งให้แอดมิน</div>
-            <div style="font-size: 13px; color: #666; margin-bottom:12px;">เลือกช่องทางติดต่อเพื่อส่งข้อความ (ระบบจะคัดลอกให้อัตโนมัติ)</div>
+        <div id="summary-area" class="card p-6 mb-8" style="display:none; border-color: var(--color-green);">
+            <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 8px;">🎉 สรุปข้อความสำหรับส่งให้แอดมิน</div>
+            <div style="font-size: 13px; color: #666; margin-bottom:12px;">ตรวจสอบข้อมูล แล้วเลือกช่องทางติดต่อเพื่อส่งข้อความได้เลย</div>
             <div class="form-group">
-                <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:13px; background:#fdfaFF;"></textarea>
+                <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:12px; background:#fff;"></textarea>
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="flex:1; background: #00c355; box-shadow: 0 4px 15px rgba(0,195,85,0.4);" onclick="copySummaryText()">💚 ส่งผ่าน LINE</a>
-                <a href="https://m.me/taotofu.meow" target="_blank" class="btn-action" style="flex:1; background: #1877f2; box-shadow: 0 4px 15px rgba(24,119,242,0.4);" onclick="sendViaFacebook(event)">💙 ส่งผ่าน FB</a>
+                <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="flex:1; background:#00c355; color:#fff;" onclick="copySummaryText()">💚 ส่งผ่าน LINE</a>
+                <button class="btn-action" style="flex:1; background:#1877f2; color:#fff;" onclick="sendViaFacebook()">💙 ส่งผ่าน Facebook</button>
             </div>
         </div>
 
         <!-- CONTACTS FOOTER -->
-        <div class="sec-title">📱 ติดต่อเรา</div>
-        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:12px;">
-            <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-contact" style="border-color:#00c355; color:#00c355; box-shadow:2px 2px 0 #00c355;">💚 LINE Official</a>
-            <a href="https://m.me/taotofu.meow" target="_blank" class="btn-contact" style="border-color:#1877f2; color:#1877f2; box-shadow:2px 2px 0 #1877f2;">💙 Facebook</a>
+        <div class="text-center">
+            <h2 class="font-eng text-xl text-[var(--color-green-dark)] mb-4">Contact Me</h2>
+            <div class="flex justify-center flex-wrap gap-3 mb-6">
+                <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-contact">💚 LINE Official</a>
+                <a href="https://m.me/taotofu.meow" target="_blank" class="btn-contact">💙 Facebook</a>
+            </div>
+            <p class="text-xs text-[var(--color-green-dark)] opacity-70">© AhTao Mu-Space · บริการด้วยใจจริง ✨</p>
         </div>
-        <p style="text-align:center; font-size:12px; color:var(--c-lpurple); margin-top:30px; font-weight: 500;">© AhTao Mu-Space · บริการด้วยใจจริง ✨</p>
 
-    </div>
+    </main>
 
     <!-- INTRO MODAL -->
-    <div id="intro-modal" class="modal-overlay">
-        <div class="admin-box" id="intro-box" style="text-align:center; transform:translateY(20px); transition:transform 0.3s; max-width:400px; margin-top:10vh;">
-            <h3 class="font-eng" style="color:var(--c-purple); margin-top:0; font-size:22px;">Welcome! 🔮</h3>
-            <div id="intro-text-display" style="color:#555; font-size:14px; line-height:1.6; text-align:left; white-space:pre-wrap; margin-bottom:20px; background:rgba(87, 198, 239, 0.1); padding:16px; border-radius:1rem; border:2px dashed var(--c-lightblue);"></div>
-            <button class="btn-action" onclick="closeIntro()">เข้าใจแล้ว เริ่มใช้งานเลย! ✨</button>
+    <div id="intro-modal" class="modal-overlay" style="align-items:center; justify-content:center;">
+        <div class="admin-box" id="intro-box" style="text-align:center; max-width:380px;">
+            <h3 class="font-eng" style="color:var(--color-green-dark); margin-top:0; font-size:20px;">📖 วิธีใช้งานเว็บไซต์</h3>
+            <div id="intro-text-display" style="color:#555; font-size:13.5px; line-height:1.6; text-align:left; white-space:pre-wrap; margin-bottom:20px; background:var(--color-yellow); padding:14px; border-radius:12px; border:2px dashed var(--color-green);"></div>
+            <button class="btn-action" style="margin-top:0;" onclick="closeIntro()">เข้าใจแล้ว เริ่มใช้งานเลย! ✨</button>
         </div>
     </div>
 
     <!-- ADMIN MODAL -->
     <div id="admin-modal" class="modal-overlay">
         <div class="admin-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed var(--c-lpurple); padding-bottom:16px; margin-bottom:20px;">
-                <h2 style="color:var(--c-purple); margin:0; font-size: 20px;">⚙️ จัดการระบบหลังบ้าน</h2>
-                <button onclick="closeAdmin()" style="background:none; border:none; color:var(--c-pink); font-size:28px; cursor:pointer; font-weight:bold;">&times;</button>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed var(--color-green); padding-bottom:14px; margin-bottom:16px;">
+                <h2 style="color:var(--color-green-dark); margin:0; font-size:18px;">⚙️ จัดการระบบหลังบ้าน</h2>
+                <button onclick="closeAdmin()" style="background:none; border:none; color:var(--color-green-dark); font-size:24px; cursor:pointer; font-weight:bold;">&times;</button>
             </div>
             
-            <div id="admin-content" style="max-height:55vh; overflow-y:auto; padding-right:10px; margin-bottom:20px;">
-                <!-- Dynamic Admin Content -->
-            </div>
+            <div id="admin-content" style="max-height:50vh; overflow-y:auto; padding-right:8px; margin-bottom:16px;"></div>
 
-            <div style="display:flex; gap:12px; border-top:2px dashed var(--c-lpurple); padding-top:20px;">
-                <button onclick="saveAdmin()" class="btn-action" style="margin-top:0; flex:2;">💾 บันทึก</button>
-                <button onclick="resetAdmin()" class="btn-action" style="margin-top:0; flex:1; background:#ff4757; box-shadow:0 6px 20px rgba(255,71,87,0.3);">⚠️ รีเซ็ต</button>
+            <div style="display:flex; gap:10px; border-top:2px dashed var(--color-green); padding-top:16px;">
+                <button onclick="saveAdmin()" class="btn-action" style="margin-top:0; flex:2;">💾 บันทึกการเปลี่ยนแปลง</button>
+                <button onclick="resetAdmin()" class="btn-action" style="margin-top:0; flex:1; background:#ff4757; color:#fff;">⚠️ รีเซ็ต</button>
             </div>
         </div>
     </div>
 
     <div class="toast" id="toast">✅ ดำเนินการสำเร็จ!</div>
 
-    <!-- JAVASCRIPT SYSTEM (AhTao Base) -->
+    <!-- SCRIPT (ระบบเดิม 100%) -->
     <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbxdSFkoMgRJWi7qauJWoywC9hGaVzy-9P1X82z2mYFGJIhAMBjv9c8CD7E09dfOSs6r/exec";
 
@@ -469,8 +470,6 @@
     let muSettings = { ...defaultSettings };
     let productData = JSON.parse(JSON.stringify(defaultData));
     let currentCart = [];
-
-    // Form States
     let hasPhone = false, hasWall = false, hasChart = false, hasWeb = false, hasGeneral = false, hasHeal = false, totalDynamicQuestions = 0;
 
     document.addEventListener('DOMContentLoaded', async () => {
@@ -502,9 +501,7 @@
         if (!sessionStorage.getItem('hasSeenMuIntro')) {
             setTimeout(() => {
                 const m = document.getElementById('intro-modal');
-                const b = document.getElementById('intro-box');
                 m.style.display = 'flex';
-                setTimeout(() => { m.style.opacity = '1'; b.style.transform = 'translateY(0)'; }, 50);
             }, 500);
         }
     });
@@ -519,11 +516,7 @@
 
     function closeIntro() {
         sessionStorage.setItem('hasSeenMuIntro', 'true');
-        const m = document.getElementById('intro-modal');
-        const b = document.getElementById('intro-box');
-        m.style.opacity = '0';
-        b.style.transform = 'translateY(20px)';
-        setTimeout(() => { m.style.display = 'none'; }, 300);
+        document.getElementById('intro-modal').style.display = 'none';
     }
 
     function renderProducts() {
@@ -533,16 +526,18 @@
         productData.forEach((sec) => {
             html += `<div class="sec-title font-eng">${sec.sectionTitle}</div>`;
             sec.cards.forEach((card) => {
-                html += `<div class="card-solid">
-                    <div style="position:absolute; top:-18px; right:-10px; font-size:35px; filter:drop-shadow(2px 2px 0px rgba(0,0,0,0.1));">${card.icon}</div>
-                    <div style="font-size: 17px; font-weight: 700; color: var(--c-purple); margin-bottom: 16px; border-bottom: 2px dashed var(--c-lightblue); padding-bottom: 10px;">${card.title}</div>`;
+                html += `<div class="card p-5 mb-4 relative">
+                    <div style="position:absolute; top:-14px; right:-8px; font-size:30px;">${card.icon}</div>
+                    <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 12px; border-bottom: 2px dashed var(--color-pink-light); padding-bottom: 8px;">${card.title}</div>`;
                 
+                if(card.note) html += `<div style="font-size:12px; color:#c2185b; margin-bottom:8px;">${card.note}</div>`;
+
                 card.items.forEach((item) => {
                     const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                    html += `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom: 1px solid rgba(146,29,222,0.1);">
-                        <span style="font-size:14px; font-weight:500; color:#444; flex:1; padding-right:10px;">${item.name}</span>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <span style="font-size:14px; font-weight:700; color:var(--c-pink); background:rgba(241,70,235,0.08); padding:4px 10px; border-radius:12px;">${item.price}.-</span>
+                    html += `<div class="item-row">
+                        <span style="font-size:13.5px; font-weight:500; color:#333; flex:1; padding-right:8px;">${item.name}</span>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span class="price-tag">${item.price}.-</span>
                             <button class="btn-add" onclick="addToCart('${safeName}', ${item.price}, '${sec.category}')">➕</button>
                         </div>
                     </div>`;
@@ -550,11 +545,9 @@
                 html += `</div>`;
             });
         });
-        
         container.innerHTML = html;
     }
 
-    // ADMIN FUNCTIONS
     function openAdmin() {
         const pass = prompt("🔒 กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการร้าน:");
         if (pass === "1164") {
@@ -579,26 +572,26 @@
 
     function renderAdminPanel() {
         let html = `
-            <div class="form-block" style="border-color:var(--c-yellow); background:rgba(255,235,10,0.08);">
-                <h4 style="color:var(--c-purple); margin:0 0 10px;">📝 ตั้งค่าข้อความทั่วไป</h4>
+            <div class="form-block">
+                <h4 style="color:var(--color-green-dark); margin:0 0 10px;">📝 ตั้งค่าข้อความทั่วไป</h4>
                 <div class="form-group"><label>ข้อความวิ่ง (Marquee)</label><input type="text" id="admin-marquee" class="form-control" value="${muSettings.marquee.replace(/"/g, '&quot;')}"></div>
                 <div class="form-group"><label>ความเร็ว (1-10)</label><input type="number" id="admin-marquee-speed" class="form-control" value="${muSettings.marqueeSpeed || 3}"></div>
                 <div class="form-group" style="margin-bottom:0;"><label>วิธีใช้เว็บไซต์ (Popup)</label><textarea id="admin-intro" class="form-control" rows="4">${muSettings.intro}</textarea></div>
             </div>
         `;
         productData.forEach((sec, sIdx) => {
-            html += `<h3 style="color:var(--c-purple); font-size:16px; margin-top:24px;">${sec.sectionTitle}</h3>`;
+            html += `<h3 style="color:var(--color-green-dark); font-size:15px; margin-top:20px;">${sec.sectionTitle}</h3>`;
             sec.cards.forEach((card, cIdx) => {
-                html += `<div class="form-block" style="border-color:var(--c-lpurple); background:#fff;">
-                    <h4 style="color:var(--c-blue); margin:0 0 10px;">${card.icon} ${card.title}</h4>`;
+                html += `<div class="form-block" style="background:#fff;">
+                    <h4 style="color:var(--color-green-dark); margin:0 0 10px; font-size:14px;">${card.icon} ${card.title}</h4>`;
                 card.items.forEach((item, iIdx) => {
-                    html += `<div style="display:flex; gap:8px; margin-bottom:8px;">
+                    html += `<div style="display:flex; gap:6px; margin-bottom:6px;">
                         <input type="text" class="form-control" value="${item.name.replace(/"/g, '&quot;')}" id="name-${sIdx}-${cIdx}-${iIdx}" style="flex:2; padding:8px;">
                         <input type="number" class="form-control" value="${item.price}" id="price-${sIdx}-${cIdx}-${iIdx}" style="flex:1; padding:8px;">
-                        <button onclick="deleteItem(${sIdx}, ${cIdx}, ${iIdx})" style="background:#ff4757; border:none; border-radius:8px; color:#fff; padding:0 12px;">🗑️</button>
+                        <button onclick="deleteItem(${sIdx}, ${cIdx}, ${iIdx})" style="background:#ff4757; border:none; border-radius:8px; color:#fff; padding:0 10px;">🗑️</button>
                     </div>`;
                 });
-                html += `<button onclick="addItem(${sIdx}, ${cIdx})" style="background:none; border:2px dashed var(--c-lpurple); color:var(--c-purple); font-weight:bold; border-radius:8px; padding:8px; width:100%; margin-top:8px;">+ เพิ่มบริการใหม่</button>
+                html += `<button onclick="addItem(${sIdx}, ${cIdx})" style="background:none; border:2px dashed var(--color-green); color:var(--color-green-dark); font-weight:bold; border-radius:8px; padding:6px; width:100%; margin-top:6px;">+ เพิ่มบริการใหม่</button>
                 </div>`;
             });
         });
@@ -633,7 +626,6 @@
         }
     }
 
-    // CART LOGIC
     function addToCart(name, price, category) {
         currentCart.push({ name, price, category });
         updateCartTotal();
@@ -648,7 +640,7 @@
         const urgentCheckbox = document.getElementById('urgent-queue');
         
         if (currentCart.length === 0) {
-            listEl.innerHTML = 'ยังไม่มีสินค้าในตะกร้า (จิ้มเลือกด้านบนได้เลยย)';
+            listEl.innerHTML = 'ยังไม่มีสินค้าในตะกร้า (กรุณากดเลือกบริการด้านบน)';
             totalEl.textContent = '0';
             document.getElementById('checkout-form-area').style.display = 'none';
             document.getElementById('summary-area').style.display = 'none';
@@ -660,9 +652,9 @@
 
         currentCart.forEach((item, index) => {
             subtotal += item.price;
-            html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px dashed #ddd; padding-bottom:8px; font-weight:500;">
-                <span style="color:var(--c-blue);">- ${item.name}</span> 
-                <span style="color:var(--c-pink);">${item.price}.- <button onclick="removeItem(${index})" style="background:none; border:none; color:#ff4757; cursor:pointer; font-weight:bold;">[X]</button></span>
+            html += `<div style="display:flex; justify-content:space-between; margin-bottom:6px; border-bottom:1px dashed var(--color-pink-light); padding-bottom:6px; font-weight:500;">
+                <span style="color:var(--color-green-dark);">- ${item.name}</span> 
+                <span style="color:#c2185b;">${item.price}.- <button onclick="removeItem(${index})" style="background:none; border:none; color:#ff4757; cursor:pointer; font-weight:bold;">[X]</button></span>
             </div>`;
             
             if (item.category === 'โทรดูดวง') hasPhone = true;
@@ -683,7 +675,7 @@
 
         if (urgentCheckbox && urgentCheckbox.checked) {
             subtotal += 59;
-            html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; color:#d97706; font-weight:bold;"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
+            html += `<div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#d97706; font-weight:bold;"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
         }
         listEl.innerHTML = html; totalEl.textContent = subtotal; setupDynamicForm(subtotal);
     }
@@ -724,9 +716,9 @@
     }
 
     function generateSummaryAndSend() {
-        if (!document.getElementById('confirm-pay').checked) { alert('กรุณาติ๊กยืนยันการโอนเงินก่อนน้า 💸'); return; }
+        if (!document.getElementById('confirm-pay').checked) { alert('กรุณาติ๊กยืนยันการตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้วค่ะ'); return; }
         const name = document.getElementById('f-name').value.trim();
-        if (!name) { alert('กรุณากรอกชื่อเล่นด้วยค้าบ ✨'); return; }
+        if (!name) { alert('กรุณากรอกชื่อเล่น/แอคเคาท์ติดต่อหลักค่ะ'); return; }
 
         let totalPrice = document.getElementById('cart-total-price').textContent;
         let orderItemsOnly = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
@@ -745,27 +737,27 @@
         }
         if (!specificDetailsOnly) specificDetailsOnly = "-";
 
-        let summary = `🧸 ขอบคุณสำหรับการจองนะคะ \n‧┈┈┈┈┈┈‧ \n🛒 ออเดอร์จาก: ${name}\n📋 รายการ:\n${orderItemsOnly}\n💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\n-----------------------------\n`;
-        if (hasPhone || hasGeneral || hasHeal) summary += `📞 ข้อมูลจองคิว:\n${bookingDateTimeOnly}\n-----------------------------\n`;
+        let summary = `🧸 ขอบคุณสำหรับการจองบริการกับอาเต๋านะคะ \n‧┈┈┈┈┈┈‧ \n🛒 ออเดอร์จาก: ${name}\n📋 รายการที่สั่ง:\n${orderItemsOnly}\n💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\n-----------------------------\n`;
+        if (hasPhone || hasGeneral || hasHeal) summary += `📞 ข้อมูลการจองคิว:\n${bookingDateTimeOnly}\n-----------------------------\n`;
         if (hasWall || hasChart || hasWeb || hasGeneral || hasHeal) {
-            if(personalInfoOnly !== "-") summary += `🔮 ส่วนตัว:\n${personalInfoOnly}\n\n`;
+            if(personalInfoOnly !== "-") summary += `🔮 ข้อมูลส่วนตัว:\n${personalInfoOnly}\n\n`;
             if(specificDetailsOnly !== "-") summary += `📝 ข้อมูลและคำถาม:\n${specificDetailsOnly}\n`;
         }
 
         document.getElementById('summary-text').value = summary;
         document.getElementById('summary-area').style.display = 'block';
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        showToast('🎉 สร้างสรุปเรียบร้อย!');
+        showToast('🎉 สร้างข้อความสรุปเรียบร้อย!');
 
         try {
             fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ action: "createOrder", name, items: orderItemsOnly, bookingDateTime: bookingDateTimeOnly, personalInfo: personalInfoOnly, specificDetails: specificDetailsOnly.trim(), totalPrice, slip: "รอส่งสลิป", details: summary })
+                body: JSON.stringify({ action: "createOrder", name, items: orderItemsOnly, bookingDateTime: bookingDateTimeOnly, personalInfo: personalInfoOnly, specificDetails: specificDetailsOnly.trim(), totalPrice, slip: "รอส่งสลิปในแชท", details: summary })
             });
         } catch (e) {}
     }
 
     function copySummaryText() { const b = document.getElementById('summary-text'); b.select(); copyText(b.value); }
-    function sendViaFacebook(e) { e.preventDefault(); copySummaryText(); setTimeout(() => { window.open('https://m.me/taotofu.meow', '_blank'); }, 400); }
+    function sendViaFacebook() { copySummaryText(); setTimeout(() => { window.open('https://m.me/taotofu.meow', '_blank'); }, 400); }
     function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2600); }
     </script>
 
