@@ -10,23 +10,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Mitr:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* ดรอปความเข้มลง ใช้โทนพาสเทลตามโค้ดต้นแบบ */
             --color-pink: #FFB6C1;
             --color-pink-light: #FFE4E1;
             --color-green: #B4E869;
             --color-green-dark: #1E6555;
             --color-yellow: #FFFACD;
             --color-blue: #AEEEEE;
-            --color-purple: #921dde;
+            --color-purple: #C084FC;
         }
 
         body {
             font-family: 'Mitr', sans-serif;
-            background-color: var(--color-yellow);
-            background-image: 
-                linear-gradient(rgba(255, 182, 193, 0.25) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(255, 182, 193, 0.25) 2px, transparent 2px);
-            background-size: 30px 30px;
+            /* เปลี่ยนพื้นหลังเป็นไล่เฉดสีนุ่มๆ ไม่กินสเปค ไม่กระตุก */
+            background: linear-gradient(135deg, #fff0f5 0%, #fffacd 50%, #e0f7fa 100%);
+            background-attachment: fixed;
             color: var(--color-green-dark);
             margin: 0;
             padding: 0;
@@ -34,10 +31,7 @@
             min-height: 100vh;
         }
 
-        .font-eng {
-            font-family: 'Fredoka One', cursive;
-            font-weight: 400;
-        }
+        .font-eng { font-family: 'Fredoka One', cursive; font-weight: 400; }
 
         .card {
             background-color: rgba(255, 255, 255, 0.95);
@@ -47,600 +41,482 @@
             backdrop-filter: blur(5px);
         }
 
-        .card-solid {
-            background-color: rgba(255, 255, 255, 0.95);
-            border: 3px solid var(--color-green);
-            border-radius: 2rem;
-            box-shadow: 4px 4px 0px var(--color-green);
+        /* Tabs Styling */
+        .tab-btn {
+            background: white; border: 2px solid var(--color-pink-light); border-radius: 1rem;
+            color: var(--color-green-dark); padding: 10px 14px; font-size: 13.5px; font-weight: 500;
+            cursor: pointer; transition: all 0.3s; flex: 1; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
-
-        .btn-cute {
-            background-color: var(--color-green);
-            color: var(--color-green-dark);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        .tab-btn.active {
+            background: var(--color-green); border-color: var(--color-green); font-weight: 600;
+            transform: translateY(-2px); box-shadow: 0 6px 12px rgba(180, 232, 105, 0.4);
         }
-
-        .btn-cute:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(180, 232, 105, 0.5);
-            border-color: var(--color-green-dark);
-        }
-
-        .btn-contact {
-            background-color: var(--color-pink-light);
-            color: var(--color-green-dark);
-            border: 2px solid var(--color-pink);
-            border-radius: 1rem;
-            padding: 0.5rem 1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .btn-contact:hover {
-            background-color: var(--color-pink);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* ระบบร้านค้า & ฟอร์ม */
-        .sec-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--color-green-dark);
-            margin: 30px 0 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 2px dashed var(--color-pink);
-            padding-bottom: 8px;
-        }
-
-        .item-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--color-pink-light);
-        }
-        .item-row:last-child { border-bottom: none; }
 
         .btn-add {
-            background-color: var(--color-green);
-            color: var(--color-green-dark);
-            border: 2px solid transparent;
-            border-radius: 12px;
-            width: 32px;
-            height: 32px;
-            font-size: 14px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            box-shadow: 2px 2px 0px rgba(30, 101, 85, 0.2);
+            background: var(--color-green); color: var(--color-green-dark); border: none; border-radius: 12px;
+            width: 34px; height: 34px; font-size: 16px; cursor: pointer; display: inline-flex;
+            align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 2px 2px 0px rgba(30, 101, 85, 0.15);
         }
-        .btn-add:hover {
-            transform: scale(1.08);
-            background-color: #a3db52;
-        }
+        .btn-add:hover { transform: scale(1.1); background: #a3db52; }
 
         .price-tag {
-            background-color: var(--color-pink-light);
-            color: var(--color-green-dark);
-            border: 1px solid var(--color-pink);
-            border-radius: 10px;
-            padding: 2px 10px;
-            font-size: 13px;
-            font-weight: 600;
-            white-space: nowrap;
+            background: var(--color-pink-light); color: var(--color-green-dark);
+            border: 1px solid var(--color-pink); border-radius: 10px; padding: 3px 12px; font-size: 13px; font-weight: 600; white-space: nowrap;
         }
 
+        /* Floating Cart */
+        .floating-cart {
+            position: fixed; bottom: 30px; right: 20px; z-index: 999;
+            background: var(--color-pink); color: white; border-radius: 50%;
+            width: 65px; height: 65px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.6); border: 3px solid white; cursor: pointer; transition: all 0.3s;
+        }
+        .floating-cart:hover { transform: scale(1.05) translateY(-5px); }
+        .cart-count {
+            position: absolute; top: -5px; right: -5px; background: var(--color-green); color: var(--color-green-dark);
+            font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 2px solid white;
+        }
+        @keyframes bounce-arrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .arrow-down { font-size: 14px; animation: bounce-arrow 1.5s infinite; line-height: 1; margin-top: -2px;}
+
+        /* Form Elements */
         .form-group { margin-bottom: 16px; }
         .form-group label { display: block; font-size: 13px; color: var(--color-green-dark); margin-bottom: 6px; font-weight: 600; }
         .form-control {
-            width: 100%;
-            padding: 12px 14px;
-            background: #fff;
-            border: 2px solid var(--color-pink);
-            border-radius: 1rem;
-            color: var(--color-green-dark);
-            font-family: 'Mitr', sans-serif;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.2s;
-            resize: vertical;
+            width: 100%; padding: 12px 14px; background: #fff; border: 2px solid var(--color-pink); border-radius: 1rem;
+            color: var(--color-green-dark); font-family: 'Mitr', sans-serif; font-size: 14px; outline: none; transition: all 0.2s;
         }
-        .form-control:focus {
-            border-color: var(--color-green);
-            box-shadow: 0 0 0 4px rgba(180, 232, 105, 0.3);
-        }
+        .form-control:focus { border-color: var(--color-purple); box-shadow: 0 0 0 4px rgba(192, 132, 252, 0.2); }
         
-        .form-block {
-            background: var(--color-yellow);
-            padding: 16px;
-            border-radius: 1rem;
-            border: 2px dashed var(--color-green);
-            margin-bottom: 16px;
-        }
-        .form-block h5 { color: var(--color-green-dark); margin: 0 0 12px 0; font-size: 15px; }
-
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 14px 20px; border: none; border-radius: 1rem; cursor: pointer;
             font-family: 'Mitr', sans-serif; font-size: 15px; font-weight: 600; color: var(--color-green-dark);
-            background-color: var(--color-green);
-            box-shadow: 0 4px 15px rgba(180, 232, 105, 0.4);
-            transition: all 0.25s; margin-top: 14px;
-            border: 2px solid transparent;
+            background: linear-gradient(to right, var(--color-green), #98DCA3);
+            box-shadow: 0 4px 15px rgba(180, 232, 105, 0.4); transition: all 0.25s; margin-top: 10px;
         }
-        .btn-action:hover { transform: translateY(-2px); border-color: var(--color-green-dark); }
+        .btn-action:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(180, 232, 105, 0.6); }
 
-        /* Admin Button Fixed */
+        /* Admin Yin-Yang Button */
+        @keyframes spin-pause {
+            0% { transform: rotate(0deg); }
+            15% { transform: rotate(360deg); }
+            100% { transform: rotate(360deg); }
+        }
         .btn-admin {
             position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%;
-            background: #fff; border: 2px solid var(--color-green); font-size: 20px; cursor: pointer; color: var(--color-green-dark);
-            z-index: 9999; transition: all .3s; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 0px var(--color-green);
+            background: #fff; border: 2px solid var(--color-purple); font-size: 22px; cursor: pointer; 
+            z-index: 9999; display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 4px 10px rgba(192, 132, 252, 0.3); animation: spin-pause 5s infinite cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .btn-admin:hover { background: var(--color-green); transform: rotate(90deg) scale(1.1); }
+        .btn-admin:hover { transform: scale(1.1); animation-play-state: paused; }
 
-        /* Toast */
+        /* Star Click Effect */
+        .star-click {
+            position: fixed; pointer-events: none; font-size: 20px; z-index: 10000;
+            animation: star-burst 0.8s ease-out forwards; text-shadow: 0 0 5px rgba(255,182,193,0.8);
+        }
+        @keyframes star-burst {
+            0% { transform: translate(-50%, -50%) scale(0.5) rotate(0deg); opacity: 1; }
+            100% { transform: translate(-50%, -150%) scale(1.5) rotate(90deg); opacity: 0; }
+        }
+
+        .modal-overlay {
+            display:none; position:fixed; inset:0; background:rgba(255,255,255,0.7); backdrop-filter:blur(5px); 
+            z-index:10000; overflow-y:auto; padding:20px; justify-content: center; align-items: center;
+        }
         .toast {
-            position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(200px);
-            background: var(--color-green); color: var(--color-green-dark);
-            padding: 12px 26px; border-radius: 40px; font-weight: 600; font-size: 14px;
-            z-index: 10001; pointer-events: none; box-shadow: 0 8px 25px rgba(180, 232, 105, 0.5);
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(200px);
+            background: var(--color-purple); color: white; padding: 12px 26px; border-radius: 40px; 
+            font-weight: 600; font-size: 14px; z-index: 10001; pointer-events: none; box-shadow: 0 8px 25px rgba(192,132,252, 0.4);
             transition: transform .35s cubic-bezier(.34,1.56,.64,1); visibility: hidden; border: 2px solid #fff;
         }
         .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
-
-        /* Modals */
-        .modal-overlay {
-            display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4);
-            backdrop-filter:blur(4px); z-index:10000; overflow-y:auto; padding:20px;
-        }
-        .admin-box {
-            max-width: 600px; margin: 30px auto; background: #fff;
-            border: 3px solid var(--color-green); border-radius: 2rem; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        @keyframes star-twinkle {
-            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 0.6; }
-            50% { transform: translateY(-10px) scale(1.15) rotate(10deg); opacity: 1; }
-        }
-        .animate-star { animation: star-twinkle 3.5s ease-in-out infinite; position: fixed; z-index: -1; pointer-events: none; }
     </style>
 </head>
-<body class="antialiased min-h-screen pb-12">
+<body class="antialiased pb-24">
 
-    <!-- Background Stars -->
-    <div class="animate-star" style="top: 5%; left: 5%; color: var(--color-pink);"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
-    <div class="animate-star" style="top: 15%; right: 10%; color: var(--color-green); animation-delay: 0.5s;"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
-    <div class="animate-star" style="bottom: 10%; right: 15%; color: var(--color-pink); animation-delay: 0.2s;"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
+    <!-- Yin-Yang Admin Button -->
+    <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">☯️</button>
 
-    <!-- Admin Button -->
-    <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">⚙️</button>
+    <!-- Floating Cart -->
+    <div class="floating-cart" onclick="scrollToCheckout()">
+        <span class="cart-count" id="cart-count">0</span>
+        <span style="font-size:20px;">🛒</span>
+        <span class="arrow-down">⬇️</span>
+    </div>
 
-    <main class="max-w-[480px] mx-auto px-4 pt-12 relative">
+    <main class="max-w-[480px] mx-auto px-4 pt-10 relative">
         
-        <!-- Profile Header -->
+        <!-- Profile Section -->
         <div class="text-center mb-8 relative">
-            <div class="w-28 h-28 mx-auto bg-white rounded-full border-4 border-[var(--color-green)] shadow-[0_0_15px_rgba(180,232,105,0.6)] flex items-center justify-center mb-4">
-                <span class="text-4xl">🔮</span>
+            <div class="w-28 h-28 mx-auto bg-gradient-to-br from-[#FFE4E1] to-[#E0F7FA] rounded-full border-4 border-white shadow-[0_5px_15px_rgba(192,132,252,0.3)] flex flex-col items-center justify-center mb-4 relative overflow-hidden">
+                <!-- โลโก้ชั่วคราวเป็นตัวหนังสือ ใช้ฟอนต์เข้ากับโลโก้จริง -->
+                <span class="font-eng text-4xl" style="background: -webkit-linear-gradient(45deg, #C084FC, #FF8DA1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AT</span>
+                <span class="text-[10px] font-bold text-[#1E6555]">Mu-Space</span>
             </div>
-            <h1 class="text-4xl font-eng text-[var(--color-green-dark)] tracking-wide mb-1">AhTao Mu-Space</h1>
-            <p class="font-eng text-lg text-[var(--color-pink)] font-bold">🔮 ร้านดูดวง & วอลเปเปอร์มูเตลู</p>
+            <h1 class="text-4xl font-eng text-[#1E6555] tracking-wide mb-1">AhTao</h1>
+            <p class="font-eng text-lg text-[#C084FC] font-bold">🔮 Mu-Space 🔮</p>
         </div>
 
-        <!-- Marquee Card -->
-        <div class="card p-4 mb-6 text-center">
-            <marquee id="marquee-text-display" scrollamount="3" style="color: var(--color-green-dark); font-size: 14px; font-weight: 500;"></marquee>
+        <div class="card p-3 mb-6 text-center bg-white/80">
+            <marquee id="marquee-text-display" scrollamount="3" style="color: var(--color-purple); font-size: 14px; font-weight: 500;"></marquee>
         </div>
 
-        <!-- DYNAMIC PRODUCTS CONTAINER -->
-        <div id="products-wrapper">
-            <div style="text-align:center; color:var(--color-green-dark); padding:30px;">⏳ กำลังโหลดข้อมูล...</div>
+        <!-- 3 Tabs Navigation -->
+        <div class="flex gap-2 justify-center mb-6">
+            <button class="tab-btn active" id="btn-tab-1" onclick="switchTab(1)">🔮 ดูดวง<br><span class="text-[10px]">พิมพ์/โทร</span></button>
+            <button class="tab-btn" id="btn-tab-2" onclick="switchTab(2)">📱 วอลฯ<br><span class="text-[10px]">& ฮีลใจ</span></button>
+            <button class="tab-btn" id="btn-tab-3" onclick="switchTab(3)">💻 เว็บ<br><span class="text-[10px]">รับทำเว็บไซต์</span></button>
         </div>
 
-        <!-- CART & CHECKOUT CONTAINER -->
-        <div class="sec-title">🛒 ตะกร้าสินค้าและการชำระเงิน</div>
-        <div class="card p-6 mb-8 relative">
-            <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 12px; border-bottom: 2px dashed var(--color-pink); padding-bottom: 6px;">📦 รายการสินค้าที่คุณเลือก</div>
-            <div id="cart-items-list" style="font-size: 13.5px; color: #555; margin-bottom: 14px;">ยังไม่มีสินค้าในตะกร้า (กรุณากดเลือกบริการด้านบน)</div>
-            
-            <div style="margin-bottom: 14px; background: var(--color-pink-light); padding: 10px; border-radius: 12px; border: 1px solid var(--color-pink);">
-                <label style="font-size:13px; color: var(--color-green-dark); cursor:pointer; font-weight: 600; display:flex; align-items:center; gap:8px;">
-                    <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:var(--color-green-dark); width:16px; height:16px;"> 
-                    ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)
-                </label>
-            </div>
+        <!-- Product Area -->
+        <div id="products-wrapper"></div>
 
-            <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 16px; text-align: center; background: #fff; padding: 10px; border-radius: 12px; border: 1px solid var(--color-pink-light);">
-                ยอดรวมทั้งสิ้น: <span id="cart-total-price" style="color: #c2185b; font-size: 22px;">0</span> บาท
-            </div>
-
-            <div id="checkout-form-area" style="display:none; border-top: 2px dashed var(--color-pink); padding-top: 16px; margin-top: 14px;">
-                <h4 style="color: var(--color-green-dark); margin-top: 0; margin-bottom: 12px; text-align: center;">💳 ช่องทางชำระเงิน & กรอกข้อมูล</h4>
+        <!-- Checkout Section (Bottom Half) -->
+        <div id="checkout-section" style="scroll-margin-top: 20px;">
+            <h2 class="font-eng text-2xl text-center text-[#1E6555] mb-4 mt-8">🛒 Checkout</h2>
+            <div class="card p-6 mb-8 bg-white/95">
                 
-                <!-- BANK INFO -->
-                <div style="background: #fff; border: 2px solid var(--color-green); border-radius: 1rem; padding: 14px; text-align: center; margin-bottom: 14px; box-shadow: 2px 2px 0px var(--color-green);">
-                    <div style="font-size: 12px; color: #666;">ธนาคารกสิกรไทย (KBank)</div>
-                    <div style="font-size: 14px; font-weight: 600; color: var(--color-green-dark); margin: 2px 0;">ธนพร เจิมเฟื่องฟู</div>
-                    <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 2px; color: var(--color-green-dark); margin: 6px 0;" id="kbank-num">1961933834</span>
-                    <button class="btn-contact" onclick="copyText('1961933834')">📋 คัดลอกเลขบัญชี</button>
-                </div>
-
-                <div style="background: #fff; border: 2px solid var(--color-pink); border-radius: 1rem; padding: 14px; text-align: center; margin-bottom: 14px; box-shadow: 2px 2px 0px var(--color-pink);">
-                    <div style="font-size: 12px; color: #d97706; font-weight: 600;">TrueMoney Wallet</div>
-                    <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 2px; color: #d97706; margin: 6px 0;" id="wallet-num">0800172584</span>
-                    <button class="btn-contact" style="background: #fff0f5; border-color: var(--color-pink); color: #c2185b;" onclick="copyText('0800172584')">📋 คัดลอก Wallet</button>
-                </div>
-
-                <div style="margin-bottom:16px;">
-                    <label style="font-size:13px; color: var(--color-green-dark); cursor:pointer; display:flex; align-items:center; gap:8px; font-weight:600;">
-                        <input type="checkbox" id="confirm-pay" style="accent-color:var(--color-green-dark); width:16px; height:16px;">
-                        <span>ฉันได้ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว</span>
+                <!-- ครึ่งบน: สรุปราคาสินค้า -->
+                <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 12px; border-bottom: 2px dashed var(--color-pink); padding-bottom: 6px;">📦 รายการในตะกร้า</div>
+                <div id="cart-items-list" style="font-size: 13.5px; color: #555; margin-bottom: 14px;">ยังไม่มีสินค้าในตะกร้าค่ะ ✨</div>
+                
+                <div style="margin-bottom: 16px; background: var(--color-pink-light); padding: 10px; border-radius: 12px; border: 1px dashed var(--color-pink);">
+                    <label style="font-size:13px; color: var(--color-green-dark); cursor:pointer; font-weight: 600; display:flex; align-items:center; gap:8px;">
+                        <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:var(--color-purple); width:16px; height:16px;"> 
+                        ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)
                     </label>
                 </div>
 
-                <!-- BASE INFO -->
-                <div class="form-group">
-                    <label>ชื่อเล่น / แอคเคาท์ติดต่อ *</label>
-                    <input type="text" id="f-name" class="form-control" placeholder="เช่น น้องฟ้า / IG: fah_sky">
+                <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 16px; text-align: center; background: #fdfbf7; padding: 12px; border-radius: 12px; border: 2px solid var(--color-green);">
+                    ยอดรวมทั้งสิ้น: <span id="cart-total-price" style="color: var(--color-purple); font-size: 24px;">0</span> บาท
                 </div>
 
-                <!-- DYNAMIC FORMS -->
-                <div id="form-appt" class="form-block" style="display:none;">
-                    <h5>📅 ระบุวันและเวลาจองคิว</h5>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div class="form-group" style="margin-bottom:0;"><label>วันที่จองคิว *</label><input type="date" id="f-date" class="form-control"></div>
-                        <div class="form-group" style="margin-bottom:0;"><label>เวลาที่จอง *</label><input type="time" id="f-time" class="form-control"></div>
+                <!-- ครึ่งล่าง: เลขบัญชีและฟอร์ม (ซ่อนไว้จนกว่าจะมีของในตะกร้า) -->
+                <div id="checkout-form-area" style="display:none; border-top: 2px dashed var(--color-pink); padding-top: 16px;">
+                    <h4 style="color: var(--color-green-dark); margin-top: 0; margin-bottom: 12px; text-align: center;">💳 โอนเงิน & กรอกข้อมูล</h4>
+                    
+                    <div style="background: #fff; border: 2px solid var(--color-green); border-radius: 1rem; padding: 14px; text-align: center; margin-bottom: 10px; box-shadow: 2px 2px 0px var(--color-green);">
+                        <div style="font-size: 12px; color: #666;">ธนาคารกสิกรไทย (KBank)</div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--color-green-dark); margin: 2px 0;">ธนพร เจิมเฟื่องฟู</div>
+                        <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 1px; color: var(--color-green-dark); margin: 6px 0;" id="kbank-num">1961933834</span>
+                        <button class="bg-[#B4E869] text-[#1E6555] px-4 py-1.5 rounded-full text-xs font-bold shadow-sm" onclick="copyText('1961933834')">📋 คัดลอกเลขบัญชี</button>
                     </div>
-                </div>
 
-                <div id="form-wall" class="form-block" style="display:none;">
-                    <h5>📱 ข้อมูลสำหรับทำวอลเปเปอร์</h5>
-                    <p style="font-size:12px; color:#c2185b; margin-top:-6px;">* ใช้เวลาทำ 5-7 วันทำการ</p>
-                    <div class="form-group"><label>เรื่องที่จะเสริม (+เรื่องละ 39) *</label><input type="text" id="fw-topic" class="form-control"></div>
-                    <div class="form-group"><label>ชื่อ (ชื่อจริงหรือเล่นก็ได้) *</label><input type="text" id="fw-name1" class="form-control"></div>
-                    <div class="form-group"><label>ชื่อที่ใส่ในวอล (ถ้ามี)</label><input type="text" id="fw-name2" class="form-control"></div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div class="form-group"><label>วัน (จ-อา) *</label><input type="text" id="fw-day" class="form-control"></div>
-                        <div class="form-group"><label>วันที่ (1-31) *</label><input type="number" id="fw-date" class="form-control"></div>
+                    <div style="background: #fff; border: 2px solid var(--color-pink); border-radius: 1rem; padding: 14px; text-align: center; margin-bottom: 16px; box-shadow: 2px 2px 0px var(--color-pink);">
+                        <div style="font-size: 12px; color: #d97706; font-weight: 600;">TrueMoney Wallet</div>
+                        <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 1px; color: #d97706; margin: 6px 0;" id="wallet-num">0800172584</span>
+                        <button class="bg-[#FFE4E1] text-[#c2185b] px-4 py-1.5 rounded-full text-xs font-bold shadow-sm" onclick="copyText('0800172584')">📋 คัดลอกเบอร์</button>
                     </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div class="form-group"><label>เดือน *</label><input type="text" id="fw-month" class="form-control"></div>
-                        <div class="form-group"><label>ปีนักษัตร *</label><input type="text" id="fw-zodiac" class="form-control"></div>
-                    </div>
-                    <div class="form-group" style="margin-bottom:0;"><label>สีที่ชอบ *</label><input type="text" id="fw-color" class="form-control"></div>
-                </div>
 
-                <div id="form-chart" class="form-block" style="display:none;">
-                    <h5>📜 ข้อมูลพื้นดวง / ผูกดวง</h5>
-                    <div class="form-group"><label>ชื่อ *</label><input type="text" id="fc-name" class="form-control"></div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div class="form-group"><label>วันเดือนปีเกิด *</label><input type="text" id="fc-dob" class="form-control"></div>
-                        <div class="form-group"><label>อายุ *</label><input type="number" id="fc-age" class="form-control"></div>
+                    <div style="margin-bottom:16px;">
+                        <label style="font-size:12px; color: #c2185b; cursor:pointer; display:flex; align-items:start; gap:8px; font-weight:600; line-height:1.4;">
+                            <input type="checkbox" id="confirm-pay" class="req-check" style="accent-color:#c2185b; width:18px; height:18px; margin-top:2px;">
+                            <span>ฉันได้ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว<br>(ต้องแนบสลิปในแชทให้แอดมินด้วยนะคะ)</span>
+                        </label>
                     </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div class="form-group"><label>เวลาเกิด *</label><input type="time" id="fc-time" class="form-control"></div>
-                        <div class="form-group"><label>สถานที่เกิด *</label><input type="text" id="fc-place" class="form-control"></div>
-                    </div>
-                    <div class="form-group" style="margin-bottom:0;">
-                        <label>คำถามเน้น 2 คำถาม *</label>
-                        <input type="text" id="fc-q1" class="form-control" placeholder="1. ..." style="margin-bottom:8px;">
-                        <input type="text" id="fc-q2" class="form-control" placeholder="2. ...">
-                    </div>
-                </div>
 
-                <div id="form-web" class="form-block" style="display:none;">
-                    <h5>💻 ข้อมูลรับทำเว็บไซต์</h5>
-                    <div class="form-group"><label>ชื่อร้าน / คอนแทค *</label><textarea id="f-web-shop" class="form-control" rows="2"></textarea></div>
-                    <div class="form-group"><label>รายละเอียดฟังก์ชัน *</label><textarea id="f-web-detail" class="form-control" rows="3"></textarea></div>
-                    <div class="form-group" style="margin-bottom:0;"><label>สไตล์ / โทนสีที่ชอบ *</label><input type="text" id="f-web-design" class="form-control"></div>
-                </div>
-
-                <div id="form-general" class="form-block" style="display:none;">
-                    <h5>🔮 ข้อมูลส่วนตัว & คำถาม</h5>
                     <div class="form-group">
-                        <label>สถานะความสัมพันธ์ *</label>
-                        <select id="f-status" class="form-control">
-                            <option value="">-- เลือกสถานะ --</option>
-                            <option value="โสด">โสด</option>
-                            <option value="มีแฟนแล้ว">มีแฟนแล้ว</option>
-                            <option value="คุยอยู่ / กำลังศึกษาดูใจ">คุยอยู่ / กำลังศึกษาดูใจ</option>
-                            <option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
-                        </select>
+                        <label>ชื่อเล่น / แอคเคาท์ติดต่อ (จำเป็น) *</label>
+                        <input type="text" id="f-name" class="form-control req-field" placeholder="เช่น น้องฟ้า / IG: fah_sky">
                     </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div class="form-group"><label>อายุ *</label><input type="number" id="f-age" class="form-control"></div>
+
+                    <!-- ฟอร์ม: ดูดวงส่วนตัว / โทร (สถานะ, อายุ, วันเกิด) -->
+                    <div id="form-personal" style="display:none; background:#fdfbf7; padding:14px; border-radius:1rem; border:2px dashed var(--color-purple); margin-bottom:16px;">
+                        <h5 style="color:var(--color-purple); margin:0 0 10px 0; font-size:14px; font-weight:bold;">🔮 ข้อมูลส่วนตัวพื้นฐาน</h5>
                         <div class="form-group">
-                            <label>เกิดวัน *</label>
-                            <select id="f-day" class="form-control">
-                                <option value="">-- เลือกวัน --</option>
-                                <option value="วันจันทร์">วันจันทร์</option><option value="วันอังคาร">วันอังคาร</option><option value="วันพุธ">วันพุธ</option>
-                                <option value="วันพฤหัสบดี">วันพฤหัสบดี</option><option value="วันศุกร์">วันศุกร์</option><option value="วันเสาร์">วันเสาร์</option><option value="วันอาทิตย์">วันอาทิตย์</option>
+                            <label>สถานะความสัมพันธ์ *</label>
+                            <select id="f-status" class="form-control req-field">
+                                <option value="">-- เลือกสถานะ --</option><option value="โสด">โสด</option><option value="มีแฟนแล้ว">มีแฟนแล้ว</option><option value="คุยอยู่ / ดูใจ">คุยอยู่ / กำลังศึกษาดูใจ</option><option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
                             </select>
                         </div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <div class="form-group"><label>อายุ (ปี) *</label><input type="number" id="f-age" class="form-control req-field"></div>
+                            <div class="form-group">
+                                <label>เกิดวัน *</label>
+                                <select id="f-day" class="form-control req-field">
+                                    <option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div id="dynamic-questions"></div>
-                    <div class="form-group" style="margin-bottom:0;">
-                        <label>รูปแบบบริการ *</label>
-                        <select id="f-type" class="form-control">
-                            <option value="พิมพ์">พิมพ์ (Text-only)</option>
-                            <option value="โทร">โทร / เสียง</option>
-                        </select>
-                    </div>
-                </div>
 
-                <button class="btn-action" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป & ส่งข้อมูล</button>
+                    <!-- ฟอร์ม: คำถามดูดวง (เฉพาะแชท) -->
+                    <div id="form-questions" style="display:none; background:#fff; padding:14px; border-radius:1rem; border:2px dashed var(--color-pink); margin-bottom:16px;">
+                        <h5 style="color:var(--color-green-dark); margin:0 0 10px 0; font-size:14px; font-weight:bold;">💬 คำถามดูดวง</h5>
+                        <div id="dynamic-questions"></div>
+                    </div>
+
+                    <!-- ฟอร์ม: จองเวลา (โทร / ฮีลใจ) -->
+                    <div id="form-appt" style="display:none; background:#e0f7fa; padding:14px; border-radius:1rem; border:2px dashed #00838f; margin-bottom:16px;">
+                        <h5 style="color:#00838f; margin:0 0 10px 0; font-size:14px; font-weight:bold;">📅 จองเวลา (สำหรับคอล)</h5>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <div class="form-group" style="margin-bottom:0;"><label>วันที่จอง *</label><input type="date" id="f-date" class="form-control req-field"></div>
+                            <div class="form-group" style="margin-bottom:0;"><label>เวลาที่จอง *</label><input type="time" id="f-time" class="form-control req-field"></div>
+                        </div>
+                    </div>
+
+                    <!-- ฟอร์ม: วอลเปเปอร์ -->
+                    <div id="form-wall" style="display:none; background:#fff0f5; padding:14px; border-radius:1rem; border:2px dashed var(--color-pink); margin-bottom:16px;">
+                        <h5 style="color:#c2185b; margin:0 0 10px 0; font-size:14px; font-weight:bold;">📱 ข้อมูลวอลเปเปอร์</h5>
+                        <div class="form-group"><label>เรื่องที่จะเสริม (+เรื่องละ 39) *</label><input type="text" id="fw-topic" class="form-control req-field"></div>
+                        <div class="form-group"><label>ชื่อ (จริง/เล่น) *</label><input type="text" id="fw-name1" class="form-control req-field"></div>
+                        <div class="form-group"><label>ชื่อที่จะให้พิมพ์ใส่ในวอล *</label><input type="text" id="fw-name2" class="form-control req-field" placeholder="ถ้าไม่ใส่ พิมพ์ว่า 'ไม่ใส่'"></div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <div class="form-group"><label>วัน (จ-อา) *</label><input type="text" id="fw-day" class="form-control req-field"></div>
+                            <div class="form-group"><label>วันที่ (1-31) *</label><input type="number" id="fw-date" class="form-control req-field"></div>
+                        </div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <div class="form-group"><label>เดือน *</label><input type="text" id="fw-month" class="form-control req-field"></div>
+                            <div class="form-group"><label>ปีนักษัตร *</label><input type="text" id="fw-zodiac" class="form-control req-field"></div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;"><label>สีที่ชอบ *</label><input type="text" id="fw-color" class="form-control req-field"></div>
+                    </div>
+
+                    <!-- ฟอร์ม: ทำเว็บ -->
+                    <div id="form-web" style="display:none; background:#f2ffeb; padding:14px; border-radius:1rem; border:2px dashed var(--color-green); margin-bottom:16px;">
+                        <h5 style="color:var(--color-green-dark); margin:0 0 10px 0; font-size:14px; font-weight:bold;">💻 ข้อมูลรับทำเว็บไซต์</h5>
+                        <div class="form-group"><label>ชื่อร้าน / คอนแทค *</label><textarea id="f-web-shop" class="form-control req-field" rows="2"></textarea></div>
+                        <div class="form-group"><label>รายละเอียดสิ่งที่ต้องการใส่ *</label><textarea id="f-web-detail" class="form-control req-field" rows="3"></textarea></div>
+                        <div class="form-group" style="margin-bottom:0;"><label>สไตล์ / โทนสีที่ชอบ *</label><input type="text" id="f-web-design" class="form-control req-field"></div>
+                    </div>
+                    
+                    <!-- ฟอร์ม: พื้นดวง / ผูกดวง -->
+                    <div id="form-chart" style="display:none; background:#fdfbf7; padding:14px; border-radius:1rem; border:2px dashed var(--color-purple); margin-bottom:16px;">
+                        <h5 style="color:var(--color-purple); margin:0 0 10px 0; font-size:14px; font-weight:bold;">📜 ข้อมูลพื้นดวง</h5>
+                        <div class="form-group"><label>ชื่อ *</label><input type="text" id="fc-name" class="form-control req-field"></div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <div class="form-group"><label>ว/ด/ป เกิด *</label><input type="text" id="fc-dob" class="form-control req-field"></div>
+                            <div class="form-group"><label>อายุ *</label><input type="number" id="fc-age" class="form-control req-field"></div>
+                        </div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <div class="form-group"><label>เวลาเกิด *</label><input type="time" id="fc-time" class="form-control req-field"></div>
+                            <div class="form-group"><label>จังหวัดที่เกิด *</label><input type="text" id="fc-place" class="form-control req-field"></div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label>คำถามเน้น 2 คำถาม *</label>
+                            <input type="text" id="fc-q1" class="form-control req-field" placeholder="คำถาม 1..." style="margin-bottom:8px;">
+                            <input type="text" id="fc-q2" class="form-control req-field" placeholder="คำถาม 2...">
+                        </div>
+                    </div>
+
+                    <button class="btn-action" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุปเพื่อส่งแอดมิน</button>
+                </div>
             </div>
         </div>
 
-        <!-- SUMMARY AREA -->
-        <div id="summary-area" class="card p-6 mb-8" style="display:none; border-color: var(--color-green);">
-            <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 8px;">🎉 สรุปข้อความสำหรับส่งให้แอดมิน</div>
-            <div style="font-size: 13px; color: #666; margin-bottom:12px;">ตรวจสอบข้อมูล แล้วเลือกช่องทางติดต่อเพื่อส่งข้อความได้เลย</div>
+        <!-- Summary Area -->
+        <div id="summary-area" class="card p-6 mb-8" style="display:none; border-color: var(--color-purple);">
+            <div style="font-size: 16px; font-weight: 600; color: var(--color-purple); margin-bottom: 8px; text-align:center;">🎉 สรุปข้อความเรียบร้อย!</div>
+            <div style="font-size: 12px; color: #666; margin-bottom:12px; text-align:center; background:#f9f9f9; padding:8px; border-radius:8px;">ตรวจสอบข้อมูล แล้วเลือกช่องทางติดต่อเพื่อส่งข้อความให้แอดมินได้เลยค่ะ (ระบบจะคัดลอกให้อัตโนมัติ)</div>
             <div class="form-group">
-                <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:12px; background:#fff;"></textarea>
+                <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:12px; background:#fff; border-color:var(--color-purple);"></textarea>
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="flex:1; background:#00c355; color:#fff;" onclick="copySummaryText()">💚 ส่งผ่าน LINE</a>
-                <button class="btn-action" style="flex:1; background:#1877f2; color:#fff;" onclick="sendViaFacebook()">💙 ส่งผ่าน Facebook</button>
+                <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="flex:1; background:#00c355; color:#fff;" onclick="copySummaryText()">💚 ส่งทาง LINE</a>
+                <button class="btn-action" style="flex:1; background:#1877f2; color:#fff;" onclick="sendViaFacebook()">💙 ส่งทาง Facebook</button>
             </div>
-        </div>
-
-        <!-- CONTACTS FOOTER -->
-        <div class="text-center">
-            <h2 class="font-eng text-xl text-[var(--color-green-dark)] mb-4">Contact Me</h2>
-            <div class="flex justify-center flex-wrap gap-3 mb-6">
-                <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-contact">💚 LINE Official</a>
-                <a href="https://m.me/taotofu.meow" target="_blank" class="btn-contact">💙 Facebook</a>
-            </div>
-            <p class="text-xs text-[var(--color-green-dark)] opacity-70">© AhTao Mu-Space · บริการด้วยใจจริง ✨</p>
         </div>
 
     </main>
 
-    <!-- INTRO MODAL -->
-    <div id="intro-modal" class="modal-overlay" style="align-items:center; justify-content:center;">
-        <div class="admin-box" id="intro-box" style="text-align:center; max-width:380px;">
-            <h3 class="font-eng" style="color:var(--color-green-dark); margin-top:0; font-size:20px;">📖 วิธีใช้งานเว็บไซต์</h3>
-            <div id="intro-text-display" style="color:#555; font-size:13.5px; line-height:1.6; text-align:left; white-space:pre-wrap; margin-bottom:20px; background:var(--color-yellow); padding:14px; border-radius:12px; border:2px dashed var(--color-green);"></div>
-            <button class="btn-action" style="margin-top:0;" onclick="closeIntro()">เข้าใจแล้ว เริ่มใช้งานเลย! ✨</button>
+    <!-- Intro Modal (How to use) -->
+    <div id="intro-modal" class="modal-overlay" style="display:flex;">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-sm border-4 border-var(--color-pink) shadow-xl relative" style="border-color:var(--color-pink);">
+            <h3 class="font-eng text-2xl text-[#1E6555] text-center mb-4 flex justify-center items-center gap-2">📖 วิธีใช้งาน</h3>
+            <div id="intro-text-display" style="color:#555; font-size:13.5px; line-height:1.6; white-space:pre-wrap; background:#fdfbf7; padding:14px; border-radius:12px; border:2px dashed var(--color-green);">
+1. กดปุ่มหมวดหมู่ (ดูดวง, วอลฯ, เว็บ) เพื่อดูบริการ
+2. กด ➕ เพื่อเลือกสินค้าที่ต้องการลงตะกร้า
+3. กดที่ไอคอนตะกร้า 🛒 (มุมขวาล่าง) เพื่อเช็คยอด
+4. โอนเงินตามยอด และกรอกข้อมูลให้ครบทุกช่อง!
+5. กด "สร้างข้อความสรุป" ระบบจะจัดเรียงข้อมูลให้
+6. กดปุ่มส่งทาง Line/FB ข้อความจะก๊อปปี้อัตโนมัติ ให้นำไปวางส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖
+            </div>
+            <button class="btn-action mt-4" style="background:var(--color-pink); color:white;" onclick="closeIntro()">เข้าใจแล้ว เริ่มใช้งานเลย! ✨</button>
         </div>
     </div>
 
-    <!-- ADMIN MODAL -->
+    <!-- Admin Modal -->
     <div id="admin-modal" class="modal-overlay">
-        <div class="admin-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed var(--color-green); padding-bottom:14px; margin-bottom:16px;">
-                <h2 style="color:var(--color-green-dark); margin:0; font-size:18px;">⚙️ จัดการระบบหลังบ้าน</h2>
-                <button onclick="closeAdmin()" style="background:none; border:none; color:var(--color-green-dark); font-size:24px; cursor:pointer; font-weight:bold;">&times;</button>
+        <div class="bg-white rounded-3xl p-6 w-full max-w-lg border-4 border-[var(--color-purple)] shadow-xl relative max-h-[85vh] flex flex-col">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed var(--color-purple); padding-bottom:14px; margin-bottom:16px;">
+                <h2 style="color:var(--color-purple); margin:0; font-size:18px; font-weight:bold;">☯️ จัดการระบบหลังบ้าน</h2>
+                <button onclick="closeAdmin()" style="background:none; border:none; color:#666; font-size:24px; cursor:pointer;">&times;</button>
             </div>
-            
-            <div id="admin-content" style="max-height:50vh; overflow-y:auto; padding-right:8px; margin-bottom:16px;"></div>
-
-            <div style="display:flex; gap:10px; border-top:2px dashed var(--color-green); padding-top:16px;">
-                <button onclick="saveAdmin()" class="btn-action" style="margin-top:0; flex:2;">💾 บันทึกการเปลี่ยนแปลง</button>
+            <div id="admin-content" style="flex:1; overflow-y:auto; padding-right:8px; margin-bottom:16px;"></div>
+            <div style="display:flex; gap:10px; border-top:2px dashed var(--color-purple); padding-top:16px;">
+                <button onclick="saveAdmin()" class="btn-action" style="margin-top:0; flex:2; background:var(--color-purple); color:white;">💾 บันทึก</button>
                 <button onclick="resetAdmin()" class="btn-action" style="margin-top:0; flex:1; background:#ff4757; color:#fff;">⚠️ รีเซ็ต</button>
             </div>
         </div>
     </div>
 
-    <div class="toast" id="toast">✅ ดำเนินการสำเร็จ!</div>
+    <div class="toast" id="toast">✅ สำเร็จ!</div>
 
-    <!-- SCRIPT (ระบบเดิม 100%) -->
     <script>
+    // --- Data & Settings ---
     const API_URL = "https://script.google.com/macros/s/AKfycbxdSFkoMgRJWi7qauJWoywC9hGaVzy-9P1X82z2mYFGJIhAMBjv9c8CD7E09dfOSs6r/exec";
+    const ADMIN_PASS = "1164";
 
-    let defaultSettings = {
+    let muSettings = {
         marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space 🔮 ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร ✨",
-        marqueeSpeed: 3,
-        intro: "1. เลือกบริการที่ต้องการโดยกดปุ่ม ➕\n2. ตรวจสอบรายการในตะกร้าและกด \"สร้างข้อความสรุป\"\n3. เลือกช่องทางติดต่อ (LINE หรือ Facebook)\n4. ระบบจะคัดลอกข้อความอัตโนมัติ ให้นำไปวางส่งแอดมินได้เลยค่ะ 💖"
+        marqueeSpeed: 3
     };
 
+    // อัปเดตข้อมูลสินค้าทั้งหมดตามที่สรุปไว้
     const defaultData = [
-        { sectionTitle: "🔮 1. ดูดวง", category: "ดูดวง", cards: [
-            { icon: "💬", title: "ดูดวงทั่วไป (แชท)", items: [ { name: "Yes or No!! (1 คำถาม)", price: 9 }, { name: "1 คำถาม", price: 29 }, { name: "3 คำถาม", price: 69 }, { name: "5 คำถาม (ขายดี)", price: 118 }, { name: "เซ็ทแม่หมอ (เจาะลึกความรัก)", price: 129 }, { name: "ภาพรวมรายเดือน", price: 49 }, { name: "เช็กล้วงใจ", price: 59 } ] },
-            { icon: "✨", title: "เรื่องรอบตัว & สิ่งศักดิ์สิทธิ์", items: [ { name: "คนรอบตัวมองว่าเราเป็นคนยังไง", price: 49 }, { name: "ดูสีและอัญมณีเสริมดวง", price: 69 }, { name: "ดูเลขมงคลและทิศมงคล", price: 69 }, { name: "เลขบัตรประชาชนส่งผลอย่างไร", price: 89 }, { name: "ดูฤกษ์มงคล", price: 99 }, { name: "สิ่งศักดิ์สิทธิ์ที่นับถืออยากบอกอะไร", price: 159 } ] },
-            { icon: "❤️", title: "ไพ่เตือนใจ & ความรัก", items: [ { name: "ไพ่อยากบอกหรือให้คำแนะนำอะไร", price: 69 }, { name: "ไพ่อยากเตือนเรื่องที่ต้องระวัง", price: 79 }, { name: "สัตว์เลี้ยงอยากบอกอะไรถึงคุณ", price: 79 }, { name: "ลักษณะแฟนในอนาคต", price: 89 }, { name: "เนื้อคู่ (รับอายุ 20+)", price: 199 } ] },
-            { icon: "🔮", title: "ภาพรวม & อนาคต", items: [ { name: "สิ่งที่ควรระวังในเดือนนี้", price: 99 }, { name: "ดวงเราภายใน 3 เดือน", price: 199 }, { name: "ดวงชะตารายสัปดาห์อย่างละเอียด", price: 99 }, { name: "ดวงชะตาราย 6 เดือน", price: 499 }, { name: "ดวงชะตารายปี", price: 799 } ] }
+        // Tab 1: หมวด 1 - ดูดวง / โทรดูดวง
+        { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (พิมพ์แชท)", items: [ 
+            { name: "Yes or No", price: 9 }, { name: "1 คำถาม", price: 29 }, { name: "3 คำถาม", price: 69 }, 
+            { name: "5 คำถาม (ขายดี)✨", price: 118 }, { name: "ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)", price: 49 }, 
+            { name: "เช็กล้วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)", price: 59 }, { name: "พื้นดวง", price: 219 } 
         ]},
-        { sectionTitle: "📞 2. โทรดูดวง", category: "โทรดูดวง", cards: [
-            { icon: "📞", title: "โทรดูดวง (สายตรง)", items: [ { name: "โทร 10 นาที", price: 99 }, { name: "โทร 15 นาที", price: 129 }, { name: "โทร 30 นาที", price: 189 }, { name: "โทร 1 ชั่วโมง", price: 299 }, { name: "ต่อเวลาโทร (+10 นาที)", price: 50 } ] }
+        { tab: 1, category: "ดูดวง", title: "✨ ดูดวงเฉพาะทาง (เรื่องรอบตัว & สิ่งศักดิ์สิทธิ์)", items: [ 
+            { name: "คำถามเกี่ยวกับสิ่งศักดิ์สิทธิ์สิ่งลี้ลับ", price: 259 } 
         ]},
-        { sectionTitle: "🎧 3. พื้นที่รับฟัง", category: "พื้นที่รับฟัง", cards: [
-            { icon: "☎️", title: "ฮีลใจ (สายคอล)", items: [ { name: "ทดลอง 10 นาที", price: 59 }, { name: "30 นาที", price: 139 }, { name: "60 นาที", price: 239 }, { name: "90 นาที", price: 329 } ] }
+        { tab: 1, category: "ดูดวง", title: "❤️ ดูดวงเฉพาะทาง (ไพ่เตือนใจ & ความรัก)", items: [ 
+            { name: "ไพ่อยากบอกหรือให้คำแนะนำอะไร", price: 69 }, { name: "ไพ่อยากเตือนเรื่องที่ต้องระวัง", price: 79 }, 
+            { name: "สัตว์เลี้ยงอยากบอกอะไรถึงคุณ", price: 79 }, { name: "ทำนายฝันและแปลเลขจากฝัน", price: 79 }, 
+            { name: "ลักษณะแฟนในอนาคต", price: 89 }, { name: "เนื้อคู่ (รับอายุ 20+ ขึ้นไป)", price: 199 }, 
+            { name: "เซ็ทแม่หมอ(แจ้งแค่สถานะ)", price: 129 }, { name: "ตั้งครรภ์ (1-3เดือน)", price: 99 } 
         ]},
-        { sectionTitle: "🖼️ 4. วอลเปเปอร์", category: "วอลเปเปอร์", cards: [
-            { icon: "📱", title: "วอลเปเปอร์สายมู", items: [ { name: "ออกแบบเริ่มต้น", price: 189 }, { name: "ให้แม่หมอดูเสริมทิศทางให้", price: 199 }, { name: "เพิ่มเรื่อง (+เรื่องละ)", price: 39 } ] }
+        { tab: 1, category: "โทรดูดวง", title: "📞 โทรดูดวง (พูดคุยสายตรง)", items: [ 
+            { name: "โทรไม่จำกัดคำถาม - 10 นาที", price: 99 }, { name: "โทรไม่จำกัดคำถาม - 15 นาที", price: 129 }, 
+            { name: "โทรไม่จำกัดคำถาม - 30 นาที", price: 189 }, { name: "โทรไม่จำกัดคำถาม - 1 ชั่วโมง", price: 299 },
+            { name: "ต่อเวลาโทร (บวกเพิ่มต่อ 10 นาที)", price: 50 } 
         ]},
-        { sectionTitle: "💻 5. รับทำเว็บไซต์", category: "รับทำเว็บไซต์", cards: [
-            { icon: "🖥️", title: "บริการรับทำเว็บไซต์", items: [ { name: "ไม่เกิน 200 lines", price: 129 }, { name: "เกิน 200 lines", price: 139 }, { name: "เกิน 400 lines", price: 189 }, { name: "เกิน 600 lines", price: 249 }, { name: "แบนเนอร์ 1-2 รูป", price: 29 } ] }
+        
+        // Tab 2: หมวด 2 - วอลเปเปอร์ / ฮีลใจ
+        { tab: 2, category: "วอลเปเปอร์", title: "📱 วอลเปเปอร์สายมู", items: [ 
+            { name: "วอลเปเปอร์สายมูออกแบบเริ่มต้น", price: 189 }, { name: "วอลเปเปอร์สายมูให้แม่หมอดูเสริมทิศทางให้", price: 199 }, 
+            { name: "วอลเปเปอร์สายมูเพิ่มเรื่อง (บวกเพิ่มต่อเรื่อง)", price: 39 }, { name: "ค่าเร่งเฉพาะวอลเปเปอร์", price: 89 } 
+        ]},
+        { tab: 2, category: "พื้นที่รับฟัง", title: "☎️ พื้นที่รับฟัง (ฮีลใจ - สายคอล)", items: [ 
+            { name: "ทดลอง/ลูกค้าใหม่ 10 นาที", price: 59 }, { name: "30 นาที", price: 139 }, 
+            { name: "60 นาที", price: 239 }, { name: "90 นาที", price: 329 }, { name: "แพ็ก 3 ครั้ง (ครั้งละ 60 นาที)", price: 659 } 
+        ]},
+
+        // Tab 3: หมวด 3 - รับทำเว็บไซต์
+        { tab: 3, category: "รับทำเว็บไซต์", title: "💻 บริการรับทำเว็บไซต์", items: [ 
+            { name: "เว็บหน้าเดียว", price: 99 }, { name: "แพ็คเก็จ S", price: 199 }, 
+            { name: "แพ็คเก็จ M", price: 499 }, { name: "แพ็คเก็จ L", price: 799 }, { name: "ค่าเร่งเฉพาะ เว็บไซต์", price: 99 } 
         ]}
     ];
 
-    let muSettings = { ...defaultSettings };
     let productData = JSON.parse(JSON.stringify(defaultData));
     let currentCart = [];
-    let hasPhone = false, hasWall = false, hasChart = false, hasWeb = false, hasGeneral = false, hasHeal = false, totalDynamicQuestions = 0;
+    let activeTab = 1;
 
+    // Flags สำหรับเปิดฟอร์ม
+    let hasChat = false, hasPhone = false, hasWall = false, hasChart = false, hasWeb = false, hasHeal = false;
+    let totalChatQuestions = 0;
+
+    // --- Initialization ---
     document.addEventListener('DOMContentLoaded', async () => {
+        // Set Default Dates
         const today = new Date().toISOString().split('T')[0];
-        if (document.getElementById('f-date')) document.getElementById('f-date').value = today;
-
-        const localSet = localStorage.getItem('muSpaceSettings');
-        const localProd = localStorage.getItem('muSpaceProducts');
-        if (localSet) muSettings = JSON.parse(localSet);
-        if (localProd) {
-            let parsedProd = JSON.parse(localProd);
-            if(parsedProd.length >= 4) productData = parsedProd; 
-        }
-
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 6000); 
-            const response = await fetch(API_URL + "?action=getData&t=" + new Date().getTime(), { signal: controller.signal });
-            clearTimeout(timeoutId);
-            const result = await response.json();
-            if (result && result.products && result.products.length >= 4) {
+        if(document.getElementById('f-date')) document.getElementById('f-date').value = today;
+        
+        // Load local data if exists
+        const localProd = localStorage.getItem('muSpaceProductsV2');
+        if (localProd) productData = JSON.parse(localProd);
+        
+        // Try to fetch from Google (Background)
+        fetch(API_URL + "?action=getData").then(res => res.json()).then(result => {
+            if (result && result.products) {
                 productData = result.products;
-                if (result.settings && Object.keys(result.settings).length > 0) muSettings = result.settings;
+                renderProducts(); // re-render if loaded
             }
-        } catch (error) { console.warn("Cloud Load Error", error); }
+        }).catch(e => console.log("Offline mode"));
 
-        applySettingsAndRender();
+        // Marquee
+        document.getElementById('marquee-text-display').textContent = muSettings.marquee;
 
-        if (!sessionStorage.getItem('hasSeenMuIntro')) {
-            setTimeout(() => {
-                const m = document.getElementById('intro-modal');
-                m.style.display = 'flex';
-            }, 500);
+        // Check if intro seen
+        if (!sessionStorage.getItem('hasSeenMuIntroV2')) {
+            document.getElementById('intro-modal').style.display = 'flex';
         }
+
+        switchTab(1); // Start at Tab 1
     });
 
-    function applySettingsAndRender() {
-        const marqueeEl = document.getElementById('marquee-text-display');
-        marqueeEl.textContent = muSettings.marquee;
-        marqueeEl.setAttribute('scrollamount', muSettings.marqueeSpeed || 3);
-        document.getElementById('intro-text-display').textContent = muSettings.intro;
+    // --- Click Effect (Star) ---
+    document.addEventListener('click', function(e) {
+        // ไม่แสดงถ้าคลิกใน input หรือ textarea
+        if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+        
+        const star = document.createElement('div');
+        star.className = 'star-click';
+        star.innerHTML = '✨';
+        star.style.left = e.clientX + 'px';
+        star.style.top = e.clientY + 'px';
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 800);
+    });
+
+    // --- Tab Navigation ---
+    function switchTab(tabId) {
+        activeTab = tabId;
+        document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+            if(i+1 === tabId) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
         renderProducts();
     }
 
-    function closeIntro() {
-        sessionStorage.setItem('hasSeenMuIntro', 'true');
-        document.getElementById('intro-modal').style.display = 'none';
-    }
-
     function renderProducts() {
-        const container = document.getElementById('products-wrapper');
+        const wrapper = document.getElementById('products-wrapper');
         let html = '';
+        const itemsToRender = productData.filter(d => d.tab === activeTab);
         
-        productData.forEach((sec) => {
-            html += `<div class="sec-title font-eng">${sec.sectionTitle}</div>`;
-            sec.cards.forEach((card) => {
-                html += `<div class="card p-5 mb-4 relative">
-                    <div style="position:absolute; top:-14px; right:-8px; font-size:30px;">${card.icon}</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 12px; border-bottom: 2px dashed var(--color-pink-light); padding-bottom: 8px;">${card.title}</div>`;
-                
-                if(card.note) html += `<div style="font-size:12px; color:#c2185b; margin-bottom:8px;">${card.note}</div>`;
-
-                card.items.forEach((item) => {
-                    const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                    html += `<div class="item-row">
-                        <span style="font-size:13.5px; font-weight:500; color:#333; flex:1; padding-right:8px;">${item.name}</span>
-                        <div style="display:flex; align-items:center; gap:8px;">
-                            <span class="price-tag">${item.price}.-</span>
-                            <button class="btn-add" onclick="addToCart('${safeName}', ${item.price}, '${sec.category}')">➕</button>
-                        </div>
-                    </div>`;
-                });
-                html += `</div>`;
+        itemsToRender.forEach(group => {
+            html += `<div class="card p-5 mb-4 relative bg-white">
+                        <div style="font-size: 15px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 12px; border-bottom: 2px dashed var(--color-pink-light); padding-bottom: 8px;">${group.title}</div>`;
+            
+            group.items.forEach(item => {
+                const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                html += `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px dashed #eee;">
+                            <span style="font-size:13.5px; font-weight:500; color:#333; flex:1; padding-right:8px;">${item.name}</span>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span class="price-tag">${item.price}.-</span>
+                                <button class="btn-add" onclick="addToCart('${safeName}', ${item.price}, '${group.category}')">➕</button>
+                            </div>
+                        </div>`;
             });
+            html += `</div>`;
         });
-        container.innerHTML = html;
+        wrapper.innerHTML = html;
     }
 
-    function openAdmin() {
-        const pass = prompt("🔒 กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการร้าน:");
-        if (pass === "1164") {
-            renderAdminPanel();
-            document.getElementById('admin-modal').style.display = 'flex';
-        } else if (pass !== null) alert("❌ รหัสผ่านไม่ถูกต้อง!");
-    }
-    function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
-
-    function updateDataFromDOM() {
-        productData.forEach((sec, sIdx) => {
-            sec.cards.forEach((card, cIdx) => {
-                card.items.forEach((item, iIdx) => {
-                    const n = document.getElementById(`name-${sIdx}-${cIdx}-${iIdx}`);
-                    const p = document.getElementById(`price-${sIdx}-${cIdx}-${iIdx}`);
-                    if(n) item.name = n.value;
-                    if(p) item.price = parseInt(p.value) || 0;
-                });
-            });
-        });
-    }
-
-    function renderAdminPanel() {
-        let html = `
-            <div class="form-block">
-                <h4 style="color:var(--color-green-dark); margin:0 0 10px;">📝 ตั้งค่าข้อความทั่วไป</h4>
-                <div class="form-group"><label>ข้อความวิ่ง (Marquee)</label><input type="text" id="admin-marquee" class="form-control" value="${muSettings.marquee.replace(/"/g, '&quot;')}"></div>
-                <div class="form-group"><label>ความเร็ว (1-10)</label><input type="number" id="admin-marquee-speed" class="form-control" value="${muSettings.marqueeSpeed || 3}"></div>
-                <div class="form-group" style="margin-bottom:0;"><label>วิธีใช้เว็บไซต์ (Popup)</label><textarea id="admin-intro" class="form-control" rows="4">${muSettings.intro}</textarea></div>
-            </div>
-        `;
-        productData.forEach((sec, sIdx) => {
-            html += `<h3 style="color:var(--color-green-dark); font-size:15px; margin-top:20px;">${sec.sectionTitle}</h3>`;
-            sec.cards.forEach((card, cIdx) => {
-                html += `<div class="form-block" style="background:#fff;">
-                    <h4 style="color:var(--color-green-dark); margin:0 0 10px; font-size:14px;">${card.icon} ${card.title}</h4>`;
-                card.items.forEach((item, iIdx) => {
-                    html += `<div style="display:flex; gap:6px; margin-bottom:6px;">
-                        <input type="text" class="form-control" value="${item.name.replace(/"/g, '&quot;')}" id="name-${sIdx}-${cIdx}-${iIdx}" style="flex:2; padding:8px;">
-                        <input type="number" class="form-control" value="${item.price}" id="price-${sIdx}-${cIdx}-${iIdx}" style="flex:1; padding:8px;">
-                        <button onclick="deleteItem(${sIdx}, ${cIdx}, ${iIdx})" style="background:#ff4757; border:none; border-radius:8px; color:#fff; padding:0 10px;">🗑️</button>
-                    </div>`;
-                });
-                html += `<button onclick="addItem(${sIdx}, ${cIdx})" style="background:none; border:2px dashed var(--color-green); color:var(--color-green-dark); font-weight:bold; border-radius:8px; padding:6px; width:100%; margin-top:6px;">+ เพิ่มบริการใหม่</button>
-                </div>`;
-            });
-        });
-        document.getElementById('admin-content').innerHTML = html;
-    }
-
-    function addItem(sIdx, cIdx) { updateDataFromDOM(); productData[sIdx].cards[cIdx].items.push({name: "ชื่อบริการใหม่", price: 0}); renderAdminPanel(); }
-    function deleteItem(sIdx, cIdx, iIdx) { if(confirm("ลบสินค้านี้?")){ updateDataFromDOM(); productData[sIdx].cards[cIdx].items.splice(iIdx, 1); renderAdminPanel(); } }
-
-    async function saveAdmin() {
-        updateDataFromDOM();
-        muSettings.marquee = document.getElementById('admin-marquee').value;
-        muSettings.marqueeSpeed = parseInt(document.getElementById('admin-marquee-speed').value) || 3;
-        muSettings.intro = document.getElementById('admin-intro').value;
-        try {
-            showToast('⏳ กำลังอัปเดต...');
-            await fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveAdminData", settings: muSettings, products: productData }) });
-            localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
-            localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
-            closeAdmin(); showToast('✅ บันทึกสำเร็จ!'); setTimeout(() => location.reload(), 1000); 
-        } catch (e) {
-            localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
-            localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
-            closeAdmin(); applySettingsAndRender(); showToast('บันทึกในเครื่องชั่วคราว');
-        }
-    }
-
-    function resetAdmin() {
-        if(confirm("รีเซ็ตเป็นค่าเริ่มต้น?")) {
-            localStorage.removeItem('muSpaceSettings'); localStorage.removeItem('muSpaceProducts');
-            fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveAdminData", settings: defaultSettings, products: defaultData }) }).finally(() => location.reload());
-        }
-    }
-
+    // --- Cart & Checkout Logic ---
     function addToCart(name, price, category) {
         currentCart.push({ name, price, category });
         updateCartTotal();
         showToast('🛒 เพิ่มลงตะกร้าแล้ว!');
-        document.getElementById('checkout-form-area').style.display = 'block';
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        
+        // Bouncing animation on cart icon
+        const cartIcon = document.querySelector('.floating-cart');
+        cartIcon.style.transform = 'scale(1.2)';
+        setTimeout(() => cartIcon.style.transform = '', 300);
+    }
+
+    function removeItem(index) { 
+        currentCart.splice(index, 1); 
+        updateCartTotal(); 
     }
 
     function updateCartTotal() {
         const listEl = document.getElementById('cart-items-list');
         const totalEl = document.getElementById('cart-total-price');
-        const urgentCheckbox = document.getElementById('urgent-queue');
+        document.getElementById('cart-count').textContent = currentCart.length;
         
         if (currentCart.length === 0) {
-            listEl.innerHTML = 'ยังไม่มีสินค้าในตะกร้า (กรุณากดเลือกบริการด้านบน)';
+            listEl.innerHTML = 'ยังไม่มีสินค้าในตะกร้าค่ะ ✨';
             totalEl.textContent = '0';
             document.getElementById('checkout-form-area').style.display = 'none';
             document.getElementById('summary-area').style.display = 'none';
@@ -648,118 +524,245 @@
         }
 
         let html = ''; let subtotal = 0;
-        hasPhone = hasWall = hasChart = hasWeb = hasGeneral = hasHeal = false; totalDynamicQuestions = 0;
+        
+        // Reset flags
+        hasChat = hasPhone = hasWall = hasChart = hasWeb = hasHeal = false; 
+        totalChatQuestions = 0;
 
         currentCart.forEach((item, index) => {
             subtotal += item.price;
-            html += `<div style="display:flex; justify-content:space-between; margin-bottom:6px; border-bottom:1px dashed var(--color-pink-light); padding-bottom:6px; font-weight:500;">
+            html += `<div style="display:flex; justify-content:space-between; margin-bottom:6px; border-bottom:1px dashed var(--color-pink-light); padding-bottom:6px; font-weight:500; font-size:13px;">
                 <span style="color:var(--color-green-dark);">- ${item.name}</span> 
                 <span style="color:#c2185b;">${item.price}.- <button onclick="removeItem(${index})" style="background:none; border:none; color:#ff4757; cursor:pointer; font-weight:bold;">[X]</button></span>
             </div>`;
             
+            // Analyze categories for forms
             if (item.category === 'โทรดูดวง') hasPhone = true;
             else if (item.category === 'วอลเปเปอร์') hasWall = true;
             else if (item.category === 'รับทำเว็บไซต์') hasWeb = true;
             else if (item.category === 'พื้นที่รับฟัง') hasHeal = true;
-            
-            if (item.category === 'ดูดวง' || item.category === 'พื้นดวง') {
-                if (item.name.includes('พื้นดวง') || item.name.includes('ผูกดวง') || item.category === 'พื้นดวง') hasChart = true;
+            else if (item.category === 'ดูดวง') {
+                if (item.name.includes('พื้นดวง') || item.name.includes('ผูกดวง')) hasChart = true;
                 else {
-                    hasGeneral = true;
+                    hasChat = true;
                     const match = item.name.match(/(\d+)\s*คำถาม/);
-                    if (match) totalDynamicQuestions += parseInt(match[1]);
-                    else if (item.name.toLowerCase().includes("yes or no") || item.name.includes("1 คำถาม")) totalDynamicQuestions += 1;
+                    if (match) totalChatQuestions += parseInt(match[1]);
+                    else if (item.name.toLowerCase().includes("yes or no") || item.name.includes("1 คำถาม")) totalChatQuestions += 1;
                 }
             }
         });
 
-        if (urgentCheckbox && urgentCheckbox.checked) {
+        if (document.getElementById('urgent-queue').checked) {
             subtotal += 59;
-            html += `<div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#d97706; font-weight:bold;"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
+            html += `<div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#921dde; font-weight:bold; font-size:13px;"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
         }
-        listEl.innerHTML = html; totalEl.textContent = subtotal; setupDynamicForm(subtotal);
+
+        listEl.innerHTML = html; 
+        totalEl.textContent = subtotal; 
+        document.getElementById('checkout-form-area').style.display = 'block';
+        setupDynamicForm();
     }
 
-    function setupDynamicForm(subtotal) {
-        document.getElementById('form-appt').style.display = (hasPhone || hasGeneral || hasHeal) ? 'block' : 'none';
-        document.getElementById('form-wall').style.display = hasWall ? 'block' : 'none';
-        document.getElementById('form-chart').style.display = hasChart ? 'block' : 'none';
-        document.getElementById('form-web').style.display = hasWeb ? 'block' : 'none';
-        document.getElementById('form-general').style.display = (hasGeneral || hasHeal) ? 'block' : 'none';
+    function setupDynamicForm() {
+        // Toggle form sections based on flags
+        // ข้อมูลส่วนตัว (สถานะ, อายุ, วัน) ต้องแสดงถ้ามีการ ดูดวงแชท หรือ โทรดูดวง
+        const needPersonal = hasChat || hasPhone;
+        document.getElementById('form-personal').style.display = needPersonal ? 'block' : 'none';
+        
+        // วันที่/เวลา จองคิว (โทรดูดวง หรือ ฮีลใจ)
+        const needAppt = hasPhone || hasHeal;
+        document.getElementById('form-appt').style.display = needAppt ? 'block' : 'none';
 
+        // คำถามแชท (เฉพาะดูดวงแชท)
+        document.getElementById('form-questions').style.display = hasChat ? 'block' : 'none';
+        
+        // อื่นๆ
+        document.getElementById('form-wall').style.display = hasWall ? 'block' : 'none';
+        document.getElementById('form-web').style.display = hasWeb ? 'block' : 'none';
+        document.getElementById('form-chart').style.display = hasChart ? 'block' : 'none';
+
+        // สร้างช่องคำถาม Dynamic
         const dQuestionsDiv = document.getElementById('dynamic-questions');
         dQuestionsDiv.innerHTML = '';
-        if (hasGeneral || hasHeal) {
-            if (totalDynamicQuestions > 0) {
-                for(let i=1; i<=totalDynamicQuestions; i++) {
-                    dQuestionsDiv.innerHTML += `<div class="form-group"><label>คำถามที่ ${i} *</label><textarea class="form-control dyn-q" rows="2"></textarea></div>`;
+        if (hasChat) {
+            if (totalChatQuestions > 0) {
+                for(let i=1; i<=totalChatQuestions; i++) {
+                    dQuestionsDiv.innerHTML += `<div class="form-group"><label>คำถามที่ ${i} *</label><textarea class="form-control req-field dyn-q" rows="2"></textarea></div>`;
                 }
             } else {
-                dQuestionsDiv.innerHTML = `<div class="form-group"><label>รายละเอียดเพิ่มเติม (ถ้ามี)</label><textarea class="form-control dyn-q" rows="3"></textarea></div>`;
+                dQuestionsDiv.innerHTML = `<div class="form-group"><label>คำถาม / รายละเอียดเพิ่มเติม *</label><textarea class="form-control req-field dyn-q" rows="3"></textarea></div>`;
             }
         }
-        const pureSubtotal = subtotal - (document.getElementById('urgent-queue').checked ? 59 : 0);
-        const typeSelect = document.getElementById('f-type');
-        if (typeSelect && hasGeneral) {
-            if (pureSubtotal < 69) { typeSelect.value = 'พิมพ์'; typeSelect.disabled = true; } 
-            else typeSelect.disabled = false;
+
+        // Toggle 'req-field' class behavior logic handled in validation step
+    }
+
+    function scrollToCheckout() {
+        if(currentCart.length > 0) {
+            document.getElementById('checkout-section').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            showToast('🛒 ตะกร้าว่างเปล่าค่ะ กรุณาเลือกสินค้าก่อนนะ');
         }
     }
 
-    function removeItem(index) { currentCart.splice(index, 1); updateCartTotal(); }
+    // --- Validation & Generate ---
+    function validateForm() {
+        if (!document.getElementById('confirm-pay').checked) { 
+            alert('กรุณาติ๊กยืนยัน "ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว" ค่ะ'); 
+            return false; 
+        }
+        
+        let isValid = true;
+        // หาฟิลด์ที่อยู่ใน section ที่ display !== 'none' และมีคลาส req-field
+        const sections = [
+            document.getElementById('checkout-form-area'), // name
+            document.getElementById('form-personal'),
+            document.getElementById('form-questions'),
+            document.getElementById('form-appt'),
+            document.getElementById('form-wall'),
+            document.getElementById('form-web'),
+            document.getElementById('form-chart')
+        ];
 
+        for (let sec of sections) {
+            if (sec && sec.style.display !== 'none') {
+                const reqFields = sec.querySelectorAll('.req-field');
+                for (let field of reqFields) {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.style.borderColor = 'red';
+                    } else {
+                        field.style.borderColor = 'var(--color-pink)'; // reset
+                    }
+                }
+            }
+        }
+
+        if(!isValid) alert('⚠️ กรุณากรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*) ค่ะ');
+        return isValid;
+    }
+
+    function generateSummaryAndSend() {
+        if (!validateForm()) return;
+
+        const name = document.getElementById('f-name').value.trim();
+        let totalPrice = document.getElementById('cart-total-price').textContent;
+        
+        let orderItemsOnly = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
+        if (document.getElementById('urgent-queue').checked) orderItemsOnly += `\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)`;
+        
+        let summary = `🧸 ขอบคุณสำหรับการจองคิว/บริการค่ะ \n‧┈┈┈┈┈┈‧ \n🛒 ออเดอร์จาก: ${name}\n📋 รายการ:\n${orderItemsOnly}\n💰 ยอดโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (จะแนบสลิป)\n-----------------------------\n`;
+
+        // ข้อมูลส่วนตัว (สถานะ, อายุ, เกิดวัน)
+        if (hasChat || hasPhone) {
+            summary += `🔮 ข้อมูลส่วนตัว:\nสถานะ: ${document.getElementById('f-status').value}\nอายุ: ${document.getElementById('f-age').value} ปี\nเกิดวัน: ${document.getElementById('f-day').value}\n\n`;
+        }
+        
+        // จองเวลา
+        if (hasPhone || hasHeal) {
+            summary += `📞 จองเวลา (คอล):\nวันที่: ${document.getElementById('f-date').value} / เวลา: ${document.getElementById('f-time').value} น.\n\n`;
+        }
+
+        // คำถาม (ดูดวงแชท)
+        if (hasChat) {
+            summary += `💬 คำถามที่ต้องการถาม:\n`;
+            document.querySelectorAll('.dyn-q').forEach((q, idx) => { 
+                summary += `Q${idx+1}: ${q.value.trim()}\n`; 
+            });
+            summary += `\n`;
+        }
+
+        if (hasWall) {
+            summary += `📱 [วอลเปเปอร์]\nเรื่อง: ${document.getElementById('fw-topic').value}\nชื่อ: ${document.getElementById('fw-name1').value}\nพิมพ์ในวอล: ${document.getElementById('fw-name2').value}\nเกิด: ${document.getElementById('fw-day').value} ${document.getElementById('fw-date').value} ${document.getElementById('fw-month').value} (${document.getElementById('fw-zodiac').value})\nสี: ${document.getElementById('fw-color').value}\n\n`;
+        }
+        if (hasWeb) {
+            summary += `💻 [ทำเว็บ]\nร้าน: ${document.getElementById('f-web-shop').value}\nรายละเอียด: ${document.getElementById('f-web-detail').value}\nสไตล์/สี: ${document.getElementById('f-web-design').value}\n\n`;
+        }
+        if (hasChart) {
+            summary += `📜 [พื้นดวง]\nว/ด/ป: ${document.getElementById('fc-dob').value} (อายุ ${document.getElementById('fc-age').value})\nเวลาเกิด: ${document.getElementById('fc-time').value} น. / จ.${document.getElementById('fc-place').value}\nQ1: ${document.getElementById('fc-q1').value}\nQ2: ${document.getElementById('fc-q2').value}\n\n`;
+        }
+
+        document.getElementById('summary-text').value = summary.trim();
+        document.getElementById('summary-area').style.display = 'block';
+        document.getElementById('summary-area').scrollIntoView({ behavior: 'smooth' });
+        showToast('🎉 สร้างข้อความสำเร็จ!');
+    }
+
+    // --- Utilities ---
     function copyText(text) {
         if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => showToast('✅ คัดลอกสำเร็จ!'));
         else {
             const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); showToast('✅ คัดลอกสำเร็จ!');
         }
     }
-
-    function generateSummaryAndSend() {
-        if (!document.getElementById('confirm-pay').checked) { alert('กรุณาติ๊กยืนยันการตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้วค่ะ'); return; }
-        const name = document.getElementById('f-name').value.trim();
-        if (!name) { alert('กรุณากรอกชื่อเล่น/แอคเคาท์ติดต่อหลักค่ะ'); return; }
-
-        let totalPrice = document.getElementById('cart-total-price').textContent;
-        let orderItemsOnly = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
-        if (document.getElementById('urgent-queue').checked) orderItemsOnly += `\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)`;
-        
-        let bookingDateTimeOnly = "-", personalInfoOnly = "-", specificDetailsOnly = "";
-        if (hasPhone || hasGeneral || hasHeal) bookingDateTimeOnly = `วันที่: ${document.getElementById('f-date').value} เวลา: ${document.getElementById('f-time').value} น.`;
-        if (hasGeneral || hasHeal) personalInfoOnly = `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: ${document.getElementById('f-day').value}`;
-        
-        if (hasWall) specificDetailsOnly += `[วอลเปเปอร์]\nเรื่อง: ${document.getElementById('fw-topic').value}\nชื่อ: ${document.getElementById('fw-name1').value}\nชื่อในวอล: ${document.getElementById('fw-name2').value || '-'}\nวันเดือนปี: ${document.getElementById('fw-day').value} ${document.getElementById('fw-date').value} ${document.getElementById('fw-month').value} (${document.getElementById('fw-zodiac').value})\nสี: ${document.getElementById('fw-color').value}\n\n`;
-        if (hasChart) specificDetailsOnly += `[พื้นดวง]\nว/ด/ป: ${document.getElementById('fc-dob').value} (อายุ ${document.getElementById('fc-age').value})\nเวลา/สถานที่: ${document.getElementById('fc-time').value} / ${document.getElementById('fc-place').value}\nQ1: ${document.getElementById('fc-q1').value}\nQ2: ${document.getElementById('fc-q2').value}\n\n`;
-        if (hasWeb) specificDetailsOnly += `[ทำเว็บ]\nร้าน: ${document.getElementById('f-web-shop').value}\nรายละเอียด: ${document.getElementById('f-web-detail').value}\nสไตล์: ${document.getElementById('f-web-design').value}\n\n`;
-        if (hasGeneral || hasHeal) {
-            specificDetailsOnly += `[คำถาม/รูปแบบ ${document.getElementById('f-type').value}]\n`;
-            document.querySelectorAll('.dyn-q').forEach((q, idx) => { specificDetailsOnly += `Q${idx+1}: ${q.value.trim() || '-'}\n`; });
-        }
-        if (!specificDetailsOnly) specificDetailsOnly = "-";
-
-        let summary = `🧸 ขอบคุณสำหรับการจองบริการกับอาเต๋านะคะ \n‧┈┈┈┈┈┈‧ \n🛒 ออเดอร์จาก: ${name}\n📋 รายการที่สั่ง:\n${orderItemsOnly}\n💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\n-----------------------------\n`;
-        if (hasPhone || hasGeneral || hasHeal) summary += `📞 ข้อมูลการจองคิว:\n${bookingDateTimeOnly}\n-----------------------------\n`;
-        if (hasWall || hasChart || hasWeb || hasGeneral || hasHeal) {
-            if(personalInfoOnly !== "-") summary += `🔮 ข้อมูลส่วนตัว:\n${personalInfoOnly}\n\n`;
-            if(specificDetailsOnly !== "-") summary += `📝 ข้อมูลและคำถาม:\n${specificDetailsOnly}\n`;
-        }
-
-        document.getElementById('summary-text').value = summary;
-        document.getElementById('summary-area').style.display = 'block';
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        showToast('🎉 สร้างข้อความสรุปเรียบร้อย!');
-
-        try {
-            fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ action: "createOrder", name, items: orderItemsOnly, bookingDateTime: bookingDateTimeOnly, personalInfo: personalInfoOnly, specificDetails: specificDetailsOnly.trim(), totalPrice, slip: "รอส่งสลิปในแชท", details: summary })
-            });
-        } catch (e) {}
-    }
-
     function copySummaryText() { const b = document.getElementById('summary-text'); b.select(); copyText(b.value); }
     function sendViaFacebook() { copySummaryText(); setTimeout(() => { window.open('https://m.me/taotofu.meow', '_blank'); }, 400); }
-    function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2600); }
-    </script>
+    function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2500); }
 
+    function closeIntro() {
+        sessionStorage.setItem('hasSeenMuIntroV2', 'true');
+        document.getElementById('intro-modal').style.display = 'none';
+    }
+
+    // --- Admin System ---
+    function openAdmin() {
+        const pass = prompt("🔒 กรุณากรอกรหัสผ่าน (หยินหยางหลังบ้าน):");
+        if (pass === ADMIN_PASS) {
+            renderAdminPanel();
+            document.getElementById('admin-modal').style.display = 'flex';
+        } else if (pass !== null) alert("❌ รหัสผ่านไม่ถูกต้อง!");
+    }
+    function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
+
+    function renderAdminPanel() {
+        let html = ``;
+        productData.forEach((group, gIdx) => {
+            html += `<div style="background:#f9f9f9; padding:10px; border-radius:10px; margin-bottom:12px; border:1px solid #ddd;">
+                        <h4 style="margin:0 0 8px; font-size:14px; color:var(--color-purple);">Tab ${group.tab}: ${group.title}</h4>`;
+            group.items.forEach((item, iIdx) => {
+                html += `<div style="display:flex; gap:6px; margin-bottom:6px;">
+                            <input type="text" class="form-control" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}" style="flex:2; padding:6px; font-size:12px;">
+                            <input type="number" class="form-control" value="${item.price}" id="price-${gIdx}-${iIdx}" style="flex:1; padding:6px; font-size:12px;">
+                            <button onclick="deleteItem(${gIdx}, ${iIdx})" style="background:#ff4757; border:none; border-radius:6px; color:#fff; padding:0 8px;">X</button>
+                        </div>`;
+            });
+            html += `<button onclick="addItem(${gIdx})" style="width:100%; padding:6px; font-size:12px; border:1px dashed var(--color-green); border-radius:6px; background:#fff;">+ เพิ่มรายการ</button></div>`;
+        });
+        document.getElementById('admin-content').innerHTML = html;
+    }
+
+    function updateDataFromDOM() {
+        productData.forEach((group, gIdx) => {
+            group.items.forEach((item, iIdx) => {
+                const n = document.getElementById(`name-${gIdx}-${iIdx}`);
+                const p = document.getElementById(`price-${gIdx}-${iIdx}`);
+                if(n) item.name = n.value;
+                if(p) item.price = parseInt(p.value) || 0;
+            });
+        });
+    }
+    function addItem(gIdx) { updateDataFromDOM(); productData[gIdx].items.push({name: "บริการใหม่", price: 0}); renderAdminPanel(); }
+    function deleteItem(gIdx, iIdx) { if(confirm("ลบ?")){ updateDataFromDOM(); productData[gIdx].items.splice(iIdx, 1); renderAdminPanel(); } }
+
+    async function saveAdmin() {
+        updateDataFromDOM();
+        try {
+            showToast('⏳ กำลังเซฟข้อมูล...');
+            localStorage.setItem('muSpaceProductsV2', JSON.stringify(productData));
+            // ส่งขึ้น Google Sheet
+            await fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveAdminData", products: productData }) });
+            closeAdmin(); showToast('✅ บันทึกสำเร็จ!'); setTimeout(() => location.reload(), 800); 
+        } catch (e) {
+            closeAdmin(); showToast('บันทึกชั่วคราวแล้ว (Offline)'); setTimeout(() => location.reload(), 800);
+        }
+    }
+
+    function resetAdmin() {
+        if(confirm("รีเซ็ตเป็นค่าเริ่มต้นที่โค้ดตั้งไว้?")) {
+            localStorage.removeItem('muSpaceProductsV2');
+            location.reload();
+        }
+    }
+    </script>
 </body>
 </html>
