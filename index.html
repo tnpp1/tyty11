@@ -17,14 +17,13 @@
             --color-yellow: #FFFACD;
             --color-blue: #AEEEEE;
             --color-purple: #C084FC;
-            --color-bg: #FFFBE6; /* สีพื้นหลังเหลืองอ่อนละมุน */
+            --color-bg: #FFFDF0; /* สีเหลืองพาสเทลอ่อนมากๆ ละมุนตา */
         }
 
         body {
             font-family: 'Mitr', sans-serif;
             background-color: var(--color-bg);
-            /* พื้นหลังลายตารางจุดไข่ปลาแบบ Pinkjulieland */
-            background-image: radial-gradient(var(--color-pink) 1.5px, transparent 1.5px);
+            background-image: radial-gradient(#d4eed4 1.5px, transparent 1.5px);
             background-size: 25px 25px;
             color: var(--color-green-dark);
             margin: 0;
@@ -35,33 +34,31 @@
 
         .font-eng { font-family: 'Fredoka One', cursive; font-weight: 400; }
 
-        /* การ์ดสไตล์ Pinkjulieland */
+        /* Card Style: ขอบมนเนียนๆ เงาฟุ้งพาสเทล (Soft Pop-art) */
         .card {
-            background-color: rgba(255, 255, 255, 0.98);
-            border: 3px dashed var(--color-pink);
-            border-radius: 2rem;
-            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
-            backdrop-filter: blur(5px);
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(180, 232, 105, 0.15), 0 4px 8px rgba(255, 182, 193, 0.2);
+            border: 1px solid rgba(255, 182, 193, 0.3);
         }
 
-        /* ปุ่มแข็งมีเงา Pop-art */
         .card-solid {
             background-color: #fff;
-            border: 3px solid var(--color-green);
+            border: 2px solid var(--color-pink-light);
             border-radius: 1.5rem;
-            box-shadow: 4px 4px 0px var(--color-green);
+            box-shadow: 4px 4px 0px var(--color-pink-light);
         }
 
         /* Tabs Styling */
         .tab-btn {
-            background: white; border: 2px solid var(--color-pink); border-radius: 1rem;
-            color: var(--color-green-dark); padding: 10px 8px; font-size: 13.5px; font-weight: 500;
+            background: #fff; border: 2px solid var(--color-pink-light); border-radius: 1rem;
+            color: var(--color-green-dark); padding: 12px 6px; font-size: 13.5px; font-weight: 500;
             cursor: pointer; transition: all 0.2s; flex: 1; text-align: center;
-            box-shadow: 3px 3px 0px var(--color-pink-light);
+            box-shadow: 3px 3px 0px var(--color-pink-light); display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;
         }
         .tab-btn.active {
-            background: var(--color-green); border-color: var(--color-green-dark); font-weight: 600;
-            transform: translateY(-2px); box-shadow: 3px 3px 0px var(--color-green-dark);
+            background: var(--color-pink-light); border-color: var(--color-pink); font-weight: 600;
+            transform: translateY(-2px); box-shadow: 3px 3px 0px var(--color-pink);
         }
 
         /* ปุ่มบวกสินค้า */
@@ -75,8 +72,8 @@
         .btn-add:hover { transform: scale(1.05); background: #9ce6e6; }
 
         .price-tag {
-            background: var(--color-pink-light); color: var(--color-green-dark);
-            border: 1px dashed var(--color-pink); border-radius: 10px; padding: 3px 12px; font-size: 13px; font-weight: 600; white-space: nowrap;
+            background: #fdfbf7; color: var(--color-green-dark);
+            border: 1px dashed var(--color-pink); border-radius: 8px; padding: 3px 10px; font-size: 13px; font-weight: 600; white-space: nowrap;
         }
 
         /* Floating Cart */
@@ -99,7 +96,7 @@
         .form-group { margin-bottom: 16px; }
         .form-group label { display: block; font-size: 13px; color: var(--color-green-dark); margin-bottom: 6px; font-weight: 600; }
         .form-control {
-            width: 100%; padding: 12px 14px; background: #fff; border: 2px solid var(--color-pink); border-radius: 1rem;
+            width: 100%; padding: 12px 14px; background: #fff; border: 2px solid var(--color-pink-light); border-radius: 1rem;
             color: var(--color-green-dark); font-family: 'Mitr', sans-serif; font-size: 14px; outline: none; transition: all 0.2s;
         }
         .form-control:focus { border-color: var(--color-purple); box-shadow: 0 0 0 4px rgba(192, 132, 252, 0.2); }
@@ -113,11 +110,11 @@
         .btn-action:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px var(--color-green-dark); }
 
         .btn-contact {
-            background-color: #fff; color: var(--color-green-dark); border: 2px solid var(--color-pink);
-            border-radius: 1rem; padding: 0.6rem 1.2rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-            transition: all 0.2s; box-shadow: 3px 3px 0px var(--color-pink); text-decoration: none; font-weight: 500; font-size: 14px;
+            background-color: #fff; color: var(--color-green-dark); border: 2px solid var(--color-green-dark);
+            border-radius: 1rem; padding: 0.5rem 1rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+            transition: all 0.2s; box-shadow: 3px 3px 0px var(--color-green-dark); text-decoration: none; font-weight: 500; font-size: 13px;
         }
-        .btn-contact:hover { background-color: var(--color-pink); color: white; transform: translate(1px, 1px); box-shadow: 2px 2px 0px var(--color-pink-light); }
+        .btn-contact:hover { background-color: var(--color-green-dark); color: white; transform: translate(1px, 1px); box-shadow: 2px 2px 0px var(--color-green-dark); }
 
         /* Admin Yin-Yang Button */
         @keyframes spin-pause { 0% { transform: rotate(0deg); } 15% { transform: rotate(360deg); } 100% { transform: rotate(360deg); } }
@@ -156,65 +153,111 @@
         .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
     </style>
 </head>
-<body class="antialiased pb-12">
+<body class="antialiased pb-24">
 
     <!-- Background Stars -->
-    <div class="bg-star text-[#FFB6C1]" style="top:5%; left:5%;"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
-    <div class="bg-star text-[#C084FC]" style="top:25%; right:8%; animation-delay: 1s;"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
-    <div class="bg-star text-[#AEEEEE]" style="bottom:20%; left:10%; animation-delay: 0.5s;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
+    <div class="bg-star text-[#FFB6C1]" style="top:10%; left:5%;"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
+    <div class="bg-star text-[#C084FC]" style="top:30%; right:8%; animation-delay: 1s;"><svg width="35" height="35" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
+    <div class="bg-star text-[#AEEEEE]" style="bottom:25%; left:10%; animation-delay: 0.5s;"><svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
     <div class="bg-star text-[#FFB6C1]" style="bottom:10%; right:15%; animation-delay: 1.5s;"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg></div>
 
-    <!-- Yin-Yang Admin Button -->
+    <!-- Admin Button -->
     <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">☯️</button>
 
     <!-- Floating Cart -->
-    <div class="floating-cart" onclick="scrollToCheckout()">
+    <div class="floating-cart" onclick="scrollToCheckout()" id="cart-float" style="display:none;">
         <span class="cart-count" id="cart-count">0</span>
         <span style="font-size:22px; margin-bottom:2px;">🛒</span>
         <span class="arrow-down">⬇️</span>
     </div>
 
-    <main class="max-w-[480px] mx-auto px-4 pt-10 relative">
+    <main class="max-w-[500px] mx-auto px-4 pt-10 relative">
         
-        <!-- Profile Section -->
-        <div class="text-center mb-8 relative">
-            <div class="w-32 h-32 mx-auto bg-gradient-to-br from-[#FFE4E1] to-[#E0F7FA] rounded-full border-4 border-white shadow-[0_5px_15px_rgba(192,132,252,0.3)] flex flex-col items-center justify-center mb-4 relative overflow-hidden">
-                <span class="font-eng text-5xl" style="background: -webkit-linear-gradient(45deg, #C084FC, #FF8DA1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom:-4px;">AT</span>
-                <span class="text-[11px] font-bold text-[#1E6555]">Mu-Space</span>
+        <!-- Profile Card (รวบตึงข้อมูล ราคาเริ่มต้น และปุ่มติดต่อแบบเรฟ) -->
+        <div class="card p-6 mb-6 text-center relative overflow-hidden">
+            <div class="w-24 h-24 mx-auto bg-gradient-to-br from-[#FFE4E1] to-[#E0F7FA] rounded-full border-4 border-white shadow-[0_5px_15px_rgba(192,132,252,0.3)] flex flex-col items-center justify-center mb-3 relative">
+                <span class="font-eng text-4xl" style="background: -webkit-linear-gradient(45deg, #C084FC, #FF8DA1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom:-4px;">AT</span>
+                <span class="text-[9px] font-bold text-[#1E6555]">Mu-Space</span>
             </div>
-            <h1 class="text-4xl font-eng text-[#1E6555] tracking-wide mb-1 drop-shadow-sm">AhTao</h1>
-            <p class="font-eng text-lg text-[#C084FC] font-bold">🔮 Mu-Space 🔮</p>
+            <h1 class="text-3xl font-eng text-[#1E6555] tracking-wide mb-1" id="display-shop-name">AhTao</h1>
+            <p class="font-eng text-sm text-[#C084FC] font-bold mb-4" id="display-slogan">🔮 Mu-Space 🔮</p>
+            
+            <!-- ราคาเริ่มต้น 3 คอลัมน์ -->
+            <div class="flex justify-between items-center bg-[#fdfbf7] rounded-xl p-3 mb-4 border border-gray-100">
+                <div class="text-center w-1/3 border-r border-gray-200">
+                    <div class="text-xs text-gray-500 mb-1">🔮 ดูดวง</div>
+                    <div class="font-bold text-[#1E6555]">29.-</div>
+                    <div class="text-[9px] text-gray-400">เริ่มต้น</div>
+                </div>
+                <div class="text-center w-1/3 border-r border-gray-200">
+                    <div class="text-xs text-gray-500 mb-1">📱 วอลฯ</div>
+                    <div class="font-bold text-[#1E6555]">189.-</div>
+                    <div class="text-[9px] text-gray-400">เริ่มต้น</div>
+                </div>
+                <div class="text-center w-1/3">
+                    <div class="text-xs text-gray-500 mb-1">💻 เว็บ</div>
+                    <div class="font-bold text-[#1E6555]">99.-</div>
+                    <div class="text-[9px] text-gray-400">เริ่มต้น</div>
+                </div>
+            </div>
+
+            <!-- ปุ่มติดต่อ -->
+            <div class="flex justify-center gap-3">
+                <a href="#" id="link-fb" target="_blank" class="btn-contact bg-[#f0f7ff] border-[#1877f2] text-[#1877f2] shadow-[3px_3px_0px_#1877f2]">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Messenger
+                </a>
+                <a href="#" id="link-line" target="_blank" class="btn-contact bg-[#f2ffeb] border-[#00c355] text-[#00c355] shadow-[3px_3px_0px_#00c355]">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 3.935 8.948 9.577 9.619.539.123 1.272.378 1.458.859.167.433.108 1.096.053 1.543-.075.626-.341 2.015-1.121 2.802 0 0 2.227 0 6.002-3.328 1.564-.816 8.031-4.248 8.031-11.495zM7.5 12.358h-1.98v-3.876h1.98v3.876zm7.258-2.073h-1.365v1.201h1.365c.348 0 .633-.284.633-.633 0-.312-.284-.568-.633-.568zm-3.623-1.803h-1.98v3.876h1.98v-3.876zm5.83 2.404c0 .888-.716 1.603-1.603 1.603h-2.189v-3.876h2.189c.887 0 1.603.716 1.603 1.603v.67zm-9.39-1.365c0-.518-.423-.94-.94-.94-.518 0-.94.422-.94.94 0 .518.422.94.94.94.517 0 .94-.422.94-.94z"/></svg> LINE Official
+                </a>
+            </div>
         </div>
 
-        <div class="card p-3 mb-6 text-center bg-white">
-            <marquee id="marquee-text-display" scrollamount="3" style="color: var(--color-purple); font-size: 14px; font-weight: 500;"></marquee>
+        <div class="card p-2 mb-5 text-center bg-white/80">
+            <marquee id="display-marquee" scrollamount="3" style="color: var(--color-purple); font-size: 13px; font-weight: 500;"></marquee>
         </div>
 
         <!-- 3 Tabs Navigation -->
         <div class="flex gap-2 justify-center mb-6">
-            <button class="tab-btn active" id="btn-tab-1" onclick="switchTab(1)">🔮 ดูดวง<br><span class="text-[10px]">พิมพ์/โทร</span></button>
-            <button class="tab-btn" id="btn-tab-2" onclick="switchTab(2)">📱 วอลฯ<br><span class="text-[10px]">& ฮีลใจ</span></button>
-            <button class="tab-btn" id="btn-tab-3" onclick="switchTab(3)">💻 เว็บ<br><span class="text-[10px]">รับทำเว็บไซต์</span></button>
+            <button class="tab-btn" id="btn-tab-1" onclick="switchTab(1)">
+                <span class="text-base mb-1">🔮 ดูดวง</span><span class="text-[10px] text-gray-400 font-normal">พิมพ์/โทร</span>
+            </button>
+            <button class="tab-btn" id="btn-tab-2" onclick="switchTab(2)">
+                <span class="text-base mb-1">📱 วอลฯ</span><span class="text-[10px] text-gray-400 font-normal">& ฮีลใจ</span>
+            </button>
+            <button class="tab-btn" id="btn-tab-3" onclick="switchTab(3)">
+                <span class="text-base mb-1">💻 เว็บ</span><span class="text-[10px] text-gray-400 font-normal">รับทำเว็บไซต์</span>
+            </button>
         </div>
 
-        <!-- Product Area -->
-        <div id="products-wrapper">
-            <div style="text-align:center; padding: 20px; color: var(--color-purple);">กำลังโหลดข้อมูล... ✨</div>
+        <!-- Content Area (Rules or Products) -->
+        <div id="content-area">
+            <!-- Rules (Default) -->
+            <div id="rules-view" class="card p-6 mb-6 border-[var(--color-green)]">
+                <h3 class="font-eng text-xl text-[#1E6555] mb-3 flex items-center gap-2 border-b-2 border-dashed border-[#B4E869] pb-2">
+                    📖 วิธีใช้งาน & กฎของร้าน
+                </h3>
+                <div id="display-rules" style="color:#555; font-size:13.5px; line-height:1.7; white-space:pre-wrap;">
+                </div>
+                <div class="text-center mt-4 pt-4 border-t border-dashed border-gray-200">
+                    <p class="text-xs text-gray-400 font-semibold">👆 กดเลือกหมวดหมู่สินค้าด้านบนเพื่อเริ่มสั่งซื้อได้เลยค่ะ 👆</p>
+                </div>
+            </div>
+
+            <!-- Products Wrapper -->
+            <div id="products-wrapper" style="display:none;"></div>
         </div>
 
         <!-- Checkout Section -->
-        <div id="checkout-section" style="scroll-margin-top: 20px;">
+        <div id="checkout-section" style="display:none; scroll-margin-top: 20px;">
             <div class="text-center mb-4 mt-8 flex justify-center items-center gap-2">
-                <svg class="w-8 h-8 text-[#1E6555]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <span class="text-2xl">🛒</span>
                 <h2 class="font-eng text-2xl text-[#1E6555]">Checkout</h2>
             </div>
             
-            <div class="card p-6 mb-8 bg-white/95">
+            <div class="card p-6 mb-8">
                 <!-- ครึ่งบน: สรุปราคาสินค้า -->
-                <div style="font-size: 16px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 12px; border-bottom: 2px dashed var(--color-pink); padding-bottom: 6px; display:flex; align-items:center; gap:6px;">
-                    📦 รายการในตะกร้า
-                </div>
-                <div id="cart-items-list" style="font-size: 13.5px; color: #555; margin-bottom: 14px;">ยังไม่มีสินค้าในตะกร้าค่ะ ✨</div>
+                <div style="font-size: 15px; font-weight: 600; color: var(--color-green-dark); margin-bottom: 12px; border-bottom: 2px dashed var(--color-pink); padding-bottom: 6px;">📦 รายการในตะกร้า</div>
+                <div id="cart-items-list" style="font-size: 13.5px; color: #555; margin-bottom: 14px;"></div>
                 
                 <div style="margin-bottom: 16px; background: var(--color-pink-light); padding: 10px; border-radius: 12px; border: 1px dashed var(--color-pink);">
                     <label style="font-size:13px; color: var(--color-green-dark); cursor:pointer; font-weight: 600; display:flex; align-items:center; gap:8px;">
@@ -228,20 +271,20 @@
                 </div>
 
                 <!-- ครึ่งล่าง: เลขบัญชีและฟอร์ม -->
-                <div id="checkout-form-area" style="display:none; border-top: 2px dashed var(--color-pink); padding-top: 16px;">
-                    <h4 style="color: var(--color-green-dark); margin-top: 0; margin-bottom: 12px; text-align: center;">💳 โอนเงิน & กรอกข้อมูล</h4>
+                <div id="checkout-form-area" style="border-top: 2px dashed var(--color-pink); padding-top: 16px;">
+                    <h4 style="color: var(--color-green-dark); margin-top: 0; margin-bottom: 12px; text-align: center; font-weight:bold;">💳 โอนเงิน & กรอกข้อมูล</h4>
                     
-                    <div class="card-solid" style="padding: 14px; text-align: center; margin-bottom: 10px;">
+                    <div class="card-solid" style="padding: 14px; text-align: center; margin-bottom: 10px; border-color:var(--color-green); box-shadow: 3px 3px 0px var(--color-green);">
                         <div style="font-size: 12px; color: #666;">ธนาคารกสิกรไทย (KBank)</div>
-                        <div style="font-size: 14px; font-weight: 600; color: var(--color-green-dark); margin: 2px 0;">ธนพร เจิมเฟื่องฟู</div>
-                        <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 1px; color: var(--color-green-dark); margin: 6px 0;" id="kbank-num">1961933834</span>
-                        <button class="bg-[#B4E869] text-[#1E6555] px-4 py-1.5 rounded-full text-xs font-bold shadow-sm" onclick="copyText('1961933834')">📋 คัดลอกเลขบัญชี</button>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--color-green-dark); margin: 2px 0;" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
+                        <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 1px; color: var(--color-green-dark); margin: 6px 0;" id="display-kbank-num">1961933834</span>
+                        <button class="bg-[#B4E869] text-[#1E6555] px-4 py-1.5 rounded-full text-xs font-bold shadow-sm" onclick="copyNum('kbank')">📋 คัดลอกเลขบัญชี</button>
                     </div>
 
-                    <div style="background: #fff; border: 3px solid var(--color-pink); border-radius: 1.5rem; padding: 14px; text-align: center; margin-bottom: 16px; box-shadow: 4px 4px 0px var(--color-pink);">
+                    <div style="background: #fff; border: 2px solid var(--color-pink); border-radius: 1.5rem; padding: 14px; text-align: center; margin-bottom: 16px; box-shadow: 3px 3px 0px var(--color-pink);">
                         <div style="font-size: 12px; color: #d97706; font-weight: 600;">TrueMoney Wallet</div>
-                        <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 1px; color: #d97706; margin: 6px 0;" id="wallet-num">0800172584</span>
-                        <button class="bg-[#FFE4E1] text-[#c2185b] px-4 py-1.5 rounded-full text-xs font-bold shadow-sm" onclick="copyText('0800172584')">📋 คัดลอกเบอร์</button>
+                        <span style="display:block; font-size: 22px; font-weight: 700; letter-spacing: 1px; color: #d97706; margin: 6px 0;" id="display-wallet-num">0800172584</span>
+                        <button class="bg-[#FFE4E1] text-[#c2185b] px-4 py-1.5 rounded-full text-xs font-bold shadow-sm" onclick="copyNum('wallet')">📋 คัดลอกเบอร์</button>
                     </div>
 
                     <div style="margin-bottom:16px;">
@@ -335,7 +378,7 @@
                         </div>
                     </div>
 
-                    <button class="btn-action" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุปเพื่อส่งแอดมิน</button>
+                    <button class="btn-action" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป</button>
                 </div>
             </div>
         </div>
@@ -348,56 +391,44 @@
                 <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:12px; background:#fff; border-color:var(--color-purple);"></textarea>
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="flex:1; background:#00c355; color:#fff; border-color:#009e45; box-shadow: 4px 4px 0px #009e45;" onclick="copySummaryText()">💚 ส่งทาง LINE</a>
-                <button class="btn-action" style="flex:1; background:#1877f2; color:#fff; border-color:#145dbf; box-shadow: 4px 4px 0px #145dbf;" onclick="sendViaFacebook()">💙 ส่งทาง Facebook</button>
+                <button class="btn-action" style="flex:1; background:#1877f2; color:#fff; border-color:#145dbf; box-shadow: 3px 3px 0px #145dbf;" onclick="sendSummary('fb')">💙 ส่งทาง FB</button>
+                <button class="btn-action" style="flex:1; background:#00c355; color:#fff; border-color:#009e45; box-shadow: 3px 3px 0px #009e45;" onclick="sendSummary('line')">💚 ส่งทาง LINE</button>
             </div>
-        </div>
-
-        <!-- Contact Me Section (ครบถ้วนตามสั่ง!) -->
-        <div class="text-center mt-10 mb-6">
-            <h2 class="font-eng text-2xl text-[#1E6555] mb-4">Contact Me</h2>
-            <div class="flex justify-center flex-wrap gap-4 mb-4">
-                <a href="https://m.me/taotofu.meow" target="_blank" class="btn-contact">
-                    <svg class="w-5 h-5 text-[#1877f2]" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    Facebook
-                </a>
-                <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-contact">
-                    <svg class="w-5 h-5 text-[#00c355]" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 3.935 8.948 9.577 9.619.539.123 1.272.378 1.458.859.167.433.108 1.096.053 1.543-.075.626-.341 2.015-1.121 2.802 0 0 2.227 0 6.002-3.328 1.564-.816 8.031-4.248 8.031-11.495zM7.5 12.358h-1.98v-3.876h1.98v3.876zm7.258-2.073h-1.365v1.201h1.365c.348 0 .633-.284.633-.633 0-.312-.284-.568-.633-.568zm-3.623-1.803h-1.98v3.876h1.98v-3.876zm5.83 2.404c0 .888-.716 1.603-1.603 1.603h-2.189v-3.876h2.189c.887 0 1.603.716 1.603 1.603v.67zm-9.39-1.365c0-.518-.423-.94-.94-.94-.518 0-.94.422-.94.94 0 .518.422.94.94.94.517 0 .94-.422.94-.94z"/></svg>
-                    Line Official
-                </a>
-            </div>
-            <p class="text-[11px] text-[#1E6555] opacity-60">© AhTao Mu-Space 🔮 บริการด้วยใจจริง</p>
         </div>
 
     </main>
 
-    <!-- Intro Modal (How to use) -->
-    <div id="intro-modal" class="modal-overlay" style="display:flex;">
-        <div class="bg-white rounded-3xl p-6 w-full max-w-sm border-4 border-[var(--color-pink)] shadow-xl relative">
-            <h3 class="font-eng text-2xl text-[#1E6555] text-center mb-4 flex justify-center items-center gap-2">📖 วิธีใช้งาน</h3>
-            <div id="intro-text-display" style="color:#555; font-size:13.5px; line-height:1.6; white-space:pre-wrap; background:#fdfbf7; padding:14px; border-radius:12px; border:2px dashed var(--color-green);">
-1. กดปุ่มหมวดหมู่ (ดูดวง, วอลฯ, เว็บ) เพื่อดูบริการ
-2. กด ➕ เพื่อเลือกสินค้าที่ต้องการลงตะกร้า
-3. กดที่ไอคอนตะกร้า 🛒 (มุมขวาล่าง) เพื่อเช็คยอด
-4. โอนเงินตามยอด และกรอกข้อมูลให้ครบทุกช่อง!
-5. กด "สร้างข้อความสรุป" ระบบจะจัดเรียงข้อมูลให้
-6. กดปุ่มส่งทาง Line/FB ข้อความจะก๊อปปี้อัตโนมัติ ให้นำไปวางส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖
-            </div>
-            <button class="btn-action mt-4" style="background:var(--color-pink); color:white; border-color:#d48b9a; box-shadow: 4px 4px 0px #d48b9a;" onclick="closeIntro()">เข้าใจแล้ว เริ่มใช้งานเลย! ✨</button>
-        </div>
-    </div>
-
     <!-- Admin Modal -->
     <div id="admin-modal" class="modal-overlay">
-        <div class="bg-white rounded-3xl p-6 w-full max-w-lg border-4 border-[var(--color-purple)] shadow-xl relative max-h-[85vh] flex flex-col">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed var(--color-purple); padding-bottom:14px; margin-bottom:16px;">
-                <h2 style="color:var(--color-purple); margin:0; font-size:18px; font-weight:bold;">☯️ จัดการระบบหลังบ้าน</h2>
+        <div class="bg-white rounded-3xl p-6 w-full max-w-lg border-4 border-[var(--color-purple)] shadow-xl relative max-h-[90vh] flex flex-col">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed var(--color-purple); padding-bottom:10px; margin-bottom:12px;">
+                <h2 style="color:var(--color-purple); margin:0; font-size:18px; font-weight:bold;">☯️ ระบบหลังบ้าน (Admin)</h2>
                 <button onclick="closeAdmin()" style="background:none; border:none; color:#666; font-size:24px; cursor:pointer;">&times;</button>
             </div>
-            <div id="admin-content" style="flex:1; overflow-y:auto; padding-right:8px; margin-bottom:16px;"></div>
-            <div style="display:flex; gap:10px; border-top:2px dashed var(--color-purple); padding-top:16px;">
-                <button onclick="saveAdmin()" class="btn-action" style="margin-top:0; flex:2; background:var(--color-purple); color:white; border-color:#921dde; box-shadow: 4px 4px 0px #921dde;">💾 บันทึก</button>
-                <button onclick="resetAdmin()" class="btn-action" style="margin-top:0; flex:1; background:#ff4757; color:#fff; border-color:#d63031; box-shadow: 4px 4px 0px #d63031;">⚠️ รีเซ็ต</button>
+            <div id="admin-content" style="flex:1; overflow-y:auto; padding-right:8px; margin-bottom:12px; font-size:13px;">
+                
+                <!-- Section 1: Settings -->
+                <div style="background:#fdfbf7; padding:12px; border-radius:12px; border:1px solid #ddd; margin-bottom:16px;">
+                    <h4 style="color:var(--color-green-dark); margin:0 0 10px; font-size:14px; font-weight:bold;">📝 ตั้งค่าร้านค้าทั่วไป</h4>
+                    <div class="form-group"><label>ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2"></div>
+                    <div class="form-group"><label>สโลแกน</label><input type="text" id="cfg-slogan" class="form-control py-2"></div>
+                    <div class="form-group"><label>ข้อความวิ่ง (Marquee)</label><input type="text" id="cfg-marquee" class="form-control py-2"></div>
+                    <div class="form-group"><label>ลิงก์ Facebook</label><input type="text" id="cfg-fbLink" class="form-control py-2"></div>
+                    <div class="form-group"><label>ลิงก์ Line</label><input type="text" id="cfg-lineLink" class="form-control py-2"></div>
+                    <div class="form-group"><label>ชื่อบัญชี กสิกร</label><input type="text" id="cfg-kbankName" class="form-control py-2"></div>
+                    <div class="form-group"><label>เลขบัญชี กสิกร</label><input type="text" id="cfg-kbankNum" class="form-control py-2"></div>
+                    <div class="form-group"><label>เบอร์ TrueMoney</label><input type="text" id="cfg-walletNum" class="form-control py-2"></div>
+                    <div class="form-group"><label>วิธีใช้งาน / กฎของร้าน</label><textarea id="cfg-rulesText" class="form-control py-2" rows="5"></textarea></div>
+                </div>
+
+                <!-- Section 2: Products -->
+                <h4 style="color:var(--color-green-dark); margin:0 0 10px; font-size:14px; font-weight:bold;">📦 จัดการสินค้าและราคา</h4>
+                <div id="admin-products-list"></div>
+
+            </div>
+            <div style="display:flex; gap:10px; border-top:2px dashed var(--color-purple); padding-top:12px;">
+                <button onclick="saveAdmin()" class="btn-action" style="margin-top:0; flex:2; background:var(--color-purple); color:white; border-color:#921dde; box-shadow: 3px 3px 0px #921dde;">💾 บันทึกทั้งหมด</button>
+                <button onclick="resetAdmin()" class="btn-action" style="margin-top:0; flex:1; background:#ff4757; color:#fff; border-color:#d63031; box-shadow: 3px 3px 0px #d63031;">⚠️ รีเซ็ต</button>
             </div>
         </div>
     </div>
@@ -409,38 +440,54 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbxdSFkoMgRJWi7qauJWoywC9hGaVzy-9P1X82z2mYFGJIhAMBjv9c8CD7E09dfOSs6r/exec";
     const ADMIN_PASS = "1164";
 
-    let muSettings = {
+    let shopSettings = {
+        shopName: "AhTao",
+        slogan: "🔮 Mu-Space 🔮",
         marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space 🔮 ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร ✨",
-        marqueeSpeed: 3
+        fbLink: "https://m.me/taotofu.meow",
+        lineLink: "https://lin.ee/ZdAU8Er",
+        kbankName: "ธนพร เจิมเฟื่องฟู",
+        kbankNum: "1961933834",
+        walletNum: "0800172584",
+        rulesText: "1. กดเลือกหมวดหมู่สินค้าด้านบน (ดูดวง, วอลฯ, เว็บ)\n2. กดปุ่ม ➕ ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า\n3. เมื่อเลือกครบแล้ว เลื่อนลงมาด้านล่าง\n4. โอนเงินตามยอดรวม และกรอกข้อมูลให้ครบทุกช่องที่มีดอกจัน (*)\n5. กด \"สร้างข้อความสรุป\"\n6. กดปุ่มส่งทาง Line/FB ข้อความจะถูกก๊อปปี้อัตโนมัติ ให้นำไปวางส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖\n\n📌 กฎของร้าน:\n- โอนเงินแล้วไม่คืนเงินทุกกรณี\n- ยกเลิกคิวหลังตรวจงานแล้ว ไม่คืนเงินและส่งงานให้ตามปกติ\n- งดจิกงดเร่งทุกกรณีนะคะ แอดมินจะรีบตอบกลับให้เร็วที่สุดค่ะ"
     };
 
     const defaultData = [
-        { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (พิมพ์แชท)", items: [ 
-            { name: "Yes or No", price: 9 }, { name: "1 คำถาม", price: 29 }, { name: "3 คำถาม", price: 69 }, 
-            { name: "5 คำถาม (ขายดี)✨", price: 118 }, { name: "ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)", price: 49 }, 
-            { name: "เช็กล้วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)", price: 59 }, { name: "พื้นดวง", price: 219 } 
+        { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (แชท)", items: [ 
+            { name: "Yes or No!! (1 คำถาม)", price: 9 }, { name: "1 คำถาม", price: 29 }, { name: "3 คำถาม", price: 69 }, 
+            { name: "5 คำถาม (ขายดี)", price: 118 }, { name: "เซ็ทแม่หมอ (เจาะลึกความรัก)", price: 129 },
+            { name: "ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)", price: 49 }, { name: "เช็กล่วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)", price: 59 }, { name: "พื้นดวง", price: 219 } 
         ]},
         { tab: 1, category: "ดูดวง", title: "✨ ดูดวงเฉพาะทาง (เรื่องรอบตัว & สิ่งศักดิ์สิทธิ์)", items: [ 
-            { name: "คำถามเกี่ยวกับสิ่งศักดิ์สิทธิ์สิ่งลี้ลับ", price: 259 } 
+            { name: "คนรอบตัวมองว่าเราเป็นคนยังไง", price: 49 }, { name: "ดูสีและอัญมณีเสริมดวงประจำตัว", price: 69 },
+            { name: "ดูเลขมงคลและทิศมงคลเสริมดวง", price: 69 }, { name: "เลขบัตรประชาชนส่งผลอย่างไร", price: 89 },
+            { name: "ดูฤกษ์มงคล", price: 99 }, { name: "บ้านเลขที่นี้อยู่แล้วเป็นอย่างไร", price: 59 },
+            { name: "สิ่งศักดิ์สิทธิ์ที่เรานับถืออยากบอกอะไร", price: 159 }, { name: "คำถามเกี่ยวกับสิ่งศักดิ์สิทธิ์สิ่งลี้ลับ", price: 259 }
         ]},
         { tab: 1, category: "ดูดวง", title: "❤️ ดูดวงเฉพาะทาง (ไพ่เตือนใจ & ความรัก)", items: [ 
             { name: "ไพ่อยากบอกหรือให้คำแนะนำอะไร", price: 69 }, { name: "ไพ่อยากเตือนเรื่องที่ต้องระวัง", price: 79 }, 
             { name: "สัตว์เลี้ยงอยากบอกอะไรถึงคุณ", price: 79 }, { name: "ทำนายฝันและแปลเลขจากฝัน", price: 79 }, 
             { name: "ลักษณะแฟนในอนาคต", price: 89 }, { name: "เนื้อคู่ (รับอายุ 20+ ขึ้นไป)", price: 199 }, 
-            { name: "เซ็ทแม่หมอ(แจ้งแค่สถานะ)", price: 129 }, { name: "ตั้งครรภ์ (1-3เดือน)", price: 99 } 
+            { name: "ตั้งครรภ์ (1-3เดือน)", price: 99 } 
+        ]},
+        { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงเฉพาะทาง (ภาพรวม & อนาคต)", items: [ 
+            { name: "สิ่งที่ควรระวังในเดือนนี้", price: 99 }, { name: "สุขภาพในเดือนนี้", price: 99 }, 
+            { name: "ดวงเราภายใน 3 เดือนถัดจากนี้", price: 199 }, { name: "ดวงชะตารายสัปดาห์อย่างละเอียด", price: 99 }, 
+            { name: "ภาพรวมรายเดือน", price: 199 }, { name: "ดวงชะตารายเดือนอย่างละเอียด", price: 299 }, 
+            { name: "ดวงชะตาราย 6 เดือน", price: 499 }, { name: "ดวงชะตารายปีอย่างละเอียด", price: 799 } 
         ]},
         { tab: 1, category: "โทรดูดวง", title: "📞 โทรดูดวง (พูดคุยสายตรง)", items: [ 
             { name: "โทรไม่จำกัดคำถาม - 10 นาที", price: 99 }, { name: "โทรไม่จำกัดคำถาม - 15 นาที", price: 129 }, 
             { name: "โทรไม่จำกัดคำถาม - 30 นาที", price: 189 }, { name: "โทรไม่จำกัดคำถาม - 1 ชั่วโมง", price: 299 },
             { name: "ต่อเวลาโทร (บวกเพิ่มต่อ 10 นาที)", price: 50 } 
         ]},
+        { tab: 2, category: "พื้นที่รับฟัง", title: "☎️ พื้นที่รับฟัง (สายคอล)", items: [ 
+            { name: "ทดลอง/ลูกค้าใหม่ 10 นาที", price: 59 }, { name: "30 นาที", price: 139 }, 
+            { name: "60 นาที", price: 239 }, { name: "90 นาที", price: 329 }, { name: "แพ็ก 3 ครั้ง (ครั้งละ 60 นาที)", price: 659 } 
+        ]},
         { tab: 2, category: "วอลเปเปอร์", title: "📱 วอลเปเปอร์สายมู", items: [ 
             { name: "วอลเปเปอร์สายมูออกแบบเริ่มต้น", price: 189 }, { name: "วอลเปเปอร์สายมูให้แม่หมอดูเสริมทิศทางให้", price: 199 }, 
             { name: "วอลเปเปอร์สายมูเพิ่มเรื่อง (บวกเพิ่มต่อเรื่อง)", price: 39 }, { name: "ค่าเร่งเฉพาะวอลเปเปอร์", price: 89 } 
-        ]},
-        { tab: 2, category: "พื้นที่รับฟัง", title: "☎️ พื้นที่รับฟัง (ฮีลใจ - สายคอล)", items: [ 
-            { name: "ทดลอง/ลูกค้าใหม่ 10 นาที", price: 59 }, { name: "30 นาที", price: 139 }, 
-            { name: "60 นาที", price: 239 }, { name: "90 นาที", price: 329 }, { name: "แพ็ก 3 ครั้ง (ครั้งละ 60 นาที)", price: 659 } 
         ]},
         { tab: 3, category: "รับทำเว็บไซต์", title: "💻 บริการรับทำเว็บไซต์", items: [ 
             { name: "เว็บหน้าเดียว", price: 99 }, { name: "แพ็คเก็จ S", price: 199 }, 
@@ -450,7 +497,7 @@
 
     let productData = JSON.parse(JSON.stringify(defaultData));
     let currentCart = [];
-    let activeTab = 1;
+    let activeTab = 0; // 0 = หน้าแรก (กฎ)
 
     let hasChat = false, hasPhone = false, hasWall = false, hasChart = false, hasWeb = false, hasHeal = false;
     let totalChatQuestions = 0;
@@ -460,50 +507,59 @@
         const today = new Date().toISOString().split('T')[0];
         if(document.getElementById('f-date')) document.getElementById('f-date').value = today;
         
+        const localSettings = localStorage.getItem('muSpaceSettingsV2');
+        if (localSettings) shopSettings = JSON.parse(localSettings);
+
         const localProd = localStorage.getItem('muSpaceProductsV2');
         if (localProd) productData = JSON.parse(localProd);
         
-        // ดึงข้อมูลจาก Google Sheet ดักข้อมูลเก่า
+        applySettingsToDOM();
+
+        // Background fetch
         fetch(API_URL + "?action=getData").then(res => res.json()).then(result => {
-            if (result && result.products && result.products.length > 0) {
-                if (result.products[0].hasOwnProperty('tab')) {
+            if (result) {
+                if(result.settings) shopSettings = result.settings;
+                if(result.products && result.products.length > 0 && result.products[0].hasOwnProperty('tab')) {
                     productData = result.products;
-                } else {
-                    console.log("พบข้อมูลเก่าบน Cloud ระบบใช้ข้อมูลเริ่มต้นชั่วคราว");
                 }
-                renderProducts(); 
+                applySettingsToDOM();
+                if(activeTab > 0) renderProducts(); 
             }
         }).catch(e => console.log("Offline mode"));
 
-        document.getElementById('marquee-text-display').textContent = muSettings.marquee;
-
-        if (!sessionStorage.getItem('hasSeenMuIntroV2')) {
-            document.getElementById('intro-modal').style.display = 'flex';
-        }
-
-        switchTab(1);
+        // เริ่มต้นโชว์หน้ากฎ (State 0)
+        switchTab(0);
     });
 
-    // --- Click Effect (Star) ---
-    document.addEventListener('click', function(e) {
-        if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
-        const star = document.createElement('div');
-        star.className = 'star-click';
-        star.innerHTML = '✨';
-        star.style.left = e.clientX + 'px';
-        star.style.top = e.clientY + 'px';
-        document.body.appendChild(star);
-        setTimeout(() => star.remove(), 800);
-    });
+    function applySettingsToDOM() {
+        document.getElementById('display-shop-name').textContent = shopSettings.shopName;
+        document.getElementById('display-slogan').textContent = shopSettings.slogan;
+        document.getElementById('display-marquee').textContent = shopSettings.marquee;
+        document.getElementById('link-fb').href = shopSettings.fbLink;
+        document.getElementById('link-line').href = shopSettings.lineLink;
+        document.getElementById('display-kbank-name').textContent = shopSettings.kbankName;
+        document.getElementById('display-kbank-num').textContent = shopSettings.kbankNum;
+        document.getElementById('display-wallet-num').textContent = shopSettings.walletNum;
+        document.getElementById('display-rules').textContent = shopSettings.rulesText;
+    }
 
-    // --- Tab Navigation ---
+    // --- Tab Navigation & Flow ---
     function switchTab(tabId) {
         activeTab = tabId;
-        document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-            if(i+1 === tabId) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
-        renderProducts();
+        
+        // Remove active class from all
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        if (tabId === 0) {
+            document.getElementById('rules-view').style.display = 'block';
+            document.getElementById('products-wrapper').style.display = 'none';
+        } else {
+            // Add active class to clicked
+            document.getElementById('btn-tab-' + tabId).classList.add('active');
+            document.getElementById('rules-view').style.display = 'none'; // กฎหายไป
+            document.getElementById('products-wrapper').style.display = 'block'; // สินค้าโผล่มา
+            renderProducts();
+        }
     }
 
     function renderProducts() {
@@ -518,7 +574,7 @@
             group.items.forEach(item => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                 html += `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px dashed #eee;">
-                            <span style="font-size:13.5px; font-weight:500; color:#333; flex:1; padding-right:8px;">${item.name}</span>
+                            <span style="font-size:13.5px; font-weight:500; color:#333; flex:1; padding-right:8px; line-height:1.4;">${item.name}</span>
                             <div style="display:flex; align-items:center; gap:8px;">
                                 <span class="price-tag">${item.price}.-</span>
                                 <button class="btn-add" onclick="addToCart('${safeName}', ${item.price}, '${group.category}')">➕</button>
@@ -536,7 +592,8 @@
         updateCartTotal();
         showToast('🛒 เพิ่มลงตะกร้าแล้ว!');
         
-        const cartIcon = document.querySelector('.floating-cart');
+        const cartIcon = document.getElementById('cart-float');
+        cartIcon.style.display = 'flex';
         cartIcon.style.transform = 'scale(1.2)';
         setTimeout(() => cartIcon.style.transform = '', 300);
     }
@@ -552,12 +609,12 @@
         document.getElementById('cart-count').textContent = currentCart.length;
         
         if (currentCart.length === 0) {
-            listEl.innerHTML = 'ยังไม่มีสินค้าในตะกร้าค่ะ ✨';
-            totalEl.textContent = '0';
-            document.getElementById('checkout-form-area').style.display = 'none';
-            document.getElementById('summary-area').style.display = 'none';
+            document.getElementById('cart-float').style.display = 'none';
+            document.getElementById('checkout-section').style.display = 'none';
             return;
         }
+
+        document.getElementById('checkout-section').style.display = 'block';
 
         let html = ''; let subtotal = 0;
         hasChat = hasPhone = hasWall = hasChart = hasWeb = hasHeal = false; 
@@ -592,7 +649,6 @@
 
         listEl.innerHTML = html; 
         totalEl.textContent = subtotal; 
-        document.getElementById('checkout-form-area').style.display = 'block';
         setupDynamicForm();
     }
 
@@ -624,8 +680,6 @@
     function scrollToCheckout() {
         if(currentCart.length > 0) {
             document.getElementById('checkout-section').scrollIntoView({ behavior: 'smooth' });
-        } else {
-            showToast('🛒 ตะกร้าว่างเปล่าค่ะ กรุณาเลือกสินค้าก่อนนะ');
         }
     }
 
@@ -655,7 +709,7 @@
                         isValid = false;
                         field.style.borderColor = 'red';
                     } else {
-                        field.style.borderColor = 'var(--color-pink)';
+                        field.style.borderColor = 'var(--color-pink-light)';
                     }
                 }
             }
@@ -715,14 +769,19 @@
             const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); showToast('✅ คัดลอกสำเร็จ!');
         }
     }
-    function copySummaryText() { const b = document.getElementById('summary-text'); b.select(); copyText(b.value); }
-    function sendViaFacebook() { copySummaryText(); setTimeout(() => { window.open('https://m.me/taotofu.meow', '_blank'); }, 400); }
-    function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2500); }
-
-    function closeIntro() {
-        sessionStorage.setItem('hasSeenMuIntroV2', 'true');
-        document.getElementById('intro-modal').style.display = 'none';
+    function copyNum(type) {
+        if(type === 'kbank') copyText(shopSettings.kbankNum);
+        if(type === 'wallet') copyText(shopSettings.walletNum);
     }
+    function sendSummary(type) { 
+        const b = document.getElementById('summary-text'); 
+        b.select(); copyText(b.value); 
+        setTimeout(() => { 
+            if(type === 'fb') window.open(shopSettings.fbLink, '_blank'); 
+            else window.open(shopSettings.lineLink, '_blank'); 
+        }, 400); 
+    }
+    function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2500); }
 
     // --- Admin System ---
     function openAdmin() {
@@ -735,10 +794,22 @@
     function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
 
     function renderAdminPanel() {
+        // Render Settings
+        document.getElementById('cfg-shopName').value = shopSettings.shopName;
+        document.getElementById('cfg-slogan').value = shopSettings.slogan;
+        document.getElementById('cfg-marquee').value = shopSettings.marquee;
+        document.getElementById('cfg-fbLink').value = shopSettings.fbLink;
+        document.getElementById('cfg-lineLink').value = shopSettings.lineLink;
+        document.getElementById('cfg-kbankName').value = shopSettings.kbankName;
+        document.getElementById('cfg-kbankNum').value = shopSettings.kbankNum;
+        document.getElementById('cfg-walletNum').value = shopSettings.walletNum;
+        document.getElementById('cfg-rulesText').value = shopSettings.rulesText;
+
+        // Render Products
         let html = ``;
         productData.forEach((group, gIdx) => {
             html += `<div style="background:#f9f9f9; padding:10px; border-radius:10px; margin-bottom:12px; border:1px solid #ddd;">
-                        <h4 style="margin:0 0 8px; font-size:14px; color:var(--color-purple);">Tab ${group.tab}: ${group.title}</h4>`;
+                        <h4 style="margin:0 0 8px; font-size:13px; color:var(--color-purple);">Tab ${group.tab}: ${group.title}</h4>`;
             group.items.forEach((item, iIdx) => {
                 html += `<div style="display:flex; gap:6px; margin-bottom:6px;">
                             <input type="text" class="form-control" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}" style="flex:2; padding:6px; font-size:12px;">
@@ -748,10 +819,22 @@
             });
             html += `<button onclick="addItem(${gIdx})" style="width:100%; padding:6px; font-size:12px; border:1px dashed var(--color-green); border-radius:6px; background:#fff;">+ เพิ่มรายการ</button></div>`;
         });
-        document.getElementById('admin-content').innerHTML = html;
+        document.getElementById('admin-products-list').innerHTML = html;
     }
 
     function updateDataFromDOM() {
+        // Save Settings
+        shopSettings.shopName = document.getElementById('cfg-shopName').value;
+        shopSettings.slogan = document.getElementById('cfg-slogan').value;
+        shopSettings.marquee = document.getElementById('cfg-marquee').value;
+        shopSettings.fbLink = document.getElementById('cfg-fbLink').value;
+        shopSettings.lineLink = document.getElementById('cfg-lineLink').value;
+        shopSettings.kbankName = document.getElementById('cfg-kbankName').value;
+        shopSettings.kbankNum = document.getElementById('cfg-kbankNum').value;
+        shopSettings.walletNum = document.getElementById('cfg-walletNum').value;
+        shopSettings.rulesText = document.getElementById('cfg-rulesText').value;
+
+        // Save Products
         productData.forEach((group, gIdx) => {
             group.items.forEach((item, iIdx) => {
                 const n = document.getElementById(`name-${gIdx}-${iIdx}`);
@@ -761,6 +844,7 @@
             });
         });
     }
+
     function addItem(gIdx) { updateDataFromDOM(); productData[gIdx].items.push({name: "บริการใหม่", price: 0}); renderAdminPanel(); }
     function deleteItem(gIdx, iIdx) { if(confirm("ลบ?")){ updateDataFromDOM(); productData[gIdx].items.splice(iIdx, 1); renderAdminPanel(); } }
 
@@ -768,9 +852,13 @@
         updateDataFromDOM();
         try {
             showToast('⏳ กำลังเซฟข้อมูล...');
+            localStorage.setItem('muSpaceSettingsV2', JSON.stringify(shopSettings));
             localStorage.setItem('muSpaceProductsV2', JSON.stringify(productData));
+            
             // ส่งขึ้น Google Sheet
-            await fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveAdminData", products: productData }) });
+            const payload = { action: "saveAdminData", settings: shopSettings, products: productData };
+            await fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+            
             closeAdmin(); showToast('✅ บันทึกสำเร็จ!'); setTimeout(() => location.reload(), 800); 
         } catch (e) {
             closeAdmin(); showToast('บันทึกชั่วคราวแล้ว (Offline)'); setTimeout(() => location.reload(), 800);
@@ -779,6 +867,7 @@
 
     function resetAdmin() {
         if(confirm("รีเซ็ตเป็นค่าเริ่มต้นที่โค้ดตั้งไว้?")) {
+            localStorage.removeItem('muSpaceSettingsV2');
             localStorage.removeItem('muSpaceProductsV2');
             location.reload();
         }
