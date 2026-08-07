@@ -169,7 +169,7 @@
         <div class="card p-6 mb-6 relative overflow-hidden">
             <!-- ใส่ไฟล์โลโก้ Ahtao Mu-space พื้นขาว.png ตรงนี้ -->
             <div class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-white shadow-lg flex items-center justify-center mb-3 relative overflow-hidden">
-                <img src="Ahtao Mu-space พื้นขาว.png" alt="AhTao Mu-Space Logo" class="w-full h-full object-cover">
+                <img src="Ahtao Mu-space พื้นขาว.png" alt="AhTao Mu-Space Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=Logo'">
             </div>
             
             <!-- ใช้ class shop-title-font และปรับขนาดให้ใหญ่ขึ้น หนาขึ้น -->
@@ -837,6 +837,7 @@
             summary += `🔮 ข้อมูลส่วนตัว:\nอายุ: ${ageVal} ปี\n-----------------------------\n`;
         }
 
+        let qDetails = []; // เก็บคำถามเพื่อส่งเข้าชีต
         if (hasChat) {
             const deliveryType = document.querySelector('input[name="delivery_type"]:checked').value;
             const cardOptChecked = document.getElementById('f-card-opt').checked ? " (รับหน้าไพ่)" : " (ไม่รับหน้าไพ่)";
@@ -844,7 +845,10 @@
 
             summary += `📝 ข้อมูลและคำถาม:\n${formatText}\n`;
             document.querySelectorAll('.dyn-q').forEach((q, idx) => { 
-                if(q.offsetWidth > 0) summary += `Q${idx+1}: ${q.value.trim()}\n`; 
+                if(q.offsetWidth > 0) {
+                    summary += `Q${idx+1}: ${q.value.trim()}\n`; 
+                    qDetails.push(`Q${idx+1}: ${q.value.trim()}`);
+                }
             });
             summary += `-----------------------------\n`;
         }
@@ -854,10 +858,30 @@
             summary += `💻 ข้อมูลรับทำเว็บไซต์:\n${webBrief}\n-----------------------------\n`;
         }
 
+        // ==========================================
+        // ส่งข้อมูลเข้า Google Sheets อัตโนมัติ
+        // ==========================================
+        const orderData = {
+            name: name,
+            items: orderItemsOnly.replace(/\n- ⚡ คิวเร่งด่วนพิเศษ/g, ' + คิวเร่ง'),
+            appt: (hasPhone || hasHeal) ? `${document.getElementById('f-appt-date').value} / ${document.getElementById('f-appt-time').value} น.` : "-",
+            personal: (hasChat || hasPhone) ? `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: ${document.getElementById('f-day').value} เดือน${document.getElementById('f-month').value}` : (hasHeal ? `อายุ: ${document.getElementById('f-age').value} ปี` : "-"),
+            details: hasChat ? `รูปแบบ: ${document.querySelector('input[name="delivery_type"]:checked').value}\n${qDetails.join('\n')}` : (hasWeb ? document.getElementById('f-web-brief').value.trim() : "-"),
+            price: totalPrice
+        };
+        
+        // ยิงข้อมูลไปที่ API_URL แบบเงียบๆ (ไม่ต้องรอโหลดเสร็จ ให้ลูกค้าก๊อปข้อความได้เลย)
+        fetch(API_URL, { 
+            method: "POST", 
+            headers: { "Content-Type": "text/plain;charset=utf-8" }, 
+            body: JSON.stringify({ action: "saveOrder", order: orderData }) 
+        }).catch(err => console.log("Sheet Error: ", err));
+        // ==========================================
+
         document.getElementById('summary-text').value = summary.trim();
         document.getElementById('summary-area').style.display = 'block';
         document.getElementById('summary-area').scrollIntoView({ behavior: 'smooth' });
-        showToast('🎉 สร้างข้อความสำเร็จ!');
+        showToast('🎉 สร้างข้อความสำเร็จ และบันทึกลงระบบแล้ว!');
     }
 
     function copyText(text) {
