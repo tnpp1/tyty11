@@ -8,8 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- ใช้ฟอนต์ Mali เป็นฟอนต์หลัก: สไตล์ลายมือ หัวกลมมน อวบอ้วนปุ๊กปิ๊กแบบ Hip-Ice -->
-    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- เพิ่มฟอนต์ Fredoka สำหรับชื่อร้านให้หนาเด่นชัด และฟอนต์ Mali สำหรับข้อความทั่วไปให้อ่านง่ายปุ๊กปิ๊ก -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* ชุดสีพาสเทล (ปรับจากรหัสสีต้นฉบับให้อ่อนลง ~50% เพื่อคุมโทนละมุนตา) */
@@ -38,6 +38,11 @@
             overflow-x: hidden;
             min-height: 100vh;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ฟอนต์พิเศษสำหรับชื่อร้านให้หนา เด่น สะดุดตา */
+        .shop-title-font {
+            font-family: 'Fredoka', sans-serif;
         }
 
         .card {
@@ -162,10 +167,13 @@
         
         <!-- Profile Card -->
         <div class="card p-6 mb-6 relative overflow-hidden">
-            <div class="w-24 h-24 mx-auto bg-gradient-to-br from-[var(--c-yellow)] to-[var(--c-pink-purp)] rounded-full border-4 border-white shadow-lg flex flex-col items-center justify-center mb-3 relative">
-                <span class="text-4xl font-bold text-white drop-shadow-md" style="margin-bottom:-4px;">AT</span>
+            <!-- ใส่ไฟล์โลโก้ Ahtao Mu-space พื้นขาว.png ตรงนี้ -->
+            <div class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-white shadow-lg flex items-center justify-center mb-3 relative overflow-hidden">
+                <img src="Ahtao Mu-space พื้นขาว.png" alt="AhTao Mu-Space Logo" class="w-full h-full object-cover">
             </div>
-            <h1 class="text-2xl font-bold text-[var(--c-text-main)] tracking-wide mb-1" id="display-shop-name">AhTao Mu-Space</h1>
+            
+            <!-- ใช้ class shop-title-font และปรับขนาดให้ใหญ่ขึ้น หนาขึ้น -->
+            <h1 class="text-[28px] font-bold text-[var(--c-text-main)] tracking-wider mb-1 drop-shadow-sm shop-title-font" id="display-shop-name">AhTao Mu-Space</h1>
             <p class="text-[15px] text-[var(--c-purple-dark)] font-bold mb-4" id="display-slogan">🔮 Mu-Space 🔮</p>
             
             <!-- ราคาเริ่มต้น 3 คอลัมน์ -->
@@ -807,7 +815,8 @@
         let orderItemsOnly = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
         if (document.getElementById('urgent-queue').checked) orderItemsOnly += `\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)`;
         
-        let summary = `🧸 ขอบคุณสำหรับการจองบริการกับอาเต่านะคะ\n-----------------------------\n🛒 ออเดอร์จาก: ${name}\n📋 รายการที่สั่ง:\n${orderItemsOnly}\n💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\nวันที่: ${tDate} เวลา: ${tTime}\n-----------------------------\n`;
+        // แก้ไขชื่อ อาเต่า เป็น อาเต๋า ตามที่สั่ง
+        let summary = `🧸 ขอบคุณสำหรับการจองบริการกับอาเต๋านะคะ\n-----------------------------\n🛒 ออเดอร์จาก: ${name}\n📋 รายการที่สั่ง:\n${orderItemsOnly}\n💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\nวันที่: ${tDate} เวลา: ${tTime}\n-----------------------------\n`;
 
         if (hasPhone || hasHeal) {
             summary += `📞 ข้อมูลการจองคิว:\nวันที่: ${document.getElementById('f-appt-date').value} เวลา: ${document.getElementById('f-appt-time').value} น.\n-----------------------------\n`;
