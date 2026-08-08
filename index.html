@@ -141,53 +141,39 @@
         }
         .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
 
-        /* ================= แก๊งแมวนำโชค 3 สี ================= */
-        .mascot-container {
-            position: fixed; bottom: 15px; left: 15px; display: flex; align-items: flex-end; gap: 6px; z-index: 998;
+        /* ================= น้องแมวดำเดินบนขอบกรอบข้อความวิ่ง ================= */
+        .marquee-wrapper {
+            position: relative; overflow: visible; margin-bottom: 20px;
         }
-        .cat-icon {
-            font-size: 38px; cursor: pointer; position: relative; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-            /* ใส่ขอบดำและเงาให้ดูเป็นสติกเกอร์น่ารักๆ */
-            filter: drop-shadow(1px 1px 0px #4a3b52) drop-shadow(-1px -1px 0px #4a3b52) drop-shadow(1px -1px 0px #4a3b52) drop-shadow(-1px 1px 0px #4a3b52) drop-shadow(2px 3px 3px rgba(0,0,0,0.2));
+        .cat-marquee-track {
+            position: absolute; top: -38px; left: 0; width: 100%; height: 40px; pointer-events: none; z-index: 10; overflow: hidden;
         }
-        .cat-icon:hover { transform: scale(1.15) translateY(-5px); }
+        .cat-walking-top {
+            position: absolute; bottom: 0; width: 40px; height: 40px; cursor: pointer; pointer-events: auto;
+            animation: catWalkTop 12s linear infinite;
+            filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15));
+        }
+        .cat-walking-top img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* 1. แมวขาวครีม (เดินออกมารับ) */
-        .cat-welcome { color: #FDE8C4; animation: walkIn 2s ease-out forwards, wave 2.5s 2s infinite; transform: translateX(-150vw); }
-        @keyframes walkIn { 0% { transform: translateX(-150vw); } 100% { transform: translateX(0); } }
-        @keyframes wave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
+        @keyframes catWalkTop {
+            0% { left: -50px; transform: scaleX(1); }
+            48% { left: calc(100% - 40px); transform: scaleX(1); }
+            50% { left: calc(100% - 40px); transform: scaleX(-1); }
+            98% { left: -50px; transform: scaleX(-1); }
+            100% { left: -50px; transform: scaleX(1); }
+        }
 
-        /* 2. แมวม่วงลาเวนเดอร์ (นั่งเฝ้าดุ๊กดิ๊ก) */
-        .cat-idle { color: #D8B4E2; animation: breathe 3s ease-in-out infinite alternate; transform-origin: bottom center; }
-        @keyframes breathe { 0% { transform: scaleY(1) scaleX(1); } 100% { transform: scaleY(0.95) scaleX(1.03); } }
-
-        /* 3. แมวชานม (พยากรณ์/คลิกได้) */
-        .cat-fortune { color: #D4A373; animation: breathe 2.5s ease-in-out infinite alternate-reverse; transform-origin: bottom center; }
-        
         .speech-bubble {
-            position: absolute; bottom: 100%; left: 10px; transform: translateX(-20%) translateY(10px) scale(0);
+            position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%) scale(0);
             background: #fff; border: 2px solid var(--c-purple); border-radius: 18px 18px 18px 0;
-            padding: 10px 14px; font-size: 14px; color: var(--c-text-main);
+            padding: 8px 12px; font-size: 13px; color: var(--c-text-main);
             box-shadow: 3px 3px 0px var(--c-purple); white-space: nowrap; pointer-events: none;
-            opacity: 0; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 10;
+            opacity: 0; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 20;
         }
-        .speech-bubble.show { transform: translateX(-20%) translateY(-10px) scale(1); opacity: 1; }
+        .speech-bubble.show { transform: translateX(-50%) scale(1); opacity: 1; }
     </style>
 </head>
 <body class="antialiased pb-24 text-center">
-
-    <!-- แก๊งแมวนำโชค 3 สี -->
-    <div class="mascot-container">
-        <!-- 1. ครีม -->
-        <div class="cat-icon cat-welcome" title="น้องนำโชค"><i class="fa-solid fa-cat"></i></div>
-        <!-- 2. ลาเวนเดอร์ -->
-        <div class="cat-icon cat-idle" title="น้องเฝ้าจอ"><i class="fa-solid fa-cat"></i></div>
-        <!-- 3. ชานม (กดสุ่มคำทำนาย) -->
-        <div class="cat-icon cat-fortune" title="น้องพยากรณ์" onclick="showFortune()">
-            <div class="speech-bubble" id="cat-speech">เมี้ยว~</div>
-            <i class="fa-solid fa-cat"></i>
-        </div>
-    </div>
 
     <!-- Admin Button -->
     <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">🔮</button>
@@ -242,8 +228,17 @@
             </div>
         </div>
 
-        <div class="card p-2 mb-5 text-center bg-white/80 border-[var(--c-sky)]">
-            <marquee id="display-marquee" scrollamount="4" class="text-[var(--c-text-main)] text-[15px] mt-1"></marquee>
+        <!-- กรอบข้อความวิ่ง พร้อมน้องแมวดำเดินไต่ขอบด้านบน -->
+        <div class="marquee-wrapper">
+            <div class="cat-marquee-track">
+                <div class="cat-walking-top" title="จิ้มฉันสิ มีคำทำนายนะ!" onclick="showFortune()">
+                    <div class="speech-bubble" id="cat-speech">เมี้ยว~</div>
+                    <img src="แมว3.png" alt="แมวดำนำโชค" onerror="this.src='https://via.placeholder.com/150?text=Cat'">
+                </div>
+            </div>
+            <div class="card p-2 text-center bg-white/90 border-[var(--c-sky)]">
+                <marquee id="display-marquee" scrollamount="4" class="text-[var(--c-text-main)] text-[15px] mt-1"></marquee>
+            </div>
         </div>
 
         <!-- 3 Tabs Navigation -->
@@ -337,7 +332,7 @@
                             <label>เลือกรูปแบบการรับงาน *</label>
                             <div class="flex gap-4 mt-2">
                                 <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:var(--c-purple); width:18px; height:18px;"> แบบพิมพ์</label>
-                                <label class="flex items-center gap-2 cursor-pointer" id="audio-option-label"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:var(--c-purple); width:18px; height:18px;"> แบบอัดเสียง</label>
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:var(--c-purple); width:18px; height:18px;"> แบบอัดเสียง</label>
                             </div>
                         </div>
                         <div class="form-group" id="card-option-group" style="margin-bottom:0; background:#fff; padding:10px; border-radius:10px; border:1px solid var(--c-purple);">
@@ -574,7 +569,7 @@
         ]}
     ];
 
-    // คลังคำพูดสุ่มสำหรับน้องแมวพยากรณ์
+    // คลังคำพูดสุ่มสำหรับน้องแมวดำ
     const catFortunes = [
         "วันนี้โชคดีเป็นพิเศษ ระวังเจอเรื่องดีๆ จนตั้งตัวไม่ติดน้า!",
         "เลขมงคลวันนี้คือเลข 7 กับ 9 นะคะ ลองไปเสี่ยงดวงดู!",
@@ -632,7 +627,7 @@
 
     // Star click effect
     document.addEventListener('click', function(e) {
-        if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT' || e.target.tagName === 'BUTTON' || e.target.closest('.cat-icon')) return;
+        if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT' || e.target.tagName === 'BUTTON' || e.target.closest('.cat-walking-top')) return;
         const star = document.createElement('div');
         star.className = 'star-click';
         star.innerHTML = '✨';
@@ -812,17 +807,10 @@
         formWeb.style.display = hasWeb ? 'block' : 'none';
         manageRequiredFields(formWeb);
 
-        // Chat Form
+        // Chat Form (เปิดให้แสดงช่องติ๊กรับหน้าไพ่ถาวรทุกราคาตามสั่ง)
         const chatOptionsBox = document.getElementById('form-chat-options');
         if (hasChat) {
             chatOptionsBox.style.display = 'block';
-            const audioLabel = document.getElementById('audio-option-label');
-            if (minChatPrice < 69) {
-                document.querySelector('input[name="delivery_type"][value="พิมพ์"]').checked = true;
-                audioLabel.style.display = 'none';
-            } else {
-                audioLabel.style.display = 'inline-flex';
-            }
             toggleDeliveryOptions();
         } else {
             chatOptionsBox.style.display = 'none';
