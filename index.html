@@ -8,27 +8,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- เพิ่มฟอนต์ Fredoka สำหรับชื่อร้านให้หนาเด่นชัด และฟอนต์ Mali สำหรับข้อความทั่วไปให้อ่านง่ายปุ๊กปิ๊ก -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- โหลดฟอนต์ Fredoka (สำหรับชื่อร้าน) และ Itim (สำหรับเนื้อหาทั้งเว็บสไตล์มาร์กเกอร์) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Itim&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* ชุดสีพาสเทล (ปรับจากรหัสสีต้นฉบับให้อ่อนลง ~50% เพื่อคุมโทนละมุนตา) */
-            --c-purple-dark: #C88EEF; /* from #921dde */
-            --c-blue: #A0A6E2;        /* from #414dc6 */
-            --c-sky: #ABDEFB;         /* from #57c6ef */
-            --c-green: #BCE097;       /* from #7ac12f */
-            --c-purple: #D7A5F7;      /* from #af4bf0 */
-            --c-pink-purp: #E8ACFA;   /* from #d159f4 */
-            --c-hot-pink: #F8A2F5;    /* from #f146eb */
-            --c-yellow: #FFF584;      /* from #ffeb0a */
-            
-            --c-bg: #FCFBF8;          /* พื้นหลังเหลืองพาสเทลอ่อนมากๆ */
-            --c-text-main: #4a3b52;   /* สีตัวอักษรหลัก ให้อ่านง่ายแต่ไม่ดำสนิท */
+            --c-purple-dark: #C88EEF; 
+            --c-blue: #A0A6E2;        
+            --c-sky: #ABDEFB;         
+            --c-green: #BCE097;       
+            --c-purple: #D7A5F7;      
+            --c-pink-purp: #E8ACFA;   
+            --c-hot-pink: #F8A2F5;    
+            --c-yellow: #FFF584;      
+            --c-bg: #FCFBF8;          
+            --c-text-main: #4a3b52;   
             --c-text-sub: #7a6a82;
         }
 
         body {
-            font-family: 'Mali', cursive; /* เรียกใช้ฟอนต์ลายมือ */
+            font-family: 'Itim', cursive; /* ใช้ Itim เป็นฟอนต์หลักทั้งเว็บ */
             background-color: var(--c-bg);
             background-image: radial-gradient(var(--c-green) 1.5px, transparent 1.5px);
             background-size: 25px 25px;
@@ -38,11 +36,13 @@
             overflow-x: hidden;
             min-height: 100vh;
             -webkit-tap-highlight-color: transparent;
+            font-size: 16px;
         }
 
         /* ฟอนต์พิเศษสำหรับชื่อร้านให้หนา เด่น สะดุดตา */
         .shop-title-font {
             font-family: 'Fredoka', sans-serif;
+            letter-spacing: 0.5px;
         }
 
         .card {
@@ -61,7 +61,7 @@
 
         .tab-btn {
             background: #fff; border: 2px solid var(--c-purple); border-radius: 1.2rem;
-            color: var(--c-text-main); padding: 10px 4px; font-size: 14px; font-weight: 600;
+            color: var(--c-text-main); padding: 10px 4px; font-size: 15px; font-weight: 600;
             cursor: pointer; transition: all 0.2s; flex: 1; text-align: center;
             box-shadow: 3px 3px 0px var(--c-purple); display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.3;
         }
@@ -81,16 +81,16 @@
 
         .price-tag {
             background: #fff; color: var(--c-text-main);
-            border: 1.5px dashed var(--c-hot-pink); border-radius: 8px; padding: 2px 10px; font-size: 13px; font-weight: 700; white-space: nowrap;
+            border: 1.5px dashed var(--c-hot-pink); border-radius: 8px; padding: 2px 10px; font-size: 14px; white-space: nowrap;
         }
 
         .floating-cart {
             position: fixed; bottom: 30px; right: 20px; z-index: 999;
             background: #fff; color: var(--c-text-main); border-radius: 50%;
             width: 65px; height: 65px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            box-shadow: 4px 4px 0px var(--c-green); border: 3px solid var(--c-green); cursor: pointer; transition: all 0.3s;
+            box-shadow: 4px 4px 0px var(--c-green); border: 3px solid var(--c-green); cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .floating-cart:hover { transform: scale(1.05) translateY(-5px); }
+        .floating-cart:hover { transform: scale(1.1) translateY(-5px); }
         .cart-count {
             position: absolute; top: -5px; right: -5px; background: var(--c-hot-pink); color: #fff;
             font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%;
@@ -98,17 +98,17 @@
         }
 
         .form-group { margin-bottom: 16px; text-align: left; }
-        .form-group label { display: block; font-size: 14px; color: var(--c-text-main); margin-bottom: 6px; font-weight: 700; }
+        .form-group label { display: block; font-size: 15px; color: var(--c-text-main); margin-bottom: 6px; }
         .form-control {
             width: 100%; padding: 12px 14px; background: #fff; border: 2px solid var(--c-pink-purp); border-radius: 1rem;
-            color: var(--c-text-main); font-family: 'Mali', cursive; font-size: 14px; outline: none; transition: all 0.2s; font-weight: 500;
+            color: var(--c-text-main); font-family: 'Itim', cursive; font-size: 15px; outline: none; transition: all 0.2s;
         }
         .form-control:focus { border-color: var(--c-blue); box-shadow: 0 0 0 4px rgba(160, 166, 226, 0.2); }
         
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 14px 20px; border: 2px solid var(--c-text-main); border-radius: 1rem; cursor: pointer;
-            font-family: 'Mali', cursive; font-size: 16px; font-weight: 700; color: var(--c-text-main);
+            font-family: 'Itim', cursive; font-size: 18px; color: var(--c-text-main);
             background: var(--c-green); box-shadow: 4px 4px 0px var(--c-text-main); transition: all 0.2s; margin-top: 10px;
         }
         .btn-action:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px var(--c-text-main); }
@@ -116,7 +116,7 @@
         .btn-contact {
             background-color: #fff; color: var(--c-text-main); border: 2px solid var(--c-text-main);
             border-radius: 1rem; padding: 0.6rem 1rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
-            transition: all 0.2s; box-shadow: 3px 3px 0px var(--c-text-main); text-decoration: none; font-weight: 700; font-size: 13px;
+            transition: all 0.2s; box-shadow: 3px 3px 0px var(--c-text-main); text-decoration: none; font-size: 14px;
         }
         .btn-contact:hover { background-color: var(--c-text-main); color: white; transform: translate(1px, 1px); box-shadow: 2px 2px 0px var(--c-text-main); }
 
@@ -129,15 +129,6 @@
         }
         .btn-admin:hover { transform: scale(1.1); animation-play-state: paused; }
 
-        .star-click {
-            position: fixed; pointer-events: none; font-size: 20px; z-index: 10000;
-            animation: star-burst 0.8s ease-out forwards; text-shadow: 0 0 5px rgba(248,162,245,0.8);
-        }
-        @keyframes star-burst {
-            0% { transform: translate(-50%, -50%) scale(0.5) rotate(0deg); opacity: 1; }
-            100% { transform: translate(-50%, -150%) scale(1.5) rotate(90deg); opacity: 0; }
-        }
-
         .modal-overlay {
             display:none; position:fixed; inset:0; background:rgba(255,255,255,0.8); backdrop-filter:blur(5px); 
             z-index:10000; overflow-y:auto; padding:20px; justify-content: center; align-items: center;
@@ -145,13 +136,58 @@
         .toast {
             position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(200px);
             background: var(--c-text-main); color: white; padding: 12px 26px; border-radius: 40px; 
-            font-weight: 700; font-size: 14px; z-index: 10001; pointer-events: none; box-shadow: 0 8px 25px rgba(74,59,82, 0.3);
+            font-size: 15px; z-index: 10001; pointer-events: none; box-shadow: 0 8px 25px rgba(74,59,82, 0.3);
             transition: transform .35s cubic-bezier(.34,1.56,.64,1); visibility: hidden; border: 2px solid #fff;
         }
         .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
+
+        /* ================= แก๊งแมวนำโชค 3 สี ================= */
+        .mascot-container {
+            position: fixed; bottom: 15px; left: 15px; display: flex; align-items: flex-end; gap: 6px; z-index: 998;
+        }
+        .cat-icon {
+            font-size: 38px; cursor: pointer; position: relative; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            /* ใส่ขอบดำและเงาให้ดูเป็นสติกเกอร์น่ารักๆ */
+            filter: drop-shadow(1px 1px 0px #4a3b52) drop-shadow(-1px -1px 0px #4a3b52) drop-shadow(1px -1px 0px #4a3b52) drop-shadow(-1px 1px 0px #4a3b52) drop-shadow(2px 3px 3px rgba(0,0,0,0.2));
+        }
+        .cat-icon:hover { transform: scale(1.15) translateY(-5px); }
+
+        /* 1. แมวขาวครีม (เดินออกมารับ) */
+        .cat-welcome { color: #FDE8C4; animation: walkIn 2s ease-out forwards, wave 2.5s 2s infinite; transform: translateX(-150vw); }
+        @keyframes walkIn { 0% { transform: translateX(-150vw); } 100% { transform: translateX(0); } }
+        @keyframes wave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
+
+        /* 2. แมวม่วงลาเวนเดอร์ (นั่งเฝ้าดุ๊กดิ๊ก) */
+        .cat-idle { color: #D8B4E2; animation: breathe 3s ease-in-out infinite alternate; transform-origin: bottom center; }
+        @keyframes breathe { 0% { transform: scaleY(1) scaleX(1); } 100% { transform: scaleY(0.95) scaleX(1.03); } }
+
+        /* 3. แมวชานม (พยากรณ์/คลิกได้) */
+        .cat-fortune { color: #D4A373; animation: breathe 2.5s ease-in-out infinite alternate-reverse; transform-origin: bottom center; }
+        
+        .speech-bubble {
+            position: absolute; bottom: 100%; left: 10px; transform: translateX(-20%) translateY(10px) scale(0);
+            background: #fff; border: 2px solid var(--c-purple); border-radius: 18px 18px 18px 0;
+            padding: 10px 14px; font-size: 14px; color: var(--c-text-main);
+            box-shadow: 3px 3px 0px var(--c-purple); white-space: nowrap; pointer-events: none;
+            opacity: 0; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 10;
+        }
+        .speech-bubble.show { transform: translateX(-20%) translateY(-10px) scale(1); opacity: 1; }
     </style>
 </head>
 <body class="antialiased pb-24 text-center">
+
+    <!-- แก๊งแมวนำโชค 3 สี -->
+    <div class="mascot-container">
+        <!-- 1. ครีม -->
+        <div class="cat-icon cat-welcome" title="น้องนำโชค"><i class="fa-solid fa-cat"></i></div>
+        <!-- 2. ลาเวนเดอร์ -->
+        <div class="cat-icon cat-idle" title="น้องเฝ้าจอ"><i class="fa-solid fa-cat"></i></div>
+        <!-- 3. ชานม (กดสุ่มคำทำนาย) -->
+        <div class="cat-icon cat-fortune" title="น้องพยากรณ์" onclick="showFortune()">
+            <div class="speech-bubble" id="cat-speech">เมี้ยว~</div>
+            <i class="fa-solid fa-cat"></i>
+        </div>
+    </div>
 
     <!-- Admin Button -->
     <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">🔮</button>
@@ -160,38 +196,38 @@
     <div class="floating-cart" onclick="scrollToCheckout()" id="cart-float" style="display:none;">
         <span class="cart-count" id="cart-count">0</span>
         <span style="font-size:22px; margin-bottom:2px;">🛒</span>
-        <span style="font-size: 10px; font-weight:bold;">ตะกร้า</span>
+        <span style="font-size: 11px;">ตะกร้า</span>
     </div>
 
     <main class="max-w-[480px] mx-auto px-4 pt-10 relative">
         
         <!-- Profile Card -->
         <div class="card p-6 mb-6 relative overflow-hidden">
-            <!-- ใส่ไฟล์โลโก้ Ahtao Mu-space พื้นขาว.png ตรงนี้ -->
+            <!-- โลโก้ร้าน -->
             <div class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-white shadow-lg flex items-center justify-center mb-3 relative overflow-hidden">
                 <img src="Ahtao Mu-space พื้นขาว.png" alt="AhTao Mu-Space Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=Logo'">
             </div>
             
-            <!-- ใช้ class shop-title-font และปรับขนาดให้ใหญ่ขึ้น หนาขึ้น -->
-            <h1 class="text-[28px] font-bold text-[var(--c-text-main)] tracking-wider mb-1 drop-shadow-sm shop-title-font" id="display-shop-name">AhTao Mu-Space</h1>
-            <p class="text-[15px] text-[var(--c-purple-dark)] font-bold mb-4" id="display-slogan">🔮 Mu-Space 🔮</p>
+            <!-- ชื่อร้าน (ฟอนต์ Fredoka) และสโลแกน -->
+            <h1 class="text-[30px] text-[var(--c-text-main)] mb-1 drop-shadow-sm shop-title-font" id="display-shop-name">AhTao Mu-Space</h1>
+            <p class="text-[16px] text-[var(--c-purple-dark)] mb-4" id="display-slogan">🔮 "พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ" ✨</p>
             
-            <!-- ราคาเริ่มต้น 3 คอลัมน์ -->
-            <div class="flex justify-between items-center bg-[var(--c-bg)] rounded-2xl p-3 mb-5 border-2 border-[var(--c-yellow)]">
+            <!-- แถบราคาเริ่มต้น (บีบขนาดกรอบให้กระชับขึ้น) -->
+            <div class="flex justify-between items-center bg-[var(--c-bg)] rounded-2xl py-2 px-3 mb-5 border-2 border-[var(--c-yellow)] max-w-[340px] mx-auto shadow-sm">
                 <div class="text-center w-1/3 border-r-2 border-[var(--c-yellow)]">
-                    <div class="text-[13px] text-[var(--c-text-sub)] mb-1 font-semibold">🔮 ดูดวง</div>
-                    <div class="font-bold text-[var(--c-text-main)] text-lg">29.-</div>
-                    <div class="text-[10px] text-[var(--c-text-sub)]">เริ่มต้น</div>
+                    <div class="text-[14px] text-[var(--c-text-sub)] mb-1">🔮 ดูดวง</div>
+                    <div class="text-[var(--c-text-main)] text-lg">29.-</div>
+                    <div class="text-[11px] text-[var(--c-text-sub)]">เริ่มต้น</div>
                 </div>
                 <div class="text-center w-1/3 border-r-2 border-[var(--c-yellow)]">
-                    <div class="text-[13px] text-[var(--c-text-sub)] mb-1 font-semibold">📱 วอลเปเปอร์</div>
-                    <div class="font-bold text-[var(--c-text-main)] text-lg">189.-</div>
-                    <div class="text-[10px] text-[var(--c-text-sub)]">เริ่มต้น</div>
+                    <div class="text-[14px] text-[var(--c-text-sub)] mb-1">📱 วอลเปเปอร์</div>
+                    <div class="text-[var(--c-text-main)] text-lg">189.-</div>
+                    <div class="text-[11px] text-[var(--c-text-sub)]">เริ่มต้น</div>
                 </div>
                 <div class="text-center w-1/3">
-                    <div class="text-[13px] text-[var(--c-text-sub)] mb-1 font-semibold">💻 เว็บไซต์</div>
-                    <div class="font-bold text-[var(--c-text-main)] text-lg">99.-</div>
-                    <div class="text-[10px] text-[var(--c-text-sub)]">เริ่มต้น</div>
+                    <div class="text-[14px] text-[var(--c-text-sub)] mb-1">💻 เว็บไซต์</div>
+                    <div class="text-[var(--c-text-main)] text-lg">99.-</div>
+                    <div class="text-[11px] text-[var(--c-text-sub)]">เริ่มต้น</div>
                 </div>
             </div>
 
@@ -207,31 +243,31 @@
         </div>
 
         <div class="card p-2 mb-5 text-center bg-white/80 border-[var(--c-sky)]">
-            <marquee id="display-marquee" scrollamount="4" class="text-[var(--c-text-main)] text-[14px] font-semibold mt-1"></marquee>
+            <marquee id="display-marquee" scrollamount="4" class="text-[var(--c-text-main)] text-[15px] mt-1"></marquee>
         </div>
 
         <!-- 3 Tabs Navigation -->
         <div class="flex gap-2 justify-center mb-6">
             <button class="tab-btn" id="btn-tab-1" onclick="switchTab(1)">
-                <span class="text-[16px] mb-1">🔮 ดูดวง</span><span class="text-[11px] text-[var(--c-text-sub)] font-medium">พิมพ์/โทร</span>
+                <span class="text-[17px] mb-1">🔮 ดูดวง</span><span class="text-[12px] text-[var(--c-text-sub)]">พิมพ์/โทร</span>
             </button>
             <button class="tab-btn" id="btn-tab-2" onclick="switchTab(2)">
-                <span class="text-[16px] mb-1">📱 วอลเปเปอร์</span><span class="text-[11px] text-[var(--c-text-sub)] font-medium">& ฮีลใจ</span>
+                <span class="text-[17px] mb-1">📱 วอลเปเปอร์</span><span class="text-[12px] text-[var(--c-text-sub)]">& ฮีลใจ</span>
             </button>
             <button class="tab-btn" id="btn-tab-3" onclick="switchTab(3)">
-                <span class="text-[16px] mb-1">💻 เว็บไซต์</span><span class="text-[11px] text-[var(--c-text-sub)] font-medium">รับทำเว็บไซต์</span>
+                <span class="text-[17px] mb-1">💻 เว็บไซต์</span><span class="text-[12px] text-[var(--c-text-sub)]">รับทำเว็บไซต์</span>
             </button>
         </div>
 
         <!-- Content Area -->
         <div id="content-area">
             <div id="rules-view" class="card p-6 mb-6 border-[var(--c-hot-pink)] text-left">
-                <h3 class="text-lg text-[var(--c-text-main)] mb-3 flex items-center gap-2 border-b-2 border-dashed border-[var(--c-hot-pink)] pb-2 font-bold">
+                <h3 class="text-xl text-[var(--c-text-main)] mb-3 flex items-center gap-2 border-b-2 border-dashed border-[var(--c-hot-pink)] pb-2">
                     📖 วิธีใช้งาน & กฎของร้าน
                 </h3>
-                <div id="display-rules" class="text-[var(--c-text-sub)] text-[14px] leading-relaxed whitespace-pre-wrap font-medium"></div>
+                <div id="display-rules" class="text-[var(--c-text-sub)] text-[15px] leading-relaxed whitespace-pre-wrap"></div>
                 <div class="text-center mt-5 pt-4 border-t border-dashed border-gray-200">
-                    <p class="text-[13px] text-[var(--c-purple-dark)] font-bold">👆 กดเลือกหมวดหมู่สินค้าด้านบนเพื่อเริ่มสั่งซื้อได้เลยค่ะ 👆</p>
+                    <p class="text-[15px] text-[var(--c-purple-dark)]">👆 กดเลือกหมวดหมู่สินค้าด้านบนเพื่อเริ่มสั่งซื้อได้เลยค่ะ 👆</p>
                 </div>
             </div>
 
@@ -241,43 +277,43 @@
         <!-- Checkout Section -->
         <div id="checkout-section" style="display:none; scroll-margin-top: 20px;">
             <div class="text-center mb-4 mt-8 flex justify-center items-center gap-2">
-                <span class="text-2xl">🛒</span>
-                <h2 class="text-2xl text-[var(--c-text-main)] font-bold">ตะกร้าสินค้า</h2>
+                <span class="text-3xl">🛒</span>
+                <h2 class="text-2xl text-[var(--c-text-main)]">ตะกร้าสินค้า</h2>
             </div>
             
             <div class="card p-6 mb-8 text-left border-[var(--c-blue)]">
-                <div class="text-[16px] font-bold text-[var(--c-text-main)] mb-3 border-b-2 dashed border-[var(--c-blue)] pb-2">📦 รายการในตะกร้า</div>
-                <div id="cart-items-list" class="text-[14px] text-[var(--c-text-sub)] font-medium mb-4"></div>
+                <div class="text-[17px] text-[var(--c-text-main)] mb-3 border-b-2 dashed border-[var(--c-blue)] pb-2">📦 รายการในตะกร้า</div>
+                <div id="cart-items-list" class="text-[15px] text-[var(--c-text-sub)] mb-4"></div>
                 
                 <div class="mb-4 bg-[var(--c-bg)] p-3 rounded-2xl border-2 border-[var(--c-yellow)]">
-                    <label class="text-[14px] text-[var(--c-text-main)] cursor-pointer font-bold flex items-center gap-2">
+                    <label class="text-[15px] text-[var(--c-text-main)] cursor-pointer flex items-center gap-2">
                         <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:var(--c-hot-pink); width:18px; height:18px;"> 
                         ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)
                     </label>
                 </div>
 
-                <div class="card-solid border-[var(--c-green)] shadow-[4px_4px_0px_var(--c-green)] text-[16px] font-bold text-[var(--c-text-main)] mb-4 text-center p-3 bg-white">
-                    ยอดรวมทั้งสิ้น: <span id="cart-total-price" class="text-[var(--c-hot-pink)] text-[26px]">0</span> บาท
+                <div class="card-solid border-[var(--c-green)] shadow-[4px_4px_0px_var(--c-green)] text-[18px] text-[var(--c-text-main)] mb-4 text-center p-3 bg-white">
+                    ยอดรวมทั้งสิ้น: <span id="cart-total-price" class="text-[var(--c-hot-pink)] text-[28px]">0</span> บาท
                 </div>
 
                 <div id="checkout-form-area" class="border-t-2 border-dashed border-[var(--c-blue)] pt-4 mt-2">
-                    <h4 class="text-[var(--c-text-main)] mt-0 mb-3 text-center font-bold text-[18px]">💳 โอนเงิน & กรอกข้อมูล</h4>
+                    <h4 class="text-[var(--c-text-main)] mt-0 mb-3 text-center text-[20px]">💳 โอนเงิน & กรอกข้อมูล</h4>
                     
                     <div class="card-solid border-[var(--c-sky)] shadow-[3px_3px_0px_var(--c-sky)] p-4 text-center mb-3">
-                        <div class="text-[13px] text-[var(--c-text-sub)] font-bold">ธนาคารกสิกรไทย (KBank)</div>
-                        <div class="text-[15px] font-bold text-[var(--c-text-main)] my-1" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
-                        <span class="block text-[24px] font-bold tracking-widest text-[var(--c-blue)] my-2" id="display-kbank-num">1961933834</span>
-                        <button class="bg-[var(--c-blue)] text-white px-4 py-2 rounded-xl text-[13px] font-bold shadow-sm hover:bg-[#868dd1]" onclick="copyNum('kbank')">📋 คัดลอกเลขบัญชี</button>
+                        <div class="text-[14px] text-[var(--c-text-sub)]">ธนาคารกสิกรไทย (KBank)</div>
+                        <div class="text-[16px] text-[var(--c-text-main)] my-1" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
+                        <span class="block text-[26px] tracking-widest text-[var(--c-blue)] my-2" id="display-kbank-num">1961933834</span>
+                        <button class="bg-[var(--c-blue)] text-white px-4 py-2 rounded-xl text-[14px] shadow-sm hover:bg-[#868dd1]" onclick="copyNum('kbank')">📋 คัดลอกเลขบัญชี</button>
                     </div>
 
                     <div class="card-solid border-[var(--c-yellow)] shadow-[3px_3px_0px_var(--c-yellow)] p-4 text-center mb-4">
-                        <div class="text-[13px] text-[var(--c-text-sub)] font-bold">TrueMoney Wallet</div>
-                        <span class="block text-[24px] font-bold tracking-widest text-[#f39c12] my-2" id="display-wallet-num">0800172584</span>
-                        <button class="bg-[#f39c12] text-white px-4 py-2 rounded-xl text-[13px] font-bold shadow-sm hover:bg-[#d68910]" onclick="copyNum('wallet')">📋 คัดลอกเบอร์</button>
+                        <div class="text-[14px] text-[var(--c-text-sub)]">TrueMoney Wallet</div>
+                        <span class="block text-[26px] tracking-widest text-[#f39c12] my-2" id="display-wallet-num">0800172584</span>
+                        <button class="bg-[#f39c12] text-white px-4 py-2 rounded-xl text-[14px] shadow-sm hover:bg-[#d68910]" onclick="copyNum('wallet')">📋 คัดลอกเบอร์</button>
                     </div>
 
                     <div class="form-group bg-[var(--c-bg)] p-3 rounded-xl border border-[var(--c-hot-pink)]">
-                        <label class="text-[13px] text-[var(--c-hot-pink)] cursor-pointer flex items-start gap-2 font-bold leading-relaxed mb-0">
+                        <label class="text-[14px] text-[var(--c-hot-pink)] cursor-pointer flex items-start gap-2 leading-relaxed mb-0">
                             <input type="checkbox" id="confirm-pay" class="req-check" style="accent-color:var(--c-hot-pink); width:20px; height:20px; margin-top:2px;">
                             <span>ฉันได้ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว<br>(ต้องแนบสลิปในแชทให้แอดมินด้วยนะคะ) *</span>
                         </label>
@@ -296,16 +332,16 @@
 
                     <!-- ฟอร์ม: ตัวเลือกการส่งงาน (พิมพ์ / อัดเสียง / หน้าไพ่) -->
                     <div id="form-chat-options" style="display:none; background:var(--c-bg); padding:16px; border-radius:1rem; border:2px dashed var(--c-purple); margin-bottom:16px;">
-                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[15px] font-bold">🔮 รูปแบบการรับคำทำนาย (ดูดวงแชท)</h5>
+                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[16px]">🔮 รูปแบบการรับคำทำนาย (ดูดวงแชท)</h5>
                         <div class="form-group" id="delivery-type-group">
                             <label>เลือกรูปแบบการรับงาน *</label>
                             <div class="flex gap-4 mt-2">
-                                <label class="flex items-center gap-2 cursor-pointer font-bold"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:var(--c-purple); width:18px; height:18px;"> แบบพิมพ์</label>
-                                <label class="flex items-center gap-2 cursor-pointer font-bold" id="audio-option-label"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:var(--c-purple); width:18px; height:18px;"> แบบอัดเสียง</label>
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:var(--c-purple); width:18px; height:18px;"> แบบพิมพ์</label>
+                                <label class="flex items-center gap-2 cursor-pointer" id="audio-option-label"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:var(--c-purple); width:18px; height:18px;"> แบบอัดเสียง</label>
                             </div>
                         </div>
                         <div class="form-group" id="card-option-group" style="margin-bottom:0; background:#fff; padding:10px; border-radius:10px; border:1px solid var(--c-purple);">
-                            <label class="flex items-center gap-2 cursor-pointer font-bold text-[var(--c-text-main)] mb-0">
+                            <label class="flex items-center gap-2 cursor-pointer text-[var(--c-text-main)] mb-0">
                                 <input type="checkbox" id="f-card-opt" style="width:18px; height:18px; accent-color:var(--c-purple);"> รับหน้าไพ่ด้วย
                             </label>
                         </div>
@@ -313,7 +349,7 @@
 
                     <!-- ฟอร์ม: ข้อมูลส่วนตัวพื้นฐาน -->
                     <div id="form-personal" style="display:none; background:var(--c-bg); padding:16px; border-radius:1rem; border:2px dashed var(--c-sky); margin-bottom:16px;">
-                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[15px] font-bold">🔮 ข้อมูลส่วนตัวพื้นฐาน</h5>
+                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[16px]">🔮 ข้อมูลส่วนตัวพื้นฐาน</h5>
                         <div class="form-group" id="field-status-box">
                             <label>สถานะความสัมพันธ์ *</label>
                             <select id="f-status" class="form-control">
@@ -351,23 +387,73 @@
 
                     <!-- ฟอร์ม: คำถามดูดวง -->
                     <div id="form-questions" style="display:none; background:#fff; padding:16px; border-radius:1rem; border:2px dashed var(--c-hot-pink); margin-bottom:16px;">
-                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[15px] font-bold">💬 คำถามดูดวง</h5>
+                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[16px]">💬 คำถามดูดวง</h5>
                         <div id="dynamic-questions"></div>
+                    </div>
+
+                    <!-- ฟอร์ม: วอลเปเปอร์ (Dynamic) -->
+                    <div id="form-wall" style="display:none; background:#fff; padding:16px; border-radius:1rem; border:2px dashed var(--c-yellow); margin-bottom:16px;">
+                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[16px]">🎨 ข้อมูลทำวอลเปเปอร์</h5>
+                        <div class="form-group">
+                            <label>ชื่อที่ใส่ในวอล (ไม่บังคับ)</label>
+                            <input type="text" id="f-wall-name" class="form-control" placeholder="เช่น Mook / May / หรือเว้นว่าง">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="form-group mb-0">
+                                <label>วันเกิด (จ.-อา.) *</label>
+                                <select id="f-wall-day" class="form-control dyn-req"><option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option></select>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>วันที่ (1-31) *</label>
+                                <select id="f-wall-date" class="form-control dyn-req">
+                                    <option value="">-- วันที่ --</option>
+                                    <script>for(let i=1; i<=31; i++) document.write(`<option value="${i}">${i}</option>`);</script>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 mt-3">
+                            <div class="form-group mb-0">
+                                <label>เดือนเกิด *</label>
+                                <select id="f-wall-month" class="form-control dyn-req"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>ปีเกิด (พ.ศ.) *</label>
+                                <input type="number" id="f-wall-year" class="form-control dyn-req" placeholder="เช่น 2545">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 mt-3">
+                            <div class="form-group mb-0">
+                                <label>ปีนักษัตร *</label>
+                                <select id="f-wall-zodiac" class="form-control dyn-req">
+                                    <option value="">-- นักษัตร --</option><option value="ชวด">ชวด (หนู)</option><option value="ฉลู">ฉลู (วัว)</option><option value="ขาล">ขาล (เสือ)</option><option value="เถาะ">เถาะ (กระต่าย)</option><option value="มะโรง">มะโรง (งูใหญ่)</option><option value="มะเส็ง">มะเส็ง (งูเล็ก)</option><option value="มะเมีย">มะเมีย (ม้า)</option><option value="มะแม">มะแม (แพะ)</option><option value="วอก">วอก (ลิง)</option><option value="ระกา">ระกา (ไก่)</option><option value="จอ">จอ (หมา)</option><option value="กุน">กุน (หมู)</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>สีที่ชอบ *</label>
+                                <input type="text" id="f-wall-color" class="form-control dyn-req" placeholder="เผื่อตรงกับสีถูกโฉลก">
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>เรื่องที่ต้องการเสริมหลัก (1 เรื่อง) *</label>
+                            <input type="text" id="f-wall-main" class="form-control dyn-req" placeholder="เช่น การเงิน, ความรัก, การงาน">
+                        </div>
+                        <!-- จุดงอกช่องเพิ่มเรื่องเสริม -->
+                        <div id="wall-extra-container"></div>
                     </div>
 
                     <!-- ฟอร์ม: จองเวลา (โทร / ฮีลใจ) -->
                     <div id="form-appt" style="display:none; background:var(--c-bg); padding:16px; border-radius:1rem; border:2px dashed var(--c-green); margin-bottom:16px;">
-                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[15px] font-bold">📅 จองเวลา (สำหรับคอล)</h5>
+                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[16px]">📅 จองเวลา (สำหรับคอล)</h5>
                         <div class="grid grid-cols-2 gap-3">
                             <div class="form-group mb-0"><label>วันที่จอง *</label><input type="date" id="f-appt-date" class="form-control text-sm"></div>
                             <div class="form-group mb-0"><label>เวลาที่จอง *</label><input type="time" id="f-appt-time" class="form-control text-sm" onchange="calculateEndTime()"></div>
                         </div>
-                        <div id="end-time-display" class="mt-3 text-[13px] text-[var(--c-text-main)] font-bold text-center bg-white p-2 rounded-lg border border-[var(--c-green)]" style="display:none;"></div>
+                        <div id="end-time-display" class="mt-3 text-[14px] text-[var(--c-text-main)] text-center bg-white p-2 rounded-lg border border-[var(--c-green)]" style="display:none;"></div>
                     </div>
 
                     <!-- ฟอร์ม: รับทำเว็บไซต์ -->
                     <div id="form-web" style="display:none; background:#fff; padding:16px; border-radius:1rem; border:2px dashed var(--c-blue); margin-bottom:16px;">
-                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[15px] font-bold">💻 ข้อมูลรับทำเว็บไซต์</h5>
+                        <h5 class="text-[var(--c-text-main)] mt-0 mb-3 text-[16px]">💻 ข้อมูลรับทำเว็บไซต์</h5>
                         <div class="form-group mb-0">
                             <label>ชื่อร้าน / รูปแบบเว็บไซต์คร่าวๆ *</label>
                             <textarea id="f-web-brief" class="form-control" rows="3" placeholder="ระบุชื่อร้าน และรูปแบบคร่าวๆ (จากนั้นบรีฟต่อในแชทแอดมิน)"></textarea>
@@ -381,10 +467,10 @@
 
         <!-- Summary Area -->
         <div id="summary-area" class="card p-6 mb-8 text-left border-[var(--c-hot-pink)]" style="display:none;">
-            <div class="text-[18px] font-bold text-[var(--c-hot-pink)] mb-2 text-center">🎉 สรุปข้อความเรียบร้อย!</div>
-            <div class="text-[13px] text-[var(--c-text-sub)] mb-4 text-center bg-[var(--c-bg)] p-2 rounded-xl font-bold">ตรวจสอบข้อมูล แล้วกดปุ่มด้านล่างเพื่อคัดลอกส่งให้แอดมินได้เลยค่ะ</div>
+            <div class="text-[20px] text-[var(--c-hot-pink)] mb-2 text-center">🎉 สรุปข้อความเรียบร้อย!</div>
+            <div class="text-[14px] text-[var(--c-text-sub)] mb-4 text-center bg-[var(--c-bg)] p-2 rounded-xl">ตรวจสอบข้อมูล แล้วกดปุ่มด้านล่างเพื่อคัดลอกส่งให้แอดมินได้เลยค่ะ</div>
             <div class="form-group">
-                <textarea id="summary-text" class="form-control" rows="12" readonly style="font-size:13px; background:#fff; border-color:var(--c-hot-pink); line-height:1.6;"></textarea>
+                <textarea id="summary-text" class="form-control" rows="12" readonly style="font-size:14px; background:#fff; border-color:var(--c-hot-pink); line-height:1.6;"></textarea>
             </div>
             <div class="flex gap-2 flex-wrap">
                 <button class="btn-action flex-1 bg-[#1877f2] text-white border-[#1877f2] shadow-[3px_3px_0px_#115cbf] hover:bg-[#115cbf]" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-f"></i> ส่งทาง FB</button>
@@ -404,7 +490,7 @@
             <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4">
                 
                 <div class="bg-[var(--c-bg)] p-4 rounded-2xl border border-[var(--c-sky)] mb-5">
-                    <h4 class="text-[var(--c-text-main)] mt-0 mb-3 text-lg font-bold">📝 ตั้งค่าร้านค้าทั่วไป</h4>
+                    <h4 class="text-[var(--c-text-main)] mt-0 mb-3 text-lg">📝 ตั้งค่าร้านค้าทั่วไป</h4>
                     <div class="form-group"><label>ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2"></div>
                     <div class="form-group"><label>สโลแกน</label><input type="text" id="cfg-slogan" class="form-control py-2"></div>
                     <div class="form-group"><label>ข้อความวิ่ง (Marquee)</label><input type="text" id="cfg-marquee" class="form-control py-2"></div>
@@ -416,7 +502,7 @@
                     <div class="form-group mb-0"><label>วิธีใช้งาน / กฎของร้าน</label><textarea id="cfg-rulesText" class="form-control py-2" rows="6"></textarea></div>
                 </div>
 
-                <h4 class="text-[var(--c-text-main)] mt-0 mb-3 text-lg font-bold">📦 จัดการสินค้าและราคา</h4>
+                <h4 class="text-[var(--c-text-main)] mt-0 mb-3 text-lg">📦 จัดการสินค้าและราคา</h4>
                 <div id="admin-products-list"></div>
 
             </div>
@@ -435,14 +521,14 @@
 
     let shopSettings = {
         shopName: "AhTao Mu-Space",
-        slogan: "🔮 Mu-Space 🔮",
+        slogan: "🔮 \"พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ\" ✨",
         marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space 🔮 ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร ✨",
         fbLink: "https://m.me/taotofu.meow",
         lineLink: "https://lin.ee/WgEAeFx",
         kbankName: "ธนพร เจิมเฟื่องฟู",
         kbankNum: "1961933834",
         walletNum: "0800172584",
-        rulesText: "1. กดเลือกหมวดหมู่สินค้าด้านบน (ดูดวง, วอลเปเปอร์, เว็บไซต์)\n2. กดปุ่ม ➕ ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า\n3. เมื่อเลือกครบแล้ว เลื่อนลงมาด้านล่าง\n4. โอนเงินตามยอดรวม และกรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*)\n5. กด \"สร้างข้อความสรุป\"\n6. กดปุ่มส่งทาง Line/FB ข้อความจะถูกก๊อปปี้อัตโนมัติ ให้นำไปวางส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖\n\n📌 กฎของร้าน:\n- โอนเงินแล้วไม่คืนเงินทุกกรณี\n- ยกเลิกคิวหลังตรวจงานแล้ว ไม่คืนเงินและส่งงานให้ตามปกติ\n- งดจิกงดเร่งทุกกรณีนะคะ แอดมินจะรีบตอบกลับให้เร็วที่สุดค่ะ"
+        rulesText: "1. กดเลือกหมวดหมู่สินค้าด้านบน (ดูดวง, วอลเปเปอร์, เว็บไซต์)\n2. กดปุ่ม ➕ ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า\n3. เมื่อเลือกครบแล้วกดตรงตะกร้ามุมขวาล่างระบบจะ เลื่อนลงมาด้านล่าง\n4. โอนเงินตามยอดรวม และกรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*)\n5. กด \"สร้างข้อความสรุป\"\n6. กดปุ่มส่งทาง Line/FB ข้อความจะถูกก๊อปปี้อัตโนมัติ ให้นำไปวางส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖\n\n📌 กฎของร้าน\n(อ่านก่อนน้า เพื่อความสบายใจทั้งสองฝ่ายค่ะ) 💖\nกฎทั่วไป: ชำระเงินแล้วขอสงวนสิทธิ์ไม่คืนเงินทุกกรณี / รบกวนงดจิกงดเร่งน้า เราตั้งใจทำทุกคิว จะรีบส่งมอบให้เร็วที่สุดค่ะ\n📞 โทรดูดวง & ฮีลใจ: รบกวนตรงต่อเวลาคิวนะคะ หากต้องการเลื่อนต้องแจ้งล่วงหน้า (หากเลื่อนกะทันหันก่อนเวลาโทรจริง ขออนุญาตปรับครั้งละ 100 บาทค่า)\n💬 ดูดวงแบบพิมพ์: รบกวนเช็กข้อมูลให้ครบถ้วน โดยเฉพาะ \"เดือนเกิด\" นะคะ เพื่อป้องกันระบบแจ้งเตือนว่ากรอกข้อมูลไม่ครบค่ะ\n🎨 วอลเปเปอร์: ระยะเวลาจัดทำ 3-7 วัน (หากต้องการงานด่วน +ค่าเร่ง รับงานได้ภายใน 1-2 วันค่า) รบกวนส่งบรีฟให้ครบก่อนเริ่มงานนะคะ\n💻 เว็บไซต์: รบกวนส่งข้อมูลและรูปให้ครบก่อนเริ่มงาน สามารถแก้ดีไซน์ได้ตามจำนวนครั้งที่ตกลงกันไว้ค่ะ"
     };
 
     const defaultData = [
@@ -488,6 +574,22 @@
         ]}
     ];
 
+    // คลังคำพูดสุ่มสำหรับน้องแมวพยากรณ์
+    const catFortunes = [
+        "วันนี้โชคดีเป็นพิเศษ ระวังเจอเรื่องดีๆ จนตั้งตัวไม่ติดน้า!",
+        "เลขมงคลวันนี้คือเลข 7 กับ 9 นะคะ ลองไปเสี่ยงดวงดู!",
+        "สีนำโชคของคุณวันนี้คือสีชมพูพาสเทลค่ะ ใส่ติดตัวไว้ปังแน่นอน!",
+        "ไพ่ใบนี้บอกว่า... เรื่องที่ขอไว้จะสมหวังในเร็วๆ นี้ค่ะ",
+        "วันนี้เก่งมากแล้วนะที่ผ่านมันมาได้ พักผ่อนบ้างนะคะ",
+        "ไม่ว่าวันนี้จะเจออะไรมา อาเต๋าเป็นกำลังใจให้คนเก่งเสมอ!",
+        "อย่าลืมใจดีกับตัวเองบ้างนะเจ้ามนุษย์ 💖",
+        "ถ้าเหนื่อย ก็แวะมาดูดวงกับอาเต๋าบ่อยๆ นะคะ",
+        "มองอะไรคะ? อยากมูเรื่องไหน ถามอาเต๋าได้เลยนะ!",
+        "ของดีมีอยู่เต็มเว็บเลยนะ ไม่กดดูหน่อยหรอคะ?",
+        "ถ้าไม่รีบมู เดี๋ยวคิวเต็มไม่รู้ด้วยนะ!",
+        "วอลเปเปอร์รุ่นใหม่เข้าแล้วนะ แวะไปส่องหมวด 📱 ดูสิ!"
+    ];
+
     let productData = JSON.parse(JSON.stringify(defaultData));
     let currentCart = [];
     let activeTab = 0;
@@ -495,6 +597,7 @@
     let hasChat = false, hasPhone = false, hasWall = false, hasChart = false, hasWeb = false, hasHeal = false;
     let totalChatQuestions = 0;
     let minChatPrice = 999;
+    let wallAddCount = 0;
 
     document.addEventListener('DOMContentLoaded', async () => {
         // Set date inputs to today
@@ -529,7 +632,7 @@
 
     // Star click effect
     document.addEventListener('click', function(e) {
-        if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT' || e.target.tagName === 'BUTTON') return;
+        if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT' || e.target.tagName === 'BUTTON' || e.target.closest('.cat-icon')) return;
         const star = document.createElement('div');
         star.className = 'star-click';
         star.innerHTML = '✨';
@@ -538,6 +641,14 @@
         document.body.appendChild(star);
         setTimeout(() => star.remove(), 800);
     });
+
+    function showFortune() {
+        const bubble = document.getElementById('cat-speech');
+        const randIndex = Math.floor(Math.random() * catFortunes.length);
+        bubble.textContent = catFortunes[randIndex];
+        bubble.classList.add('show');
+        setTimeout(() => bubble.classList.remove('show'), 3500);
+    }
 
     function applySettingsToDOM() {
         document.getElementById('display-shop-name').textContent = shopSettings.shopName;
@@ -573,12 +684,12 @@
         
         itemsToRender.forEach(group => {
             html += `<div class="card p-5 mb-5 relative bg-white">
-                        <div class="text-[16px] font-bold text-[var(--c-text-main)] mb-3 border-b-2 dashed border-[var(--c-purple)] pb-2">${group.title}</div>`;
+                        <div class="text-[17px] text-[var(--c-text-main)] mb-3 border-b-2 dashed border-[var(--c-purple)] pb-2">${group.title}</div>`;
             
             group.items.forEach(item => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                 html += `<div class="flex justify-between items-center py-3 border-b dashed border-gray-100 hover:bg-[var(--c-bg)] rounded-lg transition-colors px-1">
-                            <span class="text-[14px] font-bold text-[var(--c-text-main)] flex-1 pr-2 line-height-[1.4]">${item.name}</span>
+                            <span class="text-[15px] text-[var(--c-text-main)] flex-1 pr-2 line-height-[1.4]">${item.name}</span>
                             <div class="flex items-center gap-2">
                                 <span class="price-tag">${item.price}.-</span>
                                 <button class="btn-add" onclick="addToCart('${safeName}', ${item.price}, '${group.category}')">➕</button>
@@ -591,6 +702,15 @@
     }
 
     function addToCart(name, price, category) {
+        // เช็กเงื่อนไขการบวกเรื่องเพิ่ม (วอลเปเปอร์)
+        if(name.includes('เพิ่มเรื่อง') || name.includes('+39')) {
+            let currentAddCount = currentCart.filter(i => i.name.includes('เพิ่มเรื่อง') || i.name.includes('+39')).length;
+            if(currentAddCount >= 5) {
+                alert('⚠️ เพิ่มเรื่องเสริมได้สูงสุด 5 เรื่องต่อบิลนะคะ');
+                return;
+            }
+        }
+
         currentCart.push({ name, price, category });
         updateCartTotal();
         showToast('🛒 เพิ่มลงตะกร้าแล้ว!');
@@ -623,18 +743,26 @@
         hasChat = hasPhone = hasWall = hasChart = hasWeb = hasHeal = false; 
         totalChatQuestions = 0;
         minChatPrice = 999;
+        wallAddCount = 0;
 
         currentCart.forEach((item, index) => {
             subtotal += item.price;
-            html += `<div class="flex justify-between mb-2 border-b dashed border-gray-200 pb-2 text-[14px] font-bold text-[var(--c-text-main)]">
+            html += `<div class="flex justify-between mb-2 border-b dashed border-gray-200 pb-2 text-[15px] text-[var(--c-text-main)]">
                 <span><span class="text-[var(--c-purple-dark)]">-</span> ${item.name}</span> 
                 <span class="text-[var(--c-hot-pink)]">${item.price}.- <button onclick="removeItem(${index})" class="bg-transparent border-none text-red-500 cursor-pointer font-bold ml-1 hover:scale-110">[X]</button></span>
             </div>`;
             
             if (item.category === 'โทรดูดวง') hasPhone = true;
-            else if (item.category === 'วอลเปเปอร์') hasWall = true;
             else if (item.category === 'รับทำเว็บไซต์') hasWeb = true;
             else if (item.category === 'พื้นที่รับฟัง') hasHeal = true;
+            else if (item.category === 'วอลเปเปอร์') {
+                if(item.name.includes('เริ่มต้น') || item.name.includes('แม่หมอดู') || item.price === 189 || item.price === 199) {
+                    hasWall = true;
+                }
+                if(item.name.includes('เพิ่มเรื่อง') || item.name.includes('+39')) {
+                    wallAddCount++;
+                }
+            }
             else if (item.category === 'ดูดวง') {
                 if (item.name.includes('พื้นดวง') || item.name.includes('ผูกดวง')) hasChart = true;
                 else {
@@ -649,7 +777,7 @@
 
         if (document.getElementById('urgent-queue').checked) {
             subtotal += 59;
-            html += `<div class="flex justify-between mb-2 text-[var(--c-blue)] font-bold text-[14px]"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
+            html += `<div class="flex justify-between mb-2 text-[var(--c-blue)] text-[15px]"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
         }
 
         listEl.innerHTML = html; 
@@ -661,30 +789,30 @@
         const needPersonal = hasChat || hasPhone;
         const formPersonal = document.getElementById('form-personal');
         
-        // Show/Hide sections logic
+        // Show/Hide personal for Chat/Phone/Heal
         formPersonal.style.display = needPersonal || hasHeal ? 'block' : 'none';
-        
         if (needPersonal) {
             document.getElementById('field-status-box').style.display = 'block';
-            document.getElementById('field-month-year-box').style.display = 'grid'; // show month/year
+            document.getElementById('field-month-year-box').style.display = 'grid'; 
             document.getElementById('f-day').closest('.form-group').style.display = 'block';
         } else if (hasHeal) {
             document.getElementById('field-status-box').style.display = 'none';
             document.getElementById('field-month-year-box').style.display = 'none';
             document.getElementById('f-day').closest('.form-group').style.display = 'none';
         }
-
-        // Manage required classes based on visibility
         manageRequiredFields(formPersonal);
 
+        // Appt Form
         const formAppt = document.getElementById('form-appt');
         formAppt.style.display = (hasPhone || hasHeal) ? 'block' : 'none';
         manageRequiredFields(formAppt);
 
+        // Web Form
         const formWeb = document.getElementById('form-web');
         formWeb.style.display = hasWeb ? 'block' : 'none';
         manageRequiredFields(formWeb);
 
+        // Chat Form
         const chatOptionsBox = document.getElementById('form-chat-options');
         if (hasChat) {
             chatOptionsBox.style.display = 'block';
@@ -714,18 +842,30 @@
                 dQuestionsDiv.innerHTML = `<div class="form-group mb-0"><label>คำถาม / รายละเอียดเพิ่มเติม *</label><textarea class="form-control dyn-q dyn-req" rows="3"></textarea></div>`;
             }
         }
+
+        // ================= Wall Form Logic =================
+        const formWall = document.getElementById('form-wall');
+        formWall.style.display = hasWall ? 'block' : 'none';
+        manageRequiredFields(formWall);
+
+        const wallExtraBox = document.getElementById('wall-extra-container');
+        wallExtraBox.innerHTML = '';
+        if(hasWall && wallAddCount > 0) {
+            for(let i=1; i<=wallAddCount; i++) {
+                wallExtraBox.innerHTML += `<div class="form-group mt-3 mb-0">
+                    <label>เรื่องที่ต้องการเสริมเพิ่ม #${i} *</label>
+                    <input type="text" class="form-control dyn-req wall-extra-inp" placeholder="เช่น การเงิน, เสน่ห์เมตตา">
+                </div>`;
+            }
+        }
     }
 
     function manageRequiredFields(container) {
-        // Toggle a special class for validation based on visibility
         const isVisible = container.style.display !== 'none';
-        const inputs = container.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]):not(#f-year), select, textarea');
+        const inputs = container.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]):not(#f-year):not(#f-wall-name), select, textarea');
         inputs.forEach(input => {
-            if(isVisible && input.id !== 'f-year') {
-                input.classList.add('dyn-req');
-            } else {
-                input.classList.remove('dyn-req');
-            }
+            if(isVisible) input.classList.add('dyn-req');
+            else input.classList.remove('dyn-req');
         });
     }
 
@@ -745,7 +885,7 @@
         const display = document.getElementById('end-time-display');
         if (!timeVal) { display.style.display = 'none'; return; }
 
-        let minutes = 10; // Default
+        let minutes = 10;
         currentCart.forEach(i => {
             if (i.name.includes('15 นาที')) minutes = 15;
             else if (i.name.includes('30 นาที')) minutes = 30;
@@ -777,8 +917,6 @@
         }
         
         let isValid = true;
-        
-        // Base fixed required fields
         const baseReq = ['f-transfer-date', 'f-transfer-time', 'f-name'];
         baseReq.forEach(id => {
             const el = document.getElementById(id);
@@ -786,17 +924,11 @@
             else { el.style.borderColor = 'var(--c-pink-purp)'; }
         });
 
-        // Dynamic required fields
         const dynReqs = document.querySelectorAll('.dyn-req');
         dynReqs.forEach(el => {
-            // Check if it's currently visible
             if (el.offsetWidth > 0 && el.offsetHeight > 0) {
-                if(!el.value.trim()) {
-                    isValid = false;
-                    el.style.borderColor = 'red';
-                } else {
-                    el.style.borderColor = 'var(--c-pink-purp)';
-                }
+                if(!el.value.trim()) { isValid = false; el.style.borderColor = 'red'; } 
+                else { el.style.borderColor = 'var(--c-pink-purp)'; }
             }
         });
 
@@ -815,20 +947,20 @@
         let orderItemsOnly = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
         if (document.getElementById('urgent-queue').checked) orderItemsOnly += `\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)`;
         
-        // แก้ไขชื่อ อาเต่า เป็น อาเต๋า ตามที่สั่ง
+        // แก้ไข อาเต่า เป็น อาเต๋า ให้ถูกต้องสมบูรณ์
         let summary = `🧸 ขอบคุณสำหรับการจองบริการกับอาเต๋านะคะ\n-----------------------------\n🛒 ออเดอร์จาก: ${name}\n📋 รายการที่สั่ง:\n${orderItemsOnly}\n💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\nวันที่: ${tDate} เวลา: ${tTime}\n-----------------------------\n`;
 
         if (hasPhone || hasHeal) {
             summary += `📞 ข้อมูลการจองคิว:\nวันที่: ${document.getElementById('f-appt-date').value} เวลา: ${document.getElementById('f-appt-time').value} น.\n-----------------------------\n`;
         }
 
+        // ข้อมูลดูดวงส่วนตัว
         if (hasChat || hasPhone) {
             let ageVal = document.getElementById('f-age').value;
             let statusVal = document.getElementById('f-status').value;
             let dayVal = document.getElementById('f-day').value;
             let monthVal = document.getElementById('f-month').value;
             let yearVal = document.getElementById('f-year').value.trim();
-            
             let dobText = yearVal ? `วัน${dayVal} เดือน${monthVal} ปี${yearVal}` : `วัน${dayVal} เดือน${monthVal}`;
             
             summary += `🔮 ข้อมูลส่วนตัว:\nอายุ: ${ageVal} ปี\nสถานะ: ${statusVal}\nเกิดวัน: ${dobText}\n-----------------------------\n`;
@@ -837,7 +969,8 @@
             summary += `🔮 ข้อมูลส่วนตัว:\nอายุ: ${ageVal} ปี\n-----------------------------\n`;
         }
 
-        let qDetails = []; // เก็บคำถามเพื่อส่งเข้าชีต
+        // ข้อมูลคำถามแชท
+        let qDetails = [];
         if (hasChat) {
             const deliveryType = document.querySelector('input[name="delivery_type"]:checked').value;
             const cardOptChecked = document.getElementById('f-card-opt').checked ? " (รับหน้าไพ่)" : " (ไม่รับหน้าไพ่)";
@@ -853,35 +986,72 @@
             summary += `-----------------------------\n`;
         }
 
+        // ข้อมูลวอลเปเปอร์
+        let wallDetailsText = "";
+        if (hasWall) {
+            let wName = document.getElementById('f-wall-name').value.trim() || "-";
+            let wDay = document.getElementById('f-wall-day').value;
+            let wDate = document.getElementById('f-wall-date').value;
+            let wMonth = document.getElementById('f-wall-month').value;
+            let wYear = document.getElementById('f-wall-year').value;
+            let wZod = document.getElementById('f-wall-zodiac').value;
+            let wCol = document.getElementById('f-wall-color').value.trim();
+            let wMain = document.getElementById('f-wall-main').value.trim();
+
+            summary += `🎨 ข้อมูลทำวอลเปเปอร์:\nชื่อในวอล: ${wName}\nเกิดวัน: ${wDay} ที่ ${wDate} ${wMonth} พ.ศ.${wYear}\nปีนักษัตร: ${wZod}\nสีที่ชอบ: ${wCol}\nเสริมเรื่องหลัก: ${wMain}\n`;
+            
+            wallDetailsText = `[วอลเปเปอร์]\nวันเกิด: ${wDay} ${wDate} ${wMonth} ${wYear} (ปี${wZod})\nสี: ${wCol}\nเรื่องหลัก: ${wMain}`;
+            
+            let extraInps = document.querySelectorAll('.wall-extra-inp');
+            if(extraInps.length > 0) {
+                let extras = [];
+                extraInps.forEach((inp, idx) => { 
+                    summary += `เสริมเพิ่ม #${idx+1}: ${inp.value.trim()}\n`; 
+                    extras.push(inp.value.trim());
+                });
+                wallDetailsText += `\nเรื่องเสริมเพิ่ม: ${extras.join(', ')}`;
+            }
+            summary += `-----------------------------\n`;
+        }
+
+        // ข้อมูลทำเว็บ
+        let webBriefText = "";
         if (hasWeb) {
-            let webBrief = document.getElementById('f-web-brief').value.trim();
-            summary += `💻 ข้อมูลรับทำเว็บไซต์:\n${webBrief}\n-----------------------------\n`;
+            webBriefText = document.getElementById('f-web-brief').value.trim();
+            summary += `💻 ข้อมูลรับทำเว็บไซต์:\n${webBriefText}\n-----------------------------\n`;
         }
 
         // ==========================================
-        // ส่งข้อมูลเข้า Google Sheets อัตโนมัติ
+        // การจัดเตรียมข้อมูลยิงเข้า Google Sheets
         // ==========================================
+        let allDetails = [];
+        if(hasChat) allDetails.push(`[ดูดวง]\nรูปแบบ: ${document.querySelector('input[name="delivery_type"]:checked').value}\n${qDetails.join('\n')}`);
+        if(hasWall) allDetails.push(wallDetailsText);
+        if(hasWeb) allDetails.push(`[เว็บ]\n${webBriefText}`);
+
+        let personalCombined = "-";
+        if(hasChat || hasPhone) {
+            personalCombined = `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: วัน${document.getElementById('f-day').value} ${document.getElementById('f-month').value}`;
+        } else if(hasHeal) {
+            personalCombined = `อายุ: ${document.getElementById('f-age').value} ปี`;
+        }
+
         const orderData = {
             name: name,
             items: orderItemsOnly.replace(/\n- ⚡ คิวเร่งด่วนพิเศษ/g, ' + คิวเร่ง'),
             appt: (hasPhone || hasHeal) ? `${document.getElementById('f-appt-date').value} / ${document.getElementById('f-appt-time').value} น.` : "-",
-            personal: (hasChat || hasPhone) ? `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: ${document.getElementById('f-day').value} เดือน${document.getElementById('f-month').value}` : (hasHeal ? `อายุ: ${document.getElementById('f-age').value} ปี` : "-"),
-            details: hasChat ? `รูปแบบ: ${document.querySelector('input[name="delivery_type"]:checked').value}\n${qDetails.join('\n')}` : (hasWeb ? document.getElementById('f-web-brief').value.trim() : "-"),
+            personal: personalCombined,
+            details: allDetails.length > 0 ? allDetails.join('\n\n') : "-",
             price: totalPrice
         };
         
-        // ยิงข้อมูลไปที่ API_URL แบบเงียบๆ (ไม่ต้องรอโหลดเสร็จ ให้ลูกค้าก๊อปข้อความได้เลย)
-        fetch(API_URL, { 
-            method: "POST", 
-            headers: { "Content-Type": "text/plain;charset=utf-8" }, 
-            body: JSON.stringify({ action: "saveOrder", order: orderData }) 
-        }).catch(err => console.log("Sheet Error: ", err));
+        fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveOrder", order: orderData }) }).catch(err => console.log(err));
         // ==========================================
 
         document.getElementById('summary-text').value = summary.trim();
         document.getElementById('summary-area').style.display = 'block';
         document.getElementById('summary-area').scrollIntoView({ behavior: 'smooth' });
-        showToast('🎉 สร้างข้อความสำเร็จ และบันทึกลงระบบแล้ว!');
+        showToast('🎉 สร้างข้อความและบันทึกลงระบบสำเร็จ!');
     }
 
     function copyText(text) {
